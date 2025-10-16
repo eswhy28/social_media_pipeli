@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 import logging
 
 from app.config import settings
-from app.database import engine, Base
+from app.database import init_db, close_db
 from app.redis_client import close_redis
 from app.api import auth, data, reports, ai, webhooks, admin
 
@@ -22,23 +22,27 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting up application...")
-    # Create tables (in production, use Alembic migrations)
-    # async with engine.begin() as conn:
-    #     await conn.run_sync(Base.metadata.create_all)
+
+    # Initialize database tables
+    try:
+        await init_db()
+        logger.info("Database initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize database: {str(e)}")
 
     yield
 
     # Shutdown
     logger.info("Shutting down application...")
     await close_redis()
-    await engine.dispose()
+    await close_db()
 
 
 # Create FastAPI app
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
-    description="Social Media Monitoring and Sentiment Analysis API",
+    description="Social Media Monitoring and Sentiment Analysis API - POC Version",
     docs_url="/docs",
     redoc_url="/redoc",
     lifespan=lifespan
@@ -71,7 +75,8 @@ async def root():
         "name": settings.APP_NAME,
         "version": settings.APP_VERSION,
         "status": "healthy",
-        "docs": "/docs"
+        "docs": "/docs",
+        "description": "Social Media Pipeline POC with Free-Tier Services"
     }
 
 
@@ -80,7 +85,9 @@ async def health_check():
     return {
         "status": "healthy",
         "environment": settings.ENVIRONMENT,
-        "version": settings.APP_VERSION
+        "version": settings.APP_VERSION,
+        "database": "SQLite",
+        "cache": "Redis"
     }
 
 
@@ -92,4 +99,3 @@ if __name__ == "__main__":
         port=settings.PORT,
         reload=settings.DEBUG
     )
-

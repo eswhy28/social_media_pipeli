@@ -1,13 +1,221 @@
-from typing import Dict, Any
-from datetime import datetime
-from app.config import settings
-import openai
+from typing import Dict, List, Any, Optional
+import logging
+import re
+from collections import Counter
+from datetime import datetime, timedelta
+from textblob import TextBlob
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, func, desc, and_
+from app.models import SocialPost, SentimentTimeSeries, TrendingTopic, AnomalyDetection
+
+logger = logging.getLogger(__name__)
 
 
 class AIService:
+    """AI service for sentiment analysis and text processing using TextBlob"""
+
     def __init__(self):
-        openai.api_key = settings.OPENAI_API_KEY
-        self.model = settings.OPENAI_MODEL
+        """Initialize AI service"""
+        self.stop_words = self._get_stop_words()
+
+    async def analyze_sentiment(self, text: str) -> Dict[str, Any]:
+        """
+        Analyze sentiment of text using TextBlob
+        Returns sentiment label, score, and confidence
+        """
+        try:
+            if not text or not text.strip():
+                return {
+                    "label": "neutral",
+                    "score": 0.0,
+                    "confidence": 0.0
+                }
+
+            # Clean text
+            cleaned_text = self._clean_text(text)
+
+            # Analyze with TextBlob
+            blob = TextBlob(cleaned_text)
+            polarity = blob.sentiment.polarity
+            subjectivity = blob.sentiment.subjectivity
+
+            # Classify sentiment
+            if polarity > 0.1:
+                label = "positive"
+            elif polarity < -0.1:
+                label = "negative"
+            else:
+                label = "neutral"
+
+            # Use subjectivity as confidence proxy (more subjective = more confident)
+            confidence = min(abs(polarity) + subjectivity * 0.3, 1.0)
+
+            return {
+                "label": label,
+                "score": float(polarity),
+                "confidence": float(confidence)
+            }
+
+        except Exception as e:
+            logger.error(f"Error analyzing sentiment: {str(e)}")
+            return {
+                "label": "neutral",
+                "score": 0.0,
+                "confidence": 0.0
+            }
+
+    async def batch_analyze_sentiment(self, texts: List[str]) -> List[Dict[str, Any]]:
+        """Batch analyze sentiment for multiple texts"""
+        results = []
+        for text in texts:
+            result = await self.analyze_sentiment(text)
+            results.append(result)
+        return results
+
+    async def detect_anomalies(
+        self,
+        data: List[Dict[str, Any]],
+        threshold: float = 2.0
+    ) -> List[Dict[str, Any]]:
+        """
+        Simple anomaly detection using statistical methods
+        Detects values that are more than threshold standard deviations from mean
+        """
+        try:
+            if not data or len(data) < 3:
+                return []
+
+            # Extract values
+            values = [item.get('value', 0) for item in data]
+
+            # Calculate statistics
+            mean = sum(values) / len(values)
+            variance = sum((x - mean) ** 2 for x in values) / len(values)
+            std_dev = variance ** 0.5
+
+            if std_dev == 0:
+                return []
+
+            # Detect anomalies
+            anomalies = []
+            for i, item in enumerate(data):
+                value = item.get('value', 0)
+                z_score = abs((value - mean) / std_dev)
+
+                if z_score > threshold:
+                    anomalies.append({
+                        "index": i,
+                        "timestamp": item.get('timestamp'),
+                        "value": value,
+                        "expected": mean,
+                        "deviation": z_score,
+                        "severity": "high" if z_score > 3 else "medium"
+                    })
+
+            return anomalies
+
+        except Exception as e:
+            logger.error(f"Error detecting anomalies: {str(e)}")
+            return []
+
+    async def extract_keywords(self, text: str, top_n: int = 5) -> List[str]:
+        """Extract key phrases from text using simple frequency analysis"""
+        try:
+            cleaned_text = self._clean_text(text)
+            blob = TextBlob(cleaned_text)
+
+            # Get noun phrases
+            noun_phrases = blob.noun_phrases
+
+            # Count frequencies
+            phrase_counts = Counter(noun_phrases)
+
+            # Return top N
+            return [phrase for phrase, count in phrase_counts.most_common(top_n)]
+
+        except Exception as e:
+            logger.error(f"Error extracting keywords: {str(e)}")
+            return []
+
+    async def detect_trending_topics(self, posts: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Detect trending topics from a list of posts"""
+        try:
+            hashtag_counter = Counter()
+            keyword_counter = Counter()
+            
+            for post in posts:
+                text = post.get('text', '')
+                
+                # Extract hashtags
+                hashtags = re.findall(r'#(\w+)', text.lower())
+                hashtag_counter.update(hashtags)
+                
+                # Extract keywords from cleaned text
+                cleaned = self._clean_text(text)
+                words = [w.lower() for w in cleaned.split() if len(w) > 3 and w.lower() not in self.stop_words]
+                keyword_counter.update(words)
+            
+            return {
+                "hashtags": [
+                    {"topic": tag, "count": count, "change": 0.0}
+                    for tag, count in hashtag_counter.most_common(10)
+                ],
+                "keywords": [
+                    {"topic": word, "count": count, "change": 0.0}
+                    for word, count in keyword_counter.most_common(10)
+                ]
+            }
+        
+        except Exception as e:
+            logger.error(f"Error detecting trending topics: {str(e)}")
+            return {"hashtags": [], "keywords": []}
+
+    def _clean_text(self, text: str) -> str:
+        """Clean text for analysis"""
+        # Remove URLs
+        text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE)
+        # Remove mentions
+        text = re.sub(r'@\w+', '', text)
+        # Remove extra whitespace
+        text = ' '.join(text.split())
+        return text
+
+    def _get_stop_words(self) -> set:
+        """Return common stop words to filter out"""
+        return {
+            'about', 'above', 'after', 'again', 'against', 'all', 'also', 'and',
+            'any', 'are', 'aren', 'because', 'been', 'before', 'being', 'below',
+            'between', 'both', 'but', 'can', 'cannot', 'could', 'did', 'didn',
+            'does', 'doesn', 'doing', 'don', 'down', 'during', 'each', 'few',
+            'for', 'from', 'further', 'had', 'hadn', 'has', 'hasn', 'have',
+            'haven', 'having', 'her', 'here', 'hers', 'herself', 'him', 'himself',
+            'his', 'how', 'into', 'isn', 'it', 'its', 'itself', 'just', 'more',
+            'most', 'mustn', 'myself', 'needn', 'nor', 'not', 'now', 'only',
+            'other', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'same',
+            'shan', 'she', 'should', 'shouldn', 'some', 'such', 'than', 'that',
+            'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there',
+            'these', 'they', 'this', 'those', 'through', 'too', 'under',
+            'until', 'very', 'was', 'wasn', 'we', 'were', 'weren', 'what',
+            'when', 'where', 'which', 'while', 'who', 'whom', 'why', 'will',
+            'with', 'won', 'would', 'wouldn', 'you', 'your', 'yours', 'yourself'
+        }
+
+    def _parse_date_range(self, range_str: str) -> tuple:
+        """Parse date range string into start and end datetime"""
+        end = datetime.utcnow()
+
+        if range_str == "Today":
+            start = end.replace(hour=0, minute=0, second=0, microsecond=0)
+        elif range_str == "Last 7 Days":
+            start = end - timedelta(days=7)
+        elif range_str == "Last 30 Days":
+            start = end - timedelta(days=30)
+        elif range_str == "Last 90 Days":
+            start = end - timedelta(days=90)
+        else:
+            start = end - timedelta(days=7)
+
+        return start, end
 
     async def generate_summary(
         self,
@@ -17,42 +225,41 @@ class AIService:
         range: str,
         context: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """Generate AI summary for report sections"""
-
-        prompt = self._build_prompt(section, subject, template, range, context)
-
+        """
+        Generate AI summary for report sections using TextBlob insights
+        This is a simplified implementation for POC
+        """
         try:
-            response = openai.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": "You are a social media analyst expert. Generate concise, data-driven summaries."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
+            # Extract key metrics from context
+            total_posts = context.get('total_posts', 0)
+            sentiment_data = context.get('sentiment', {})
 
-            summary_text = response.choices[0].message.content
+            # Generate summary based on section
+            if section == "overview":
+                summary = self._generate_overview_summary(subject, total_posts, sentiment_data, range)
+            elif section == "sentiment":
+                summary = self._generate_sentiment_summary(sentiment_data, total_posts)
+            elif section == "timeline":
+                summary = self._generate_timeline_summary(context, range)
+            elif section == "influencers":
+                summary = self._generate_influencer_summary(context)
+            elif section == "geo":
+                summary = self._generate_geographic_summary(context)
+            else:
+                summary = f"Analysis summary for {subject} over {range}"
 
             return {
-                "summary": summary_text,
-                "insights": {
-                    "content": f"Data-driven insights for {subject} {section}",
-                    "data": self._extract_insights_data(context)
-                },
-                "confidence": 85,
-                "generated_at": datetime.utcnow().isoformat() + "Z"
+                "summary": summary,
+                "word_count": len(summary.split()),
+                "key_points": self._extract_key_points(summary)
             }
+
         except Exception as e:
-            # Fallback to template-based summary
+            logger.error(f"Error generating summary: {str(e)}")
             return {
-                "summary": self._fallback_summary(section, subject, template, range, context),
-                "insights": {
-                    "content": f"Analysis for {subject} over {range}",
-                    "data": self._extract_insights_data(context)
-                },
-                "confidence": 70,
-                "generated_at": datetime.utcnow().isoformat() + "Z"
+                "summary": f"Unable to generate summary for {section}",
+                "word_count": 0,
+                "key_points": []
             }
 
     async def generate_insights(
@@ -63,653 +270,158 @@ class AIService:
         range: str,
         context: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """Generate detailed AI insights"""
-
-        prompt = self._build_insights_prompt(section, subject, template, range, context)
-
+        """
+        Generate detailed AI insights for report sections
+        This is a simplified implementation for POC
+        """
         try:
-            response = openai.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": "You are a data analyst. Provide detailed insights with actionable recommendations."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=800
-            )
+            insights = []
 
-            insights_text = response.choices[0].message.content
-
-            return {
-                "insights": {
-                    "content": insights_text,
-                    "data": {
-                        "keyMetrics": self._extract_key_metrics(context),
-                        "trends": self._extract_trends(context),
-                        "recommendations": self._extract_recommendations(insights_text)
-                    }
-                },
-                "confidence": 90,
-                "generated_at": datetime.utcnow().isoformat() + "Z"
-            }
-        except Exception as e:
-            return {
-                "insights": {
-                    "content": self._fallback_insights(section, subject, context),
-                    "data": {
-                        "keyMetrics": self._extract_key_metrics(context),
-                        "trends": ["Trend analysis unavailable"],
-                        "recommendations": ["Continue monitoring"]
-                    }
-                },
-                "confidence": 70,
-                "generated_at": datetime.utcnow().isoformat() + "Z"
-            }
-
-    def _build_prompt(self, section: str, subject: str, template: str, range: str, context: Dict[str, Any]) -> str:
-        """Build prompt for summary generation"""
-        mentions = context.get("mentions", 0)
-        sentiment = context.get("sentiment", {})
-
-        return f"""Generate a concise summary for the {section} section of a social media monitoring report.
-
-Subject: {subject}
-Template: {template}
-Time Range: {range}
-Total Mentions: {mentions}
-Sentiment Distribution: Positive {sentiment.get('pos', 0)}%, Negative {sentiment.get('neg', 0)}%, Neutral {sentiment.get('neu', 0)}%
-
-Provide a 2-3 sentence executive summary highlighting key findings and trends."""
-
-    def _build_insights_prompt(self, section: str, subject: str, template: str, range: str, context: Dict[str, Any]) -> str:
-        """Build prompt for insights generation"""
-        return f"""Generate detailed insights for the {section} section about "{subject}" over {range}.
-
-Context: {context}
-
-Provide:
-1. Key observations
-2. Notable trends
-3. Actionable recommendations"""
-
-    def _fallback_summary(self, section: str, subject: str, template: str, range: str, context: Dict[str, Any]) -> str:
-        """Generate fallback summary without AI"""
-        mentions = context.get("mentions", 0)
-        sentiment = context.get("sentiment", {})
-
-        return f"The {template} '{subject}' has generated {mentions:,} mentions over {range}. " \
-               f"Sentiment analysis shows {sentiment.get('pos', 0)}% positive, " \
-               f"{sentiment.get('neg', 0)}% negative, and {sentiment.get('neu', 0)}% neutral mentions. " \
-               f"This indicates a {'predominantly positive' if sentiment.get('pos', 0) > 50 else 'mixed'} public perception."
-
-    def _fallback_insights(self, section: str, subject: str, context: Dict[str, Any]) -> str:
-        """Generate fallback insights without AI"""
-        return f"Detailed analysis of {subject} shows significant engagement across multiple platforms. " \
-               f"Key metrics indicate active discussion and varying sentiment patterns. " \
-               f"Continued monitoring is recommended to track evolving trends."
-
-    def _extract_insights_data(self, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Extract structured insights data"""
-        return {
-            "totalMentions": context.get("mentions", 0),
-            "growthRate": 75,
-            "peakHours": context.get("peak_hours", "2-4 PM"),
-            "avgMentionsPerHour": context.get("mentions", 0) // 24 if context.get("mentions") else 0
-        }
-
-    def _extract_key_metrics(self, context: Dict[str, Any]) -> list:
-        """Extract key metrics from context"""
-        metrics = []
-        if "mentions" in context:
-            metrics.append(f"Total Mentions: {context['mentions']:,}")
-        if "sentiment" in context:
-            metrics.append(f"Sentiment Score: {context['sentiment']}")
-        return metrics
-
-    def _extract_trends(self, context: Dict[str, Any]) -> list:
-        """Extract trends from context"""
-        return [
-            "Increasing engagement over time",
-            "Geographic concentration in major cities",
-            "Peak activity during business hours"
-        ]
-
-    def _extract_recommendations(self, insights_text: str) -> list:
-        """Extract recommendations from insights text"""
-        # Simple extraction - in production, use NLP
-        return [
-            "Monitor sentiment shifts closely",
-            "Engage with high-influence accounts",
-            "Track emerging narratives"
-        ]
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, func, desc, and_, or_
-from typing import Optional, List, Dict, Any
-from datetime import datetime, timedelta
-from app.models import (
-    SocialPost, Hashtag, Keyword, Influencer, Anomaly,
-    GeographicData, SentimentTimeSeries
-)
-import random
-
-
-class DataService:
-    def __init__(self, db: AsyncSession):
-        self.db = db
-
-    def _parse_date_range(self, range_str: str, start_date: Optional[str] = None, end_date: Optional[str] = None):
-        """Parse date range into start and end datetime"""
-        now = datetime.utcnow()
-
-        if range_str == "Today":
-            start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-            end = now
-        elif range_str == "Last 7 Days":
-            start = now - timedelta(days=7)
-            end = now
-        elif range_str == "Last 30 Days":
-            start = now - timedelta(days=30)
-            end = now
-        elif range_str == "Last 90 Days":
-            start = now - timedelta(days=90)
-            end = now
-        elif range_str == "Custom" and start_date and end_date:
-            start = datetime.fromisoformat(start_date)
-            end = datetime.fromisoformat(end_date)
-        else:
-            start = now - timedelta(days=7)
-            end = now
-
-        return start, end
-
-    async def get_overview(self, range_str: str, start_date: Optional[str], end_date: Optional[str]) -> Dict[str, Any]:
-        """Get overview dashboard data"""
-        start, end = self._parse_date_range(range_str, start_date, end_date)
-
-        # Get sentiment distribution
-        sentiment_result = await self.db.execute(
-            select(
-                func.count().filter(SocialPost.sentiment == 'positive').label('pos'),
-                func.count().filter(SocialPost.sentiment == 'negative').label('neg'),
-                func.count().filter(SocialPost.sentiment == 'neutral').label('neu')
-            ).where(
-                and_(
-                    SocialPost.posted_at >= start,
-                    SocialPost.posted_at <= end
-                )
-            )
-        )
-        sentiment = sentiment_result.first()
-
-        # Get metrics
-        metrics_result = await self.db.execute(
-            select(
-                func.count(SocialPost.id).label('total_mentions'),
-                func.sum(SocialPost.engagement_total).label('total_impressions')
-            ).where(
-                and_(
-                    SocialPost.posted_at >= start,
-                    SocialPost.posted_at <= end
-                )
-            )
-        )
-        metrics = metrics_result.first()
-
-        # Get trending hashtags
-        hashtags_result = await self.db.execute(
-            select(Hashtag).order_by(desc(Hashtag.trending_score)).limit(5)
-        )
-        hashtags = hashtags_result.scalars().all()
-
-        # Get trending keywords
-        keywords_result = await self.db.execute(
-            select(Keyword).order_by(desc(Keyword.trend)).limit(5)
-        )
-        keywords = keywords_result.scalars().all()
-
-        # Get anomalies
-        anomalies_result = await self.db.execute(
-            select(Anomaly).where(
-                and_(
-                    Anomaly.detected_at >= start,
-                    Anomaly.status == 'new'
-                )
-            ).order_by(desc(Anomaly.detected_at)).limit(5)
-        )
-        anomalies = anomalies_result.scalars().all()
-
-        return {
-            "sentiment": {
-                "pos": sentiment.pos or 0,
-                "neg": sentiment.neg or 0,
-                "neu": sentiment.neu or 0
-            },
-            "metrics": {
-                "total_mentions": metrics.total_mentions or 0,
-                "total_impressions": metrics.total_impressions or 0,
-                "total_reach": int((metrics.total_impressions or 0) * 0.68),  # Estimate
-                "engagement_rate": 0.048
-            },
-            "anomalies": [
-                {
-                    "id": a.id,
-                    "title": a.title,
-                    "severity": a.severity,
-                    "detected_at": a.detected_at.isoformat(),
-                    "summary": a.summary,
-                    "metric": a.metric,
-                    "delta": a.delta
-                }
-                for a in anomalies
-            ],
-            "trending_hashtags": [
-                {
-                    "tag": h.tag,
-                    "count": h.count,
-                    "change": h.change_percentage
-                }
-                for h in hashtags
-            ],
-            "trending_keywords": [
-                {
-                    "keyword": k.keyword,
-                    "count": k.mentions,
-                    "change": k.trend
-                }
-                for k in keywords
-            ]
-        }
-
-    async def get_live_sentiment(self) -> Dict[str, Any]:
-        """Get real-time sentiment gauge value"""
-        # Get recent sentiment
-        result = await self.db.execute(
-            select(SentimentTimeSeries)
-            .order_by(desc(SentimentTimeSeries.timestamp))
-            .limit(1)
-        )
-        latest = result.scalar_one_or_none()
-
-        if latest:
-            total = latest.positive + latest.negative + latest.neutral
-            if total > 0:
-                value = int((latest.positive / total) * 100)
+            # Generate insights based on section
+            if section == "sentiment":
+                insights = self._generate_sentiment_insights(context)
+            elif section == "narratives":
+                insights = self._generate_narrative_insights(context)
+            elif section == "topPosts":
+                insights = self._generate_top_posts_insights(context)
+            elif section == "influencers":
+                insights = self._generate_influencer_insights(context)
             else:
-                value = 50
+                insights = [f"Key insight about {subject} from {section} analysis"]
+
+            return {
+                "insights": insights,
+                "confidence": 0.75,
+                "recommendations": self._generate_recommendations(context, section)
+            }
+
+        except Exception as e:
+            logger.error(f"Error generating insights: {str(e)}")
+            return {
+                "insights": [],
+                "confidence": 0.0,
+                "recommendations": []
+            }
+
+    def _generate_overview_summary(self, subject: str, total_posts: int, sentiment_data: Dict, range_str: str) -> str:
+        """Generate overview summary"""
+        pos = sentiment_data.get('positive', 0)
+        neg = sentiment_data.get('negative', 0)
+        neu = sentiment_data.get('neutral', 0)
+        total = pos + neg + neu
+
+        if total == 0:
+            return f"No data available for {subject} in the {range_str} period."
+
+        pos_pct = (pos / total * 100) if total > 0 else 0
+        neg_pct = (neg / total * 100) if total > 0 else 0
+
+        sentiment_trend = "positive" if pos > neg else "negative" if neg > pos else "neutral"
+
+        return (f"Analysis of '{subject}' over {range_str} reveals {total_posts:,} total mentions. "
+                f"Sentiment analysis shows {pos_pct:.1f}% positive, {neg_pct:.1f}% negative sentiment, "
+                f"indicating an overall {sentiment_trend} trend in public discourse.")
+
+    def _generate_sentiment_summary(self, sentiment_data: Dict, total_posts: int) -> str:
+        """Generate sentiment analysis summary"""
+        pos = sentiment_data.get('positive', 0)
+        neg = sentiment_data.get('negative', 0)
+
+        if pos > neg:
+            return f"Overall sentiment is predominantly positive with {pos} positive mentions compared to {neg} negative ones across {total_posts} total posts."
+        elif neg > pos:
+            return f"Overall sentiment leans negative with {neg} negative mentions compared to {pos} positive ones across {total_posts} total posts."
         else:
-            value = 50
+            return f"Sentiment is evenly balanced between positive and negative mentions across {total_posts} total posts."
 
-        return {
-            "value": value,
-            "trend": "increasing" if value > 50 else "decreasing",
-            "confidence": 85,
-            "last_updated": datetime.utcnow().isoformat() + "Z"
-        }
+    def _generate_timeline_summary(self, context: Dict, range_str: str) -> str:
+        """Generate timeline summary"""
+        return f"Timeline analysis over {range_str} shows varying levels of engagement and sentiment shifts in the conversation."
 
-    async def get_sentiment_series(self, range_str: str, granularity: str, start_date: Optional[str], end_date: Optional[str]) -> Dict[str, Any]:
-        """Get sentiment time series data"""
-        start, end = self._parse_date_range(range_str, start_date, end_date)
+    def _generate_influencer_summary(self, context: Dict) -> str:
+        """Generate influencer summary"""
+        influencers = context.get('influencers', [])
+        if not influencers:
+            return "No significant influencer activity detected in this period."
 
-        result = await self.db.execute(
-            select(SentimentTimeSeries)
-            .where(
-                and_(
-                    SentimentTimeSeries.timestamp >= start,
-                    SentimentTimeSeries.timestamp <= end,
-                    SentimentTimeSeries.granularity == granularity
-                )
-            )
-            .order_by(SentimentTimeSeries.timestamp)
-        )
-        series = result.scalars().all()
+        return f"Analysis identified {len(influencers)} key influencers driving the conversation with significant reach and engagement."
 
-        # Format for chart
-        series_data = []
-        for item in series:
-            series_data.append({
-                "name": item.timestamp.strftime("%a" if granularity == "day" else "%Y-%m-%d"),
-                "pos": item.positive,
-                "neg": item.negative,
-                "neu": item.neutral
-            })
+    def _generate_geographic_summary(self, context: Dict) -> str:
+        """Generate geographic summary"""
+        return "Geographic analysis shows distribution of mentions across different regions with varying sentiment patterns."
 
-        # Calculate summary
-        total_pos = sum(s.positive for s in series)
-        total_neg = sum(s.negative for s in series)
-        total = total_pos + total_neg + sum(s.neutral for s in series)
-        avg_sentiment = int((total_pos / total * 100)) if total > 0 else 50
+    def _extract_key_points(self, text: str) -> List[str]:
+        """Extract key points from summary text"""
+        sentences = text.split('. ')
+        return [s.strip() + '.' for s in sentences if len(s.split()) > 5][:3]
 
-        return {
-            "series": series_data,
-            "summary": {
-                "average_sentiment": avg_sentiment,
-                "trend": "increasing" if avg_sentiment > 50 else "decreasing",
-                "volatility": "low"
-            }
-        }
+    def _generate_sentiment_insights(self, context: Dict) -> List[str]:
+        """Generate sentiment-specific insights"""
+        sentiment_data = context.get('sentiment', {})
+        total = sum(sentiment_data.values()) if sentiment_data else 0
 
-    async def get_sentiment_categories(self, range_str: str, start_date: Optional[str], end_date: Optional[str]) -> List[Dict[str, Any]]:
-        """Get sentiment breakdown by categories"""
-        # This would group by topics/categories
-        categories = ["Economy", "Politics", "Security", "Infrastructure", "Healthcare"]
-        data = []
+        if total == 0:
+            return ["Insufficient data for sentiment analysis"]
 
-        for category in categories:
-            data.append({
-                "name": category,
-                "pos": random.randint(10, 40),
-                "neg": random.randint(10, 30),
-                "neu": random.randint(5, 20)
-            })
+        insights = []
+        pos_pct = (sentiment_data.get('positive', 0) / total * 100)
+        neg_pct = (sentiment_data.get('negative', 0) / total * 100)
 
-        return data
+        if pos_pct > 60:
+            insights.append("Strong positive sentiment indicates favorable public perception")
+        elif neg_pct > 60:
+            insights.append("Elevated negative sentiment suggests areas of concern requiring attention")
 
-    async def get_trending_hashtags(self, limit: int, min_mentions: int, range_str: str) -> List[Dict[str, Any]]:
-        """Get trending hashtags"""
-        result = await self.db.execute(
-            select(Hashtag)
-            .where(Hashtag.count >= min_mentions)
-            .order_by(desc(Hashtag.trending_score))
-            .limit(limit)
-        )
-        hashtags = result.scalars().all()
+        insights.append(f"Sentiment distribution shows {pos_pct:.1f}% positive vs {neg_pct:.1f}% negative")
 
+        return insights
+
+    def _generate_narrative_insights(self, context: Dict) -> List[str]:
+        """Generate narrative insights"""
         return [
-            {
-                "tag": h.tag,
-                "count": h.count,
-                "change": h.change_percentage,
-                "sentiment": {
-                    "pos": h.sentiment_pos,
-                    "neg": h.sentiment_neg,
-                    "neu": h.sentiment_neu
-                },
-                "top_posts": h.top_posts or []
-            }
-            for h in hashtags
+            "Multiple narrative threads identified in the conversation",
+            "Dominant narratives show consistent themes across time periods",
+            "Counter-narratives present but with lower engagement"
         ]
 
-    async def get_hashtag_details(self, tag: str) -> Optional[Dict[str, Any]]:
-        """Get detailed hashtag analysis"""
-        result = await self.db.execute(
-            select(Hashtag).where(Hashtag.tag == tag)
-        )
-        hashtag = result.scalar_one_or_none()
-
-        if not hashtag:
-            return None
-
-        return {
-            "title": hashtag.tag,
-            "summary": f"Analysis of {hashtag.tag} hashtag activity",
-            "mentions": hashtag.count,
-            "sentiment": {
-                "pos": hashtag.sentiment_pos,
-                "neu": hashtag.sentiment_neu,
-                "neg": hashtag.sentiment_neg
-            },
-            "top_posts": hashtag.top_posts or [],
-            "geographic_distribution": hashtag.geographic_distribution or [],
-            "temporal_analysis": {
-                "peak_hours": "2-4 PM",
-                "weekend_drop": 25,
-                "daily_pattern": "business_hours_peak"
-            }
-        }
-
-    async def get_keyword_trends(self, limit: int, category: Optional[str], range_str: str) -> List[Dict[str, Any]]:
-        """Get keyword trends"""
-        query = select(Keyword).order_by(desc(Keyword.trend)).limit(limit)
-
-        if category:
-            query = query.where(Keyword.category == category)
-
-        result = await self.db.execute(query)
-        keywords = result.scalars().all()
+    def _generate_top_posts_insights(self, context: Dict) -> List[str]:
+        """Generate insights from top posts"""
+        posts = context.get('posts', [])
+        if not posts:
+            return ["No significant posts to analyze"]
 
         return [
-            {
-                "keyword": k.keyword,
-                "mentions": k.mentions,
-                "trend": k.trend,
-                "split": {
-                    "pos": k.sentiment_pos,
-                    "neg": k.sentiment_neg,
-                    "neu": k.sentiment_neu
-                },
-                "emotion": k.emotion,
-                "sample": k.sample_text,
-                "category": k.category,
-                "location_hint": k.location_hint,
-                "score": k.score or 0.0
-            }
-            for k in keywords
+            f"Top {len(posts)} posts generated significant engagement",
+            "High-engagement posts share common characteristics in messaging",
+            "Viral content shows correlation with emotional appeal"
         ]
 
-    async def get_influencers(self, limit: int, min_followers: int, verified_only: bool, range_str: str) -> List[Dict[str, Any]]:
-        """Get influential accounts"""
-        query = select(Influencer).where(Influencer.followers >= min_followers)
-
-        if verified_only:
-            query = query.where(Influencer.verified == True)
-
-        query = query.order_by(desc(Influencer.engagement_total)).limit(limit)
-
-        result = await self.db.execute(query)
-        influencers = result.scalars().all()
-
+    def _generate_influencer_insights(self, context: Dict) -> List[str]:
+        """Generate influencer insights"""
         return [
-            {
-                "handle": i.handle,
-                "engagement": i.engagement_total,
-                "followers_primary": i.followers,
-                "following": i.following,
-                "verified": i.verified,
-                "avatar_url": i.avatar_url,
-                "engagement_rate": i.engagement_rate,
-                "top_mentions": i.top_mentions or []
-            }
-            for i in influencers
+            "Key influencers amplify message reach significantly",
+            "Influencer engagement patterns show coordinated activity",
+            "Network effects visible in influencer-driven conversations"
         ]
 
-    async def get_account_analysis(self, handle: str) -> Optional[Dict[str, Any]]:
-        """Get detailed account analysis"""
-        result = await self.db.execute(
-            select(Influencer).where(Influencer.handle == handle)
-        )
-        account = result.scalar_one_or_none()
+    def _generate_recommendations(self, context: Dict, section: str) -> List[str]:
+        """Generate actionable recommendations"""
+        recommendations = []
 
-        if not account:
-            return None
+        sentiment_data = context.get('sentiment', {})
+        total = sum(sentiment_data.values()) if sentiment_data else 0
 
-        return {
-            "handle": account.handle,
-            "profile": {
-                "name": account.name,
-                "verified": account.verified,
-                "followers": account.followers,
-                "following": account.following,
-                "created_at": "2009-01-01T00:00:00Z"
-            },
-            "engagement_metrics": {
-                "total_engagement": account.engagement_total,
-                "engagement_rate": account.engagement_rate,
-                "avg_likes": int(account.engagement_total * 0.7),
-                "avg_retweets": int(account.engagement_total * 0.2),
-                "avg_replies": int(account.engagement_total * 0.1)
-            },
-            "content_analysis": {
-                "top_topics": account.top_topics or [],
-                "sentiment_distribution": account.sentiment_distribution or {},
-                "posting_frequency": "high",
-                "peak_posting_hours": "2-4 PM"
-            }
-        }
+        if total > 0:
+            neg_pct = (sentiment_data.get('negative', 0) / total * 100)
+            if neg_pct > 50:
+                recommendations.append("Address negative sentiment drivers through targeted messaging")
+                recommendations.append("Monitor conversation for escalating concerns")
 
-    async def get_geographic_states(self, range_str: str, keyword: Optional[str], hashtag: Optional[str]) -> List[Dict[str, Any]]:
-        """Get geographic distribution"""
-        result = await self.db.execute(
-            select(GeographicData).order_by(desc(GeographicData.mentions))
-        )
-        states = result.scalars().all()
+        recommendations.append("Continue monitoring sentiment trends for early warning signals")
+        recommendations.append("Engage with key influencers to amplify positive messaging")
 
-        return [
-            {
-                "state": s.state,
-                "mentions": s.mentions,
-                "percentage": s.percentage,
-                "sentiment": {
-                    "pos": s.sentiment_pos,
-                    "neg": s.sentiment_neg,
-                    "neu": s.sentiment_neu
-                },
-                "top_keywords": s.top_keywords or [],
-                "language_distribution": s.language_distribution or {}
-            }
-            for s in states
-        ]
+        return recommendations
 
-    async def get_geographic_coordinates(self, range_str: str, keyword: Optional[str]) -> Dict[str, Any]:
-        """Get geographic data with coordinates"""
-        result = await self.db.execute(select(GeographicData))
-        states = result.scalars().all()
 
-        features = []
-        for state in states:
-            if state.coordinates:
-                features.append({
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [state.coordinates.get("lon", 0), state.coordinates.get("lat", 0)]
-                    },
-                    "properties": {
-                        "state": state.state,
-                        "mentions": state.mentions,
-                        "sentiment": "positive" if state.sentiment_pos > state.sentiment_neg else "negative",
-                        "intensity": min(state.mentions / 1000, 1.0)
-                    }
-                })
-
-        return {
-            "type": "FeatureCollection",
-            "features": features
-        }
-
-    async def get_top_posts(self, limit: int, range_str: str, keyword: Optional[str], hashtag: Optional[str], min_engagement: int) -> List[Dict[str, Any]]:
-        """Get top performing posts"""
-        start, end = self._parse_date_range(range_str)
-
-        query = select(SocialPost).where(
-            and_(
-                SocialPost.posted_at >= start,
-                SocialPost.posted_at <= end,
-                SocialPost.engagement_total >= min_engagement
-            )
-        ).order_by(desc(SocialPost.engagement_total)).limit(limit)
-
-        result = await self.db.execute(query)
-        posts = result.scalars().all()
-
-        return [
-            {
-                "id": p.id,
-                "handle": p.handle,
-                "text": p.text,
-                "url": p.url,
-                "engagement": str(p.engagement_total),
-                "likes": p.likes,
-                "retweets": p.retweets,
-                "replies": p.replies,
-                "posted_at": p.posted_at.isoformat() + "Z",
-                "sentiment": p.sentiment,
-                "sentiment_score": p.sentiment_score,
-                "topics": p.topics or [],
-                "language": p.language
-            }
-            for p in posts
-        ]
-
-    async def search_posts(self, query: str, range_str: str, limit: int, offset: int, sentiment: Optional[str], language: Optional[str]) -> Dict[str, Any]:
-        """Search posts"""
-        start, end = self._parse_date_range(range_str)
-
-        db_query = select(SocialPost).where(
-            and_(
-                SocialPost.posted_at >= start,
-                SocialPost.posted_at <= end,
-                SocialPost.text.ilike(f"%{query}%")
-            )
-        )
-
-        if sentiment:
-            db_query = db_query.where(SocialPost.sentiment == sentiment)
-
-        if language:
-            db_query = db_query.where(SocialPost.language == language)
-
-        # Get total count
-        count_result = await self.db.execute(
-            select(func.count()).select_from(db_query.subquery())
-        )
-        total = count_result.scalar() or 0
-
-        # Get paginated results
-        db_query = db_query.order_by(desc(SocialPost.posted_at)).limit(limit).offset(offset)
-        result = await self.db.execute(db_query)
-        posts = result.scalars().all()
-
-        return {
-            "posts": [
-                {
-                    "id": p.id,
-                    "handle": p.handle,
-                    "text": p.text,
-                    "url": p.url,
-                    "engagement": str(p.engagement_total),
-                    "posted_at": p.posted_at.isoformat() + "Z",
-                    "sentiment": p.sentiment,
-                    "relevance_score": 0.85
-                }
-                for p in posts
-            ],
-            "pagination": {
-                "total": total,
-                "limit": limit,
-                "offset": offset,
-                "has_more": (offset + limit) < total
-            }
-        }
-
-    async def get_anomalies(self, severity: Optional[str], status: Optional[str], range_str: str, limit: int) -> List[Dict[str, Any]]:
-        """Get anomalies"""
-        start, end = self._parse_date_range(range_str)
-
-        query = select(Anomaly).where(
-            Anomaly.detected_at >= start
-        )
-
-        if severity:
-            query = query.where(Anomaly.severity == severity)
-
-        if status:
-            query = query.where(Anomaly.status == status)
-
-        query = query.order_by(desc(Anomaly.detected_at)).limit(limit)
-
-        result = await self.db.execute(query)
-        anomalies = result.scalars().all()
-
-        return [
-            {
-                "id": a.id,
-                "title": a.title,
-                "severity": a.severity,
-                "detected_at": a.detected_at.isoformat() + "Z",
-                "summary": a.summary,
-                "metric": a.metric,
-                "delta": a.delta
-            }
-            for a in anomalies
-        ]
-
+# Singleton instance
+ai_service = AIService()
