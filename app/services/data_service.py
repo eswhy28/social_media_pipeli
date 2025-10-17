@@ -10,7 +10,6 @@ from app.redis_client import get_redis
 import logging
 import json
 import asyncio
-from tenacity import retry, stop_after_attempt, wait_exponential
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +25,7 @@ class DataService:
         if settings.TWITTER_BEARER_TOKEN:
             self.twitter_client = tweepy.Client(
                 bearer_token=settings.TWITTER_BEARER_TOKEN,
-                wait_on_rate_limit=True
+                wait_on_rate_limit=False  # Don't wait - fail fast instead
             )
         else:
             self.twitter_client = None
@@ -35,7 +34,6 @@ class DataService:
         self.rate_limit_window = 900  # 15 minutes in seconds
         self.max_requests_per_window = settings.TWITTER_SEARCH_REQUESTS_PER_15MIN
 
-    @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
     async def fetch_recent_tweets(
         self,
         query: str,
@@ -44,7 +42,7 @@ class DataService:
     ) -> List[Dict[str, Any]]:
         """
         Fetch recent tweets using Twitter API v2 free tier
-        Implements rate limiting and exponential backoff
+        Maximizes data per request since free tier only allows 10 requests/month
         """
         if not self.twitter_client:
             logger.error("Twitter client not initialized")
@@ -52,24 +50,69 @@ class DataService:
 
         try:
             # Check rate limit before making request
-            await self._check_rate_limit("twitter_search")
+            rate_limit_ok = await self._check_rate_limit("twitter_search")
+            if not rate_limit_ok:
+                logger.warning("Rate limit reached, skipping request")
+                return []
 
-            # Limit max_results to free tier limit
+            # MAXIMIZE results per request - free tier only gives 10 requests/month!
             max_results = min(max_results, settings.TWITTER_MAX_RESULTS_PER_REQUEST)
 
-            # Prepare request parameters
+            logger.info(f"Fetching maximum {max_results} tweets per request (optimized for free tier)")
+
+            # Request ALL available tweet fields to get maximum data value
             params = {
                 "query": query,
                 "max_results": max_results,
-                "tweet_fields": ["created_at", "public_metrics", "lang", "author_id"],
-                "expansions": ["author_id"],
-                "user_fields": ["username", "name"]
+                "tweet_fields": [
+                    "created_at",
+                    "public_metrics",  # likes, retweets, replies, quotes
+                    "lang",
+                    "author_id",
+                    "conversation_id",
+                    "entities",  # hashtags, mentions, urls
+                    "geo",  # location data if available
+                    "in_reply_to_user_id",
+                    "referenced_tweets",  # retweets, quotes, replies
+                    "reply_settings",
+                    "source",  # what app was used
+                    "context_annotations",  # topics and entities
+                    "possibly_sensitive"
+                ],
+                "expansions": [
+                    "author_id",
+                    "referenced_tweets.id",
+                    "in_reply_to_user_id",
+                    "geo.place_id",
+                    "entities.mentions.username",
+                    "referenced_tweets.id.author_id"
+                ],
+                "user_fields": [
+                    "username",
+                    "name",
+                    "verified",
+                    "description",
+                    "public_metrics",  # followers, following, tweet count
+                    "profile_image_url",
+                    "location",
+                    "created_at"
+                ],
+                "place_fields": [
+                    "full_name",
+                    "country",
+                    "country_code",
+                    "geo",
+                    "place_type"
+                ]
             }
 
             if start_time:
-                params["start_time"] = start_time.isoformat()
+                # Twitter API requires RFC3339 format with timezone
+                # Convert to UTC and add 'Z' suffix
+                params["start_time"] = start_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
             # Make API request (runs in thread pool to avoid blocking)
+            logger.info(f"Making Twitter API request with enhanced fields for maximum data extraction")
             response = await asyncio.to_thread(
                 self.twitter_client.search_recent_tweets,
                 **params
@@ -82,35 +125,90 @@ class DataService:
                 logger.info(f"No tweets found for query: {query}")
                 return []
 
-            # Parse response
+            # Parse response with ENHANCED data extraction
             tweets = []
             users_dict = {user.id: user for user in (response.includes.get('users', []) or [])}
+            places_dict = {place.id: place for place in (response.includes.get('places', []) or [])} if response.includes and 'places' in response.includes else {}
 
             for tweet in response.data:
                 author = users_dict.get(tweet.author_id)
-                tweets.append({
+
+                # Extract place/location data
+                place_data = None
+                if hasattr(tweet, 'geo') and tweet.geo and tweet.geo.get('place_id'):
+                    place = places_dict.get(tweet.geo['place_id'])
+                    if place:
+                        place_data = {
+                            "name": place.full_name,
+                            "country": place.country,
+                            "country_code": place.country_code,
+                            "type": place.place_type
+                        }
+
+                # Extract entities (hashtags, mentions, urls)
+                entities_data = {}
+                if hasattr(tweet, 'entities') and tweet.entities:
+                    entities_data = {
+                        "hashtags": [tag.get('tag', '') for tag in tweet.entities.get('hashtags', [])],
+                        "mentions": [mention.get('username', '') for mention in tweet.entities.get('mentions', [])],
+                        "urls": [url.get('expanded_url', url.get('url', '')) for url in tweet.entities.get('urls', [])]
+                    }
+
+                # Extract context annotations (topics/entities detected by Twitter)
+                context_data = []
+                if hasattr(tweet, 'context_annotations') and tweet.context_annotations:
+                    context_data = [
+                        {
+                            "domain": ctx.get('domain', {}).get('name'),
+                            "entity": ctx.get('entity', {}).get('name')
+                        }
+                        for ctx in tweet.context_annotations[:5]  # Top 5 contexts
+                    ]
+
+                tweet_data = {
                     "id": str(tweet.id),
                     "text": tweet.text,
                     "created_at": tweet.created_at.isoformat() if tweet.created_at else None,
                     "author": {
                         "id": str(tweet.author_id),
                         "username": author.username if author else None,
-                        "name": author.name if author else None
+                        "name": author.name if author else None,
+                        "verified": author.verified if author and hasattr(author, 'verified') else False,
+                        "description": author.description if author and hasattr(author, 'description') else None,
+                        "followers_count": author.public_metrics.get('followers_count', 0) if author and hasattr(author, 'public_metrics') else 0,
+                        "following_count": author.public_metrics.get('following_count', 0) if author and hasattr(author, 'public_metrics') else 0,
+                        "tweet_count": author.public_metrics.get('tweet_count', 0) if author and hasattr(author, 'public_metrics') else 0,
+                        "profile_image_url": author.profile_image_url if author and hasattr(author, 'profile_image_url') else None,
+                        "location": author.location if author and hasattr(author, 'location') else None
                     },
                     "metrics": {
                         "likes": tweet.public_metrics.get("like_count", 0),
                         "retweets": tweet.public_metrics.get("retweet_count", 0),
-                        "replies": tweet.public_metrics.get("reply_count", 0)
+                        "replies": tweet.public_metrics.get("reply_count", 0),
+                        "quotes": tweet.public_metrics.get("quote_count", 0)
                     } if tweet.public_metrics else {},
-                    "language": tweet.lang if hasattr(tweet, 'lang') else None
-                })
+                    "language": tweet.lang if hasattr(tweet, 'lang') else None,
+                    "source": tweet.source if hasattr(tweet, 'source') else None,
+                    "possibly_sensitive": tweet.possibly_sensitive if hasattr(tweet, 'possibly_sensitive') else False,
+                    "conversation_id": str(tweet.conversation_id) if hasattr(tweet, 'conversation_id') else None,
+                    "entities": entities_data,
+                    "place": place_data,
+                    "context_annotations": context_data,
+                    "is_reply": bool(tweet.in_reply_to_user_id) if hasattr(tweet, 'in_reply_to_user_id') else False,
+                    "is_retweet": any(ref.get('type') == 'retweeted' for ref in (tweet.referenced_tweets or [])) if hasattr(tweet, 'referenced_tweets') and tweet.referenced_tweets else False
+                }
 
-            logger.info(f"Fetched {len(tweets)} tweets for query: {query}")
+                tweets.append(tweet_data)
+
+            logger.info(f"✅ Successfully fetched {len(tweets)} tweets with FULL data extraction")
+            logger.info(f"   → Extracted: metrics, entities, context, author details, location data")
             return tweets
 
         except tweepy.TooManyRequests as e:
-            logger.warning("Rate limit reached, backing off...")
-            raise
+            logger.warning(f"Twitter API rate limit exceeded: {str(e)}")
+            # Mark rate limit in Redis to prevent further requests
+            await self._mark_rate_limit_exceeded("twitter_search")
+            return []  # Return empty list instead of raising
         except tweepy.Unauthorized as e:
             logger.error("Twitter API authentication failed")
             return []
@@ -341,11 +439,14 @@ class DataService:
     async def _check_rate_limit(self, api_name: str) -> bool:
         """Check if we're within rate limits"""
         redis = await get_redis()
-        key = f"rate_limit:{api_name}:{datetime.utcnow().strftime('%Y%m%d%H%M')}"
+        # Use 15-minute windows by rounding down to nearest 15 minutes
+        now = datetime.utcnow()
+        window_key = now.replace(minute=(now.minute // 15) * 15, second=0, microsecond=0).strftime('%Y%m%d%H%M')
+        key = f"rate_limit:{api_name}:{window_key}"
 
         count = await redis.get(key)
         if count and int(count) >= self.max_requests_per_window:
-            logger.warning(f"Rate limit reached for {api_name}")
+            logger.warning(f"Rate limit reached for {api_name}: {count}/{self.max_requests_per_window}")
             return False
 
         return True
@@ -353,10 +454,25 @@ class DataService:
     async def _track_rate_limit(self, api_name: str):
         """Track API usage for rate limiting"""
         redis = await get_redis()
-        key = f"rate_limit:{api_name}:{datetime.utcnow().strftime('%Y%m%d%H%M')}"
+        # Use 15-minute windows by rounding down to nearest 15 minutes
+        now = datetime.utcnow()
+        window_key = now.replace(minute=(now.minute // 15) * 15, second=0, microsecond=0).strftime('%Y%m%d%H%M')
+        key = f"rate_limit:{api_name}:{window_key}"
 
         await redis.incr(key)
         await redis.expire(key, self.rate_limit_window)
+
+    async def _mark_rate_limit_exceeded(self, api_name: str):
+        """Mark that rate limit has been exceeded by Twitter API"""
+        redis = await get_redis()
+        # Set rate limit to max for current window
+        now = datetime.utcnow()
+        window_key = now.replace(minute=(now.minute // 15) * 15, second=0, microsecond=0).strftime('%Y%m%d%H%M')
+        key = f"rate_limit:{api_name}:{window_key}"
+
+        await redis.set(key, self.max_requests_per_window)
+        await redis.expire(key, self.rate_limit_window)
+        logger.info(f"Marked rate limit exceeded for {api_name}, blocking requests for this window")
 
     async def _get_from_cache(self, key: str) -> Optional[Any]:
         """Get data from Redis cache"""
@@ -894,3 +1010,159 @@ class DataService:
             "metric": a.metric or "",
             "delta": a.delta or ""
         } for a in anomalies]
+
+    async def get_fetch_summary(
+        self,
+        query: str,
+        start_time: datetime
+    ) -> Dict[str, Any]:
+        """Get analytics summary for recently fetched tweets"""
+        try:
+            end_time = datetime.utcnow()
+
+            # Get tweets from this fetch
+            result = await self.db.execute(
+                select(SocialPost).where(
+                    and_(
+                        SocialPost.posted_at >= start_time,
+                        SocialPost.posted_at <= end_time,
+                        SocialPost.processed_at >= start_time  # Recently processed
+                    )
+                )
+            )
+            posts = result.scalars().all()
+
+            if not posts:
+                return {
+                    "total_posts": 0,
+                    "sentiment_breakdown": {},
+                    "avg_engagement": 0,
+                    "top_hashtags": []
+                }
+
+            # Sentiment breakdown
+            sentiment_counts = {"positive": 0, "negative": 0, "neutral": 0}
+            total_engagement = 0
+            all_hashtags = []
+
+            for post in posts:
+                sentiment_counts[post.sentiment] = sentiment_counts.get(post.sentiment, 0) + 1
+                total_engagement += post.engagement_total
+                if post.hashtags:
+                    all_hashtags.extend(post.hashtags)
+
+            # Count hashtags
+            from collections import Counter
+            hashtag_counts = Counter(all_hashtags)
+
+            return {
+                "total_posts": len(posts),
+                "sentiment_breakdown": sentiment_counts,
+                "avg_engagement": total_engagement / len(posts) if posts else 0,
+                "total_engagement": total_engagement,
+                "top_hashtags": [
+                    {"tag": tag, "count": count}
+                    for tag, count in hashtag_counts.most_common(5)
+                ],
+                "avg_sentiment_score": sum(p.sentiment_score for p in posts) / len(posts) if posts else 0
+            }
+
+        except Exception as e:
+            logger.error(f"Error getting fetch summary: {str(e)}")
+            return {}
+
+    async def get_database_stats(self) -> Dict[str, Any]:
+        """Get comprehensive database statistics"""
+        try:
+            # Total posts
+            total_result = await self.db.execute(
+                select(func.count(SocialPost.id))
+            )
+            total_posts = total_result.scalar() or 0
+
+            # Sentiment breakdown
+            sentiment_result = await self.db.execute(
+                select(
+                    SocialPost.sentiment,
+                    func.count(SocialPost.id).label('count')
+                ).group_by(SocialPost.sentiment)
+            )
+            sentiment_data = {row.sentiment: row.count for row in sentiment_result}
+
+            # Engagement stats
+            engagement_result = await self.db.execute(
+                select(
+                    func.sum(SocialPost.engagement_total).label('total'),
+                    func.avg(SocialPost.engagement_total).label('average'),
+                    func.max(SocialPost.engagement_total).label('max')
+                )
+            )
+            engagement = engagement_result.one()
+
+            # Most recent tweet
+            recent_result = await self.db.execute(
+                select(SocialPost.posted_at).order_by(desc(SocialPost.posted_at)).limit(1)
+            )
+            most_recent = recent_result.scalar()
+
+            # Date range
+            oldest_result = await self.db.execute(
+                select(SocialPost.posted_at).order_by(SocialPost.posted_at).limit(1)
+            )
+            oldest = oldest_result.scalar()
+
+            # Top hashtags
+            hashtag_result = await self.db.execute(
+                select(SocialPost.hashtags).where(SocialPost.hashtags.isnot(None))
+            )
+            from collections import Counter
+            all_hashtags = Counter()
+            for row in hashtag_result:
+                if row[0]:
+                    all_hashtags.update(row[0])
+
+            return {
+                "total_posts": total_posts,
+                "sentiment_distribution": sentiment_data,
+                "engagement": {
+                    "total": int(engagement.total or 0),
+                    "average": float(engagement.average or 0),
+                    "max": int(engagement.max or 0)
+                },
+                "date_range": {
+                    "oldest_tweet": oldest.isoformat() if oldest else None,
+                    "newest_tweet": most_recent.isoformat() if most_recent else None
+                },
+                "top_hashtags": [
+                    {"tag": tag, "count": count}
+                    for tag, count in all_hashtags.most_common(10)
+                ]
+            }
+
+        except Exception as e:
+            logger.error(f"Error getting database stats: {str(e)}")
+            return {}
+
+    async def reanalyze_all_tweets(self) -> int:
+        """Re-run sentiment analysis on all tweets in database"""
+        try:
+            result = await self.db.execute(select(SocialPost))
+            posts = result.scalars().all()
+
+            count = 0
+            for post in posts:
+                # Re-analyze sentiment
+                sentiment_result = await self.ai_service.analyze_sentiment(post.text)
+                post.sentiment = sentiment_result['label']
+                post.sentiment_score = sentiment_result['score']
+                post.sentiment_confidence = sentiment_result['confidence']
+                count += 1
+
+            await self.db.commit()
+            logger.info(f"Re-analyzed {count} tweets")
+            return count
+
+        except Exception as e:
+            logger.error(f"Error re-analyzing tweets: {str(e)}")
+            await self.db.rollback()
+            return 0

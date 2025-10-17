@@ -40,10 +40,14 @@ class Settings(BaseSettings):
     TWITTER_API_KEY: Optional[str] = Field(default=None)
     TWITTER_API_SECRET: Optional[str] = Field(default=None)
 
-    # Rate limiting for Twitter API (free tier limits)
-    TWITTER_REQUESTS_PER_15MIN: int = 180
-    TWITTER_SEARCH_REQUESTS_PER_15MIN: int = 450
-    TWITTER_MAX_RESULTS_PER_REQUEST: int = 10  # Free tier limit
+    # Rate limiting for Twitter API (FREE TIER - ESSENTIAL ACCESS)
+    # Actual limits from Twitter API documentation:
+    # GET /2/tweets/search/recent: 1 request per 15 minutes (PER USER and PER APP)
+    # Max 100 results per response
+    TWITTER_REQUESTS_PER_15MIN: int = 1  # Free tier: 1 request per 15 minutes
+    TWITTER_SEARCH_REQUESTS_PER_15MIN: int = 1  # Search endpoint limit
+    TWITTER_SEARCH_REQUESTS_PER_MONTH: int = 2880  # Theoretical max: (60/15) * 24 * 30 = 2,880 requests/month
+    TWITTER_MAX_RESULTS_PER_REQUEST: int = 100  # Get maximum tweets per request (Twitter API limit)
 
     # Celery settings
     CELERY_BROKER_URL: str = Field(default="redis://localhost:6379/0")
