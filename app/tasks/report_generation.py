@@ -121,4 +121,3 @@ def update_trending_data():
     except Exception as e:
         logger.error(f"Error updating trending data: {str(e)}")
         return {"status": "error", "error": str(e)}
-

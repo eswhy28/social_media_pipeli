@@ -6,7 +6,7 @@ from app.api.auth import get_current_user
 from app.models import User, Report
 from app.schemas import (
     GenerateReportRequest, GenerateReportResponse,
-    ReportStatusResponse, BaseResponse
+    ReportStatusResponse, BaseResponse 
 )
 import uuid
 from datetime import datetime, timedelta
@@ -134,4 +134,3 @@ async def delete_report(
     await db.commit()
 
     return BaseResponse(success=True)
-

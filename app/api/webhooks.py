@@ -35,4 +35,3 @@ async def receive_alert_webhook(
     # This could trigger notifications, logging, etc.
     
     return BaseResponse(success=True)
-

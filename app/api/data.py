@@ -474,4 +474,3 @@ async def register(
             }
         }
     )
-

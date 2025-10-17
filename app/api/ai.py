@@ -47,4 +47,3 @@ async def generate_insights(
     )
     
     return AIGenerateResponse(success=True, data=insights)
-

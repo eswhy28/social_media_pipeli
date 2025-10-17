@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from textblob import TextBlob
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, desc, and_
-from app.models import SocialPost, SentimentTimeSeries, TrendingTopic, AnomalyDetection
+#from app.models import SocialPost, SentimentTimeSeries, TrendingTopic, AnomalyDetection
 
 logger = logging.getLogger(__name__)
 

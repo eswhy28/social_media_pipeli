@@ -25,4 +25,3 @@ async def close_redis():
     global redis_pool
     if redis_pool:
         await redis_pool.disconnect()
-
