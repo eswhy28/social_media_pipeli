@@ -58,7 +58,7 @@ def verify_transformers():
         logger.info("✅ Transformers imports working")
         
         # Test Hugging Face token
-        hf_token = "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"
+        hf_token = os.getenv("HUGGINGFACE_TOKEN")
         
         # Test loading a simple model
         try:
