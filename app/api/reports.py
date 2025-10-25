@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.database import get_db
-from app.api.auth import get_current_user
+from app.api.auth import get_current_user_optional
 from app.models import User, Report
 from app.schemas import (
     GenerateReportRequest, GenerateReportResponse,
@@ -19,7 +19,7 @@ async def generate_report(
     request: GenerateReportRequest,
     background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Generate a new report"""
     # Create report record
@@ -58,7 +58,7 @@ async def generate_report(
 async def get_report_status(
     report_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get report generation status"""
     result = await db.execute(
@@ -88,7 +88,7 @@ async def get_report_status(
 @router.get("/", response_model=BaseResponse)
 async def list_reports(
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """List user's reports"""
     result = await db.execute(
@@ -116,7 +116,7 @@ async def list_reports(
 async def delete_report(
     report_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Delete a report"""
     result = await db.execute(

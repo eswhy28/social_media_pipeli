@@ -70,3 +70,21 @@ celerybeat.pid
 # Redis
 dump.rdb
 
+# AI Models and Cache
+model_cache/
+*.bin
+*.h5
+*.pkl
+*.pickle
+nltk_data/
+
+# Node modules (if any frontend assets)
+node_modules/
+
+# Docker
+.dockerignore
+
+# Cloud deployment
+.vercel
+.netlify
+

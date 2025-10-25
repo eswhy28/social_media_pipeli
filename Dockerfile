@@ -24,7 +24,9 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt && \
-    python -m textblob.download_corpora
+    python -m textblob.download_corpora && \
+    python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('stopwords')" && \
+    python -m spacy download en_core_web_sm
 
 # Copy application code
 COPY . .

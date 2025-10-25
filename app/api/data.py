@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional, Dict, Any
 from app.database import get_db
-from app.api.auth import get_current_user
+from app.api.auth import get_current_user_optional
 from app.models import User
 from app.services.data_service import DataService
 from pydantic import BaseModel
@@ -22,7 +22,7 @@ async def get_overview(
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """
     Get overview dashboard data with sentiment analysis
@@ -45,7 +45,7 @@ async def get_overview(
 @router.get("/sentiment/live")
 async def get_live_sentiment(
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get real-time sentiment gauge value"""
     try:
@@ -81,7 +81,7 @@ async def get_recent_posts(
     limit: int = Query(10, ge=1, le=100),
     sentiment: Optional[str] = Query(None, description="Filter by sentiment: positive, negative, neutral"),
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get recent posts with sentiment analysis"""
     try:
@@ -124,7 +124,7 @@ async def get_recent_posts(
 async def get_trending_hashtags(
     limit: int = Query(20, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get trending hashtags from posts"""
     try:
@@ -163,7 +163,7 @@ async def get_trending_hashtags(
 @router.get("/stats")
 async def get_stats(
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get overall statistics"""
     try:
@@ -218,7 +218,7 @@ async def get_sentiment_series(
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get sentiment time series data"""
     try:
@@ -279,7 +279,7 @@ async def get_top_posts(
     range: str = Query("Last 7 Days"),
     min_engagement: int = Query(100),
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get top performing posts by engagement"""
     try:
@@ -335,7 +335,7 @@ async def search_posts(
     offset: int = Query(0, ge=0),
     sentiment: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Search posts by content, keywords, or hashtags"""
     try:
@@ -406,7 +406,7 @@ async def search_posts(
 async def get_hashtag_detail(
     tag: str,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get detailed hashtag analysis"""
     try:
@@ -471,7 +471,7 @@ async def get_influencers(
     min_followers: int = Query(100000),
     verified_only: bool = Query(False),
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get influential accounts and their metrics"""
     try:
@@ -510,7 +510,7 @@ async def get_influencers(
 async def get_geographic_states(
     range: str = Query("Last 7 Days"),
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get geographic distribution data for Nigeria states"""
     try:
@@ -545,7 +545,7 @@ async def get_anomalies(
     status: str = Query("new"),
     limit: int = Query(50, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get detected anomalies and alerts"""
     try:
@@ -585,7 +585,7 @@ async def get_anomalies(
 @router.get("/connectors")
 async def get_connectors(
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get data source connectors and their status"""
     try:

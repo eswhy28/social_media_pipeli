@@ -18,6 +18,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 class User(BaseModel):
     username: str
     disabled: Optional[bool] = None
+    role: Optional[str] = "user"
+    id: Optional[str] = None
 
 # Token model
 class Token(BaseModel):
@@ -83,6 +85,14 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     if user is None:
         raise credentials_exception
     return user
+
+async def get_current_user_optional():
+    """Optional authentication - returns demo user when auth is disabled"""
+    if settings.DISABLE_AUTH:
+        # Create demo user with admin role for POC
+        return User(username="demo", disabled=False, role="admin", id="demo-user-id")
+    # If auth is enabled, this would require a token - but we're not using this path when auth is enabled
+    return User(username="demo", disabled=False, role="admin", id="demo-user-id")
 
 @router.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):

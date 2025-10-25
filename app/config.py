@@ -60,9 +60,12 @@ class Settings(BaseSettings):
     SECRET_KEY: str = Field(default="your-secret-key-change-in-production")
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    
+    # Authentication toggle for POC
+    DISABLE_AUTH: bool = Field(default=True)
 
     # CORS
-    CORS_ORIGINS: List[str] = Field(default=["http://localhost:3000", "http://localhost:8000"])
+    CORS_ORIGINS: List[str] = Field(default=["http://localhost:3000", "http://localhost:8000", "*"])
 
     # Cache settings - aggressive caching for free tier
     CACHE_TTL_SHORT: int = 60  # 1 minute for live data
