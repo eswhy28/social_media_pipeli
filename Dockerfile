@@ -1,4 +1,4 @@
-# Use Python 3.10 slim image as base
+# Hugging Face Spaces Dockerfile
 FROM python:3.10-slim
 
 # Set working directory
@@ -18,29 +18,29 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
-
-# Install Python dependencies
+# Copy requirements and install Python dependencies
+COPY requirements-hf.txt .
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt && \
+    pip install -r requirements-hf.txt
+
+# Download required data and models
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('stopwords'); nltk.download('wordnet')" && \
     python -m textblob.download_corpora && \
-    python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('stopwords')" && \
     python -m spacy download en_core_web_sm
 
-# Copy application code
+# Copy application code and environment file
 COPY . .
+COPY .env .
 
 # Create necessary directories
 RUN mkdir -p /app/logs /app/data
 
-# Expose port
-EXPOSE 8000
+# Expose the port that Hugging Face Spaces expects
+EXPOSE 7860
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:7860/health || exit 1
 
-# Run database initialization and start the application
-CMD ["sh", "-c", "python -c 'import asyncio; from app.database import init_db; asyncio.run(init_db())' && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
-
+# Run the application
+CMD ["python", "app.py"]

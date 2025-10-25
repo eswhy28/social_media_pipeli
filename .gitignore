@@ -35,7 +35,7 @@ ENV/
 .DS_Store
 
 # Environment
-.env
+# .env (commented out for HF Spaces deployment)
 .env.local
 .env.*.local
 
