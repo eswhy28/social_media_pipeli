@@ -36,15 +36,17 @@ Complete guide for deploying the Social Media AI Pipeline to Vercel with publicl
    - Vercel will auto-detect the configuration
 
 3. **Configure Environment Variables**
-   Add these in the Vercel dashboard under "Environment Variables":
+   Add these in the Vercel dashboard under "Settings" → "Environment Variables":
 
-   ```
-   ENVIRONMENT=production
-   SECRET_KEY=your-generated-secret-key-here
-   HUGGINGFACE_TOKEN=hf_your_token_here
-   DATABASE_URL=sqlite+aiosqlite:///./data/social_media.db
-   DISABLE_AUTH=true
-   ```
+   **Required Variables:**
+   - `ENVIRONMENT` = `production`
+   - `SECRET_KEY` = `your-generated-secret-key-here`
+   - `HUGGINGFACE_TOKEN` = `hf_your_token_here`
+   - `DATABASE_URL` = `sqlite+aiosqlite:///./social_media.db`
+   - `DISABLE_AUTH` = `true`
+   - `API_V1_PREFIX` = `/api/v1`
+
+   **Important:** Make sure to add these variables to the "Production" environment
 
 4. **Deploy**
    - Click "Deploy"
