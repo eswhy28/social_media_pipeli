@@ -86,5 +86,11 @@ node_modules/
 
 # Cloud deployment
 .vercel
+.vercel_build_output
 .netlify
+
+# Vercel
+.vercel/*
+!.vercel/project.json
+!.vercel/README.txt
 

@@ -11,6 +11,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 # Now import and run
+
 from app.main import app
 import uvicorn
 from app.config import settings

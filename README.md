@@ -198,6 +198,44 @@ curl http://localhost:8000/api/v1/ai/models/info
 
 ## 🌐 Deployment
 
+### Vercel (Recommended for Production)
+
+Deploy to Vercel for serverless, scalable API with public access:
+
+#### Quick Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/social_media_pipeli)
+
+#### Manual Deployment
+
+1. **Install Vercel CLI**:
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Deploy**:
+   ```bash
+   vercel --prod
+   ```
+
+3. **Configure Environment Variables** in Vercel Dashboard:
+   - `ENVIRONMENT=production`
+   - `SECRET_KEY=your-secret-key`
+   - `HUGGINGFACE_TOKEN=hf_your_token`
+   - `DATABASE_URL=sqlite+aiosqlite:///./data/social_media.db`
+
+**Features:**
+- ✅ Publicly accessible APIs
+- ✅ Auto-scaling serverless functions
+- ✅ CORS enabled for all origins
+- ✅ Automatic HTTPS
+- ✅ Free tier available
+- ✅ Continuous deployment from GitHub
+
+**📖 Full Guide**: See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
+
+**API URL**: `https://your-project.vercel.app`
+
 ### Local Docker
 ```bash
 docker build -t social-media-ai .
@@ -207,7 +245,7 @@ docker run -p 8000:8000 social-media-ai
 ### Hugging Face Spaces
 - Ready for deployment with `Dockerfile` and `app.py`
 - Optimized for AI model inference
-- Public API endpoint for frontend consumption
+- Alternative to Vercel deployment
 
 ## 📝 Environment Variables
 
