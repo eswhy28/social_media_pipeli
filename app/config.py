@@ -49,6 +49,25 @@ class Settings(BaseSettings):
     TWITTER_SEARCH_REQUESTS_PER_MONTH: int = 10  # Free tier: 10 requests per MONTH (hard limit)
     TWITTER_MAX_RESULTS_PER_REQUEST: int = 10  # Free tier: max 10 tweets per request
 
+    # TikTok API Configuration
+    TIKTOK_API_KEY: Optional[str] = Field(default=None)
+    TIKTOK_API_SECRET: Optional[str] = Field(default=None)
+    TIKTOK_ACCESS_TOKEN: Optional[str] = Field(default=None)
+
+    # Facebook/Instagram API Configuration
+    FACEBOOK_APP_ID: Optional[str] = Field(default=None)
+    FACEBOOK_APP_SECRET: Optional[str] = Field(default=None)
+    FACEBOOK_ACCESS_TOKEN: Optional[str] = Field(default=None)
+
+    # Apify API Configuration
+    # Get your API token from: https://console.apify.com/account/integrations
+    APIFY_API_TOKEN: Optional[str] = Field(default=None)
+
+    # Google Trends Configuration
+    # pytrends doesn't require API key, but we configure timeout and retry settings
+    GOOGLE_TRENDS_TIMEOUT: int = Field(default=30)
+    GOOGLE_TRENDS_RETRIES: int = Field(default=3)
+
     # Celery settings
     CELERY_BROKER_URL: str = Field(default="redis://localhost:6379/0")
     CELERY_RESULT_BACKEND: str = Field(default="redis://localhost:6379/0")

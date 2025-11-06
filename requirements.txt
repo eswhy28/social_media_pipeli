@@ -37,6 +37,12 @@ mangum>=0.17.0
 
 # Social media APIs
 tweepy>=4.14.0
+TikTok-Api>=5.3.0
+facebook-scraper>=0.2.59
+pytrends>=4.9.2
+
+# Apify SDK for web scraping
+apify-client>=1.3.0
 
 # Background tasks (optional for Vercel)
 celery>=5.2.0

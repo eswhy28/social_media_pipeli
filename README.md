@@ -19,6 +19,17 @@ Enterprise-grade social media analysis platform with advanced AI capabilities fo
 - **NER**: `dbmdz/bert-large-cased-finetuned-conll03-english`
 - **spaCy**: `en_core_web_sm` for additional entity recognition
 
+## Social Media Platform Support
+
+### Current
+- **Twitter/X**: Native API integration with tweepy
+
+### Phase 1 - Newly Added
+- **TikTok**: Content fetching via TikTok-Api
+- **Facebook/Instagram**: Content scraping with facebook-scraper
+- **Google Trends**: Trend analysis with pytrends (no API key required)
+- **Web Scraping**: Apify platform integration for advanced scraping
+
 ## 🚀 Quick Start for Frontend Developers
 
 ### One-Command Setup (Recommended)
@@ -56,10 +67,22 @@ python scripts/setup_models.py
 #### 2. Environment Setup
 Create a `.env` file in the project root:
 ```env
+# Core Settings
 HUGGINGFACE_TOKEN=your_token_here
 DATABASE_URL=sqlite:///./data/social_media.db
 SECRET_KEY=your_secret_key_here
+
+# Social Media API Keys (Optional - Phase 1)
+APIFY_API_TOKEN=your_apify_token
+TIKTOK_API_KEY=your_tiktok_key
+TIKTOK_API_SECRET=your_tiktok_secret
+TIKTOK_ACCESS_TOKEN=your_tiktok_token
+FACEBOOK_APP_ID=your_facebook_app_id
+FACEBOOK_APP_SECRET=your_facebook_app_secret
+FACEBOOK_ACCESS_TOKEN=your_facebook_access_token
 ```
+
+See `.env.example` for a complete list of configuration options.
 
 #### 3. Initialize Database & Generate Sample Data
 ```bash
@@ -259,7 +282,25 @@ DATABASE_URL=sqlite:///./data/social_media.db
 API_V1_STR=/api/v1
 PROJECT_NAME=Social Media AI Pipeline
 ENVIRONMENT=development
+
+# Phase 1 - Social Media APIs (Optional)
+APIFY_API_TOKEN=your_apify_token
+TIKTOK_API_KEY=your_tiktok_key
+TIKTOK_API_SECRET=your_tiktok_secret
+FACEBOOK_APP_ID=your_facebook_app_id
+FACEBOOK_APP_SECRET=your_facebook_app_secret
 ```
+
+## 🔑 Getting API Keys
+
+### Required for Core Functionality
+- **HuggingFace**: Free account at https://huggingface.co/settings/tokens
+
+### Optional - Phase 1 Social Media Platforms
+- **Apify**: Sign up at https://console.apify.com/account/integrations (Free tier: 5 actors, $5 free credit)
+- **TikTok**: Apply at https://developers.tiktok.com/ (requires business verification)
+- **Facebook/Instagram**: Create app at https://developers.facebook.com/ (Free tier available)
+- **Google Trends**: No API key required - uses pytrends library
 
 ## 🤝 Support
 
