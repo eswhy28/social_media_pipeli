@@ -348,3 +348,207 @@ class Report(Base):
     completed_at = Column(DateTime(timezone=True))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+
+class SentimentAnalysis(Base):
+    """AI-powered sentiment analysis results"""
+    __tablename__ = "sentiment_analysis"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(String, ForeignKey('social_posts.id'), nullable=False, index=True)
+    
+    # Sentiment results
+    label = Column(String(20), nullable=False)  # positive, negative, neutral
+    score = Column(Float, nullable=False)  # -1.0 to 1.0
+    confidence = Column(Float, nullable=False)  # 0.0 to 1.0
+    
+    # Model information
+    model_name = Column(String(100), nullable=False)  # roberta, textblob, etc.
+    model_version = Column(String(50))
+    
+    # Additional scores (for models that provide multiple outputs)
+    all_scores = Column(JSON, default=dict)  # {"positive": 0.8, "negative": 0.1, "neutral": 0.1}
+    
+    # Analysis metadata
+    text_length = Column(Integer)
+    language_detected = Column(String(10))
+    processing_time_ms = Column(Float)
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    __table_args__ = (
+        Index('idx_sentiment_post_model', 'post_id', 'model_name'),
+        Index('idx_sentiment_label_score', 'label', 'score'),
+    )
+
+
+class LocationExtraction(Base):
+    """AI-powered location/geographic entity extraction"""
+    __tablename__ = "location_extractions"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(String, ForeignKey('social_posts.id'), nullable=False, index=True)
+    
+    # Location information
+    location_text = Column(String(255), nullable=False)  # Extracted location text
+    location_type = Column(String(50))  # GPE, LOC, etc.
+    confidence = Column(Float, nullable=False)
+    
+    # Position in text
+    start_position = Column(Integer)
+    end_position = Column(Integer)
+    
+    # Model information
+    model_name = Column(String(100), nullable=False)  # huggingface, spacy
+    model_version = Column(String(50))
+    
+    # Geographic data (if resolved)
+    country = Column(String(100))
+    state_province = Column(String(100))
+    city = Column(String(100))
+    coordinates = Column(JSON)  # {"lat": 0.0, "lon": 0.0}
+    
+    # Metadata
+    is_verified = Column(Boolean, default=False)
+    verification_source = Column(String(100))
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    __table_args__ = (
+        Index('idx_location_post_text', 'post_id', 'location_text'),
+        Index('idx_location_type_confidence', 'location_type', 'confidence'),
+    )
+
+
+class EntityExtraction(Base):
+    """AI-powered named entity recognition results"""
+    __tablename__ = "entity_extractions"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(String, ForeignKey('social_posts.id'), nullable=False, index=True)
+    
+    # Entity information
+    entity_text = Column(String(255), nullable=False)
+    entity_type = Column(String(50), nullable=False)  # PERSON, ORG, GPE, LOC, etc.
+    confidence = Column(Float, nullable=False)
+    
+    # Position in text
+    start_position = Column(Integer)
+    end_position = Column(Integer)
+    
+    # Model information
+    model_name = Column(String(100), nullable=False)
+    model_version = Column(String(50))
+    
+    # Additional context
+    context_before = Column(String(100))  # Text before entity
+    context_after = Column(String(100))   # Text after entity
+    
+    # Metadata
+    is_verified = Column(Boolean, default=False)
+    category = Column(String(100))  # Additional categorization
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    __table_args__ = (
+        Index('idx_entity_post_type', 'post_id', 'entity_type'),
+        Index('idx_entity_text_type', 'entity_text', 'entity_type'),
+    )
+
+
+class KeywordExtraction(Base):
+    """AI-powered keyword and phrase extraction"""
+    __tablename__ = "keyword_extractions"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(String, ForeignKey('social_posts.id'), nullable=False, index=True)
+    
+    # Keyword information
+    keyword_text = Column(String(255), nullable=False)
+    keyword_type = Column(String(50))  # noun_phrase, frequent_word, etc.
+    relevance_score = Column(Float)
+    frequency = Column(Integer, default=1)
+    
+    # Model information
+    extraction_method = Column(String(100))  # textblob, frequency, etc.
+    
+    # Context
+    context = Column(Text)  # Surrounding context
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    __table_args__ = (
+        Index('idx_keyword_post_text', 'post_id', 'keyword_text'),
+        Index('idx_keyword_type_score', 'keyword_type', 'relevance_score'),
+    )
+
+
+class AIAnalysisSession(Base):
+    """Track AI analysis sessions for posts"""
+    __tablename__ = "ai_analysis_sessions"
+    
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    post_id = Column(String, ForeignKey('social_posts.id'), nullable=False, index=True)
+    
+    # Session information
+    session_type = Column(String(50), nullable=False)  # comprehensive, sentiment_only, etc.
+    status = Column(String(20), default="pending")  # pending, processing, completed, failed
+    
+    # Models used
+    models_used = Column(JSON, default=list)  # List of model names
+    
+    # Results summary
+    sentiment_result = Column(JSON)
+    locations_found = Column(Integer, default=0)
+    entities_found = Column(Integer, default=0)
+    keywords_found = Column(Integer, default=0)
+    
+    # Performance metrics
+    processing_time_seconds = Column(Float)
+    total_tokens_processed = Column(Integer)
+    
+    # Error information
+    error_message = Column(Text)
+    error_details = Column(JSON)
+    
+    # Timestamps
+    started_at = Column(DateTime(timezone=True), server_default=func.now())
+    completed_at = Column(DateTime(timezone=True))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    __table_args__ = (
+        Index('idx_analysis_post_status', 'post_id', 'status'),
+        Index('idx_analysis_session_type', 'session_type'),
+    )
+
+
+class ModelPerformance(Base):
+    """Track AI model performance metrics"""
+    __tablename__ = "model_performance"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    model_name = Column(String(100), nullable=False, index=True)
+    model_version = Column(String(50))
+    task_type = Column(String(50), nullable=False)  # sentiment, ner, keyword_extraction
+    
+    # Performance metrics
+    avg_processing_time_ms = Column(Float)
+    avg_confidence_score = Column(Float)
+    total_requests = Column(Integer, default=0)
+    successful_requests = Column(Integer, default=0)
+    failed_requests = Column(Integer, default=0)
+    
+    # Resource usage
+    avg_memory_usage_mb = Column(Float)
+    avg_cpu_usage_percent = Column(Float)
+    
+    # Time window for metrics
+    measurement_start = Column(DateTime(timezone=True), nullable=False)
+    measurement_end = Column(DateTime(timezone=True), nullable=False)
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    __table_args__ = (
+        Index('idx_model_perf_name_task', 'model_name', 'task_type'),
+        Index('idx_model_perf_time_window', 'measurement_start', 'measurement_end'),
+    )

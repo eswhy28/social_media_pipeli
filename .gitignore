@@ -35,7 +35,7 @@ ENV/
 .DS_Store
 
 # Environment
-.env
+# .env (commented out for HF Spaces deployment)
 .env.local
 .env.*.local
 
@@ -69,4 +69,28 @@ celerybeat.pid
 
 # Redis
 dump.rdb
+
+# AI Models and Cache
+model_cache/
+*.bin
+*.h5
+*.pkl
+*.pickle
+nltk_data/
+
+# Node modules (if any frontend assets)
+node_modules/
+
+# Docker
+.dockerignore
+
+# Cloud deployment
+.vercel
+.vercel_build_output
+.netlify
+
+# Vercel
+.vercel/*
+!.vercel/project.json
+!.vercel/README.txt
 

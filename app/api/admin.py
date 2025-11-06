@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.database import get_db
-from app.api.auth import get_current_user
+from app.api.auth import get_current_user_optional
 from app.models import User, AlertRule, DataConnector
 from app.schemas import (
     CreateAlertRuleRequest, AlertRulesResponse, BaseResponse,
@@ -13,7 +13,7 @@ import uuid
 router = APIRouter()
 
 
-def require_admin(current_user: User = Depends(get_current_user)):
+def require_admin(current_user: User = Depends(get_current_user_optional)):
     """Require admin role"""
     if current_user.role != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
@@ -23,7 +23,7 @@ def require_admin(current_user: User = Depends(get_current_user)):
 @router.get("/alert-rules", response_model=AlertRulesResponse)
 async def get_alert_rules(
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Get configured alert rules"""
     result = await db.execute(
@@ -53,7 +53,7 @@ async def get_alert_rules(
 async def create_alert_rule(
     request: CreateAlertRuleRequest,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Create new alert rule"""
     new_rule = AlertRule(
@@ -77,7 +77,7 @@ async def update_alert_rule(
     id: str,
     request: CreateAlertRuleRequest,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Update alert rule"""
     result = await db.execute(select(AlertRule).where(AlertRule.id == id))
@@ -104,7 +104,7 @@ async def update_alert_rule(
 async def delete_alert_rule(
     id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """Delete alert rule"""
     result = await db.execute(select(AlertRule).where(AlertRule.id == id))

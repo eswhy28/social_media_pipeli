@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime, timedelta
 from app.database import get_db
-from app.api.auth import get_current_user
+from app.api.auth import get_current_user_optional
 from app.models import User
 from app.services.data_service import DataService
 from app.schemas import BaseResponse
@@ -44,7 +44,7 @@ async def fetch_and_analyze_tweets(
     request: FetchTweetsRequest,
     background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """
     Fetch tweets based on search query, perform sentiment analysis, and save to database.
@@ -130,7 +130,7 @@ async def fetch_and_analyze_tweets(
 @router.get("/fetch-stats")
 async def get_fetch_statistics(
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """
     Get statistics about fetched tweets and database status.
@@ -163,7 +163,7 @@ async def get_fetch_statistics(
 async def analyze_existing_tweets(
     background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user_optional)
 ):
     """
     Re-analyze existing tweets in database (useful if sentiment analysis was updated).
