@@ -30,6 +30,13 @@ Enterprise-grade social media analysis platform with advanced AI capabilities fo
 - **Google Trends**: Trend analysis with pytrends (no API key required)
 - **Web Scraping**: Apify platform integration for advanced scraping
 
+### Phase 2 - Data Source Integration (✅ Implemented)
+All new services are fully integrated with Nigerian content focus:
+- **Google Trends Service**: Real-time trending searches, interest over time, regional analysis for Nigeria
+- **TikTok Service**: Nigerian hashtag monitoring, video metrics, engagement analytics
+- **Facebook Service**: Nigerian pages monitoring, post scraping, engagement collection
+- **Apify Service**: Multi-platform scraping with actor-based architecture
+
 ## 🚀 Quick Start for Frontend Developers
 
 ### One-Command Setup (Recommended)
@@ -141,6 +148,62 @@ const getPosts = async () => {
   const response = await fetch('http://localhost:8000/api/v1/data/posts');
   return await response.json();
 };
+```
+
+### Phase 2 - Using New Data Sources
+
+```python
+# Google Trends - Get trending searches in Nigeria
+from app.services import get_google_trends_service
+
+trends_service = get_google_trends_service()
+trending = await trends_service.get_trending_searches(region="NG")
+print(f"Top trending: {trending[0]['term']}")
+
+# Get interest over time for keywords
+interest = await trends_service.get_interest_over_time(
+    keywords=["naira", "fuel price", "election"],
+    timeframe="today 3-m",
+    geo="NG"
+)
+
+# TikTok - Monitor Nigerian hashtags
+from app.services import get_tiktok_service
+
+tiktok_service = get_tiktok_service()
+videos = await tiktok_service.search_hashtag("nigeria", count=30)
+print(f"Found {len(videos)} videos")
+
+# Monitor multiple Nigerian hashtags
+monitoring = await tiktok_service.monitor_nigerian_content(
+    max_videos_per_hashtag=20
+)
+
+# Facebook - Scrape Nigerian pages
+from app.services import get_facebook_service
+
+fb_service = get_facebook_service()
+posts = await fb_service.scrape_page_posts("legit.ng", pages=2)
+
+# Monitor multiple Nigerian pages
+monitoring = await fb_service.monitor_nigerian_pages(pages_per_source=2)
+
+# Apify - Advanced scraping
+from app.services import get_apify_service
+
+apify_service = get_apify_service()
+
+# Scrape Instagram profile
+data = await apify_service.scrape_instagram_profile(
+    username="lagosnigeria",
+    results_limit=50
+)
+
+# Comprehensive multi-platform scraping
+results = await apify_service.scrape_nigerian_social_media(
+    platforms=["instagram", "tiktok", "facebook"],
+    items_per_platform=50
+)
 ```
 
 ### Python
