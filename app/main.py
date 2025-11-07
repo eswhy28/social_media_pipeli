@@ -7,7 +7,7 @@ import logging
 from app.config import settings
 from app.database import init_db, close_db
 from app.redis_client import close_redis
-from app.api import auth, data, reports, ai, webhooks, admin, ingestion
+from app.api import auth, data, reports, ai, webhooks, admin, ingestion, social_media
 
 
 # Configure logging
@@ -68,6 +68,7 @@ app.include_router(ai.router, prefix=f"{settings.API_V1_PREFIX}/ai", tags=["AI"]
 app.include_router(webhooks.router, prefix=f"{settings.API_V1_PREFIX}/webhooks", tags=["Webhooks"])
 app.include_router(admin.router, prefix=f"{settings.API_V1_PREFIX}/admin", tags=["Admin"])
 app.include_router(ingestion.router, prefix=f"{settings.API_V1_PREFIX}/ingestion", tags=["Ingestion"])
+app.include_router(social_media.router, prefix=f"{settings.API_V1_PREFIX}/social-media", tags=["Social Media"])
 
 
 @app.get("/")
