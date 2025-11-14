@@ -6,7 +6,8 @@ import os
 class Settings(BaseSettings):
     model_config = ConfigDict(
         env_file=".env",
-        case_sensitive=True,
+        env_file_encoding="utf-8",
+        case_sensitive=False,  # Changed to False for better compatibility
         extra="allow"
     )
 
@@ -19,8 +20,8 @@ class Settings(BaseSettings):
     PORT: int = Field(default=8000)
     LOG_LEVEL: str = Field(default="INFO")
 
-    # Database settings - SQLite for POC
-    DATABASE_URL: str = Field(default="sqlite+aiosqlite:///./social_media.db")
+    # Database settings - PostgreSQL (REQUIRED - must be set in .env)
+    DATABASE_URL: str = Field(default="postgresql+asyncpg://sa:Mercury1_2@localhost:5432/social_media_pipeline")
     DB_ECHO: bool = Field(default=False)
 
     # Redis settings (free tier - local or RedisLabs free)

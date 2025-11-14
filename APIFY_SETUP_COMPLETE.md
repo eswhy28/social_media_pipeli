@@ -27,10 +27,10 @@ Your Apify service has been successfully configured and tested! This document su
 ### 1. Environment Variable Name
 ```bash
 # ❌ Before (incorrect)
-APIFY-TOKEN=apify_api_YCtM0hOoEH7eVb2vXhVGubfpuLbUD94CySXz
+APIFY-TOKEN=[REDACTED]
 
 # ✅ After (correct)
-APIFY_API_TOKEN=apify_api_YCtM0hOoEH7eVb2vXhVGubfpuLbUD94CySXz
+APIFY_API_TOKEN=[REDACTED]
 ```
 
 ### 2. Added Supporting Configuration
