@@ -26,7 +26,7 @@ def upgrade() -> None:
         sa.Column('role', sa.String(length=50), nullable=True),
         sa.Column('permissions', sa.JSON(), nullable=True),
         sa.Column('is_active', sa.Boolean(), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
@@ -53,7 +53,7 @@ def upgrade() -> None:
         sa.Column('location', sa.String(length=255), nullable=True),
         sa.Column('state', sa.String(length=100), nullable=True),
         sa.Column('posted_at', sa.DateTime(timezone=True), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_social_posts_handle'), 'social_posts', ['handle'], unique=False)
@@ -73,7 +73,7 @@ def upgrade() -> None:
         sa.Column('top_posts', sa.JSON(), nullable=True),
         sa.Column('geographic_distribution', sa.JSON(), nullable=True),
         sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_hashtags_tag'), 'hashtags', ['tag'], unique=True)

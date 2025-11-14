@@ -425,3 +425,10 @@ class AIService:
 
 # Singleton instance
 ai_service = AIService()
+
+
+# Factory function for dependency injection
+def get_ai_service() -> AIService:
+    """Get AI service instance"""
+    return ai_service
+

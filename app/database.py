@@ -2,12 +2,16 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 from app.config import settings
 
-# Create async engine for SQLite
+# Create async engine with dynamic connect_args based on database type
+connect_args = {}
+if "sqlite" in settings.DATABASE_URL:
+    connect_args = {"check_same_thread": False}  # SQLite specific
+
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.DB_ECHO,
     future=True,
-    connect_args={"check_same_thread": False},  # SQLite specific
+    connect_args=connect_args,
 )
 
 # Create async session factory

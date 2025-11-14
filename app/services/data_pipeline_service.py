@@ -50,28 +50,24 @@ class DataPipelineService:
             'yobe', 'zamfara', 'fct', 'abuja'
         ]
 
-    def is_nigerian_content(self, text: str, location: str = None) -> bool:
+    def is_nigerian_content(self, text: str, location: str = None, geo_location: str = None, hashtags: List[str] = None) -> bool:
         """
         Detect if content is related to Nigeria
 
         Args:
             text: Content text to analyze
             location: Location metadata
+            geo_location: Geo-location field (often set to 'Nigeria')
+            hashtags: List of hashtags from the content
 
         Returns:
             Boolean indicating if content is Nigerian
         """
-        if not text:
-            return False
+        # If geo_location is explicitly set to Nigeria, trust it
+        if geo_location and 'nigeria' in geo_location.lower():
+            return True
 
-        text_lower = text.lower()
-
-        # Check for Nigerian keywords
-        for keyword in self.nigerian_keywords:
-            if keyword in text_lower:
-                return True
-
-        # Check location if provided
+        # Check location metadata
         if location:
             location_lower = location.lower()
             for state in self.nigerian_states:
@@ -79,6 +75,28 @@ class DataPipelineService:
                     return True
             if 'nigeria' in location_lower:
                 return True
+
+        # Check hashtags for Nigerian indicators
+        if hashtags:
+            nigerian_hashtag_keywords = ['nigeria', 'nigerian', 'naija', '9ja', 'lagos', 'abuja',
+                                        'nigeriatiktok', 'lagostiktok', 'naijatiktok', 'arewa']
+            for hashtag in hashtags:
+                hashtag_lower = str(hashtag).lower()
+                for keyword in nigerian_hashtag_keywords:
+                    if keyword in hashtag_lower:
+                        return True
+
+        # Check content text
+        if text:
+            text_lower = text.lower()
+            for keyword in self.nigerian_keywords:
+                if keyword in text_lower:
+                    return True
+
+        # If we have hashtags or location but no Nigerian keywords, still accept
+        # (Apify is already filtering by Nigerian sources)
+        if hashtags or location or geo_location:
+            return True
 
         return False
 
@@ -137,6 +155,43 @@ class DataPipelineService:
 
         mentions = re.findall(r'@(\w+)', text)
         return list(set(mentions))
+
+    def _parse_datetime(self, value: Any) -> datetime:
+        """
+        Parse datetime from various formats
+
+        Args:
+            value: Datetime value (can be string, int timestamp, datetime, or None)
+
+        Returns:
+            datetime object
+        """
+        if value is None:
+            return datetime.utcnow()
+
+        if isinstance(value, datetime):
+            return value
+
+        if isinstance(value, str):
+            try:
+                # Try ISO format first
+                return datetime.fromisoformat(value.replace('Z', '+00:00'))
+            except (ValueError, AttributeError):
+                try:
+                    # Try parsing common formats
+                    from dateutil import parser
+                    return parser.parse(value)
+                except:
+                    return datetime.utcnow()
+
+        if isinstance(value, (int, float)):
+            try:
+                # Assume Unix timestamp
+                return datetime.fromtimestamp(value)
+            except:
+                return datetime.utcnow()
+
+        return datetime.utcnow()
 
     async def store_google_trends(
         self,
@@ -362,16 +417,24 @@ class DataPipelineService:
                 # Clean content
                 content = self.clean_text(item.get('content', ''))
 
-                # Filter Nigerian content
-                if not self.is_nigerian_content(content, item.get('location')):
-                    continue
-
                 # Extract hashtags and mentions
                 hashtags = item.get('hashtags', [])
                 if not hashtags and content:
                     hashtags = self.extract_hashtags(content)
 
                 mentions = self.extract_mentions(content) if content else []
+
+                # Filter Nigerian content (enhanced with hashtags and geo_location)
+                if not self.is_nigerian_content(
+                    content,
+                    location=item.get('location'),
+                    geo_location=item.get('geo_location'),
+                    hashtags=hashtags
+                ):
+                    continue
+
+                # Convert posted_at to datetime object
+                posted_at = self._parse_datetime(item.get('posted_at'))
 
                 apify_record = ApifyScrapedData(
                     id=str(uuid.uuid4()),
@@ -390,7 +453,7 @@ class DataPipelineService:
                     raw_data=item,
                     location=item.get('location'),
                     geo_location=item.get('geo_location', 'Nigeria'),
-                    posted_at=datetime.fromisoformat(item.get('posted_at', datetime.utcnow().isoformat())) if isinstance(item.get('posted_at'), str) else item.get('posted_at'),
+                    posted_at=posted_at,
                     collected_at=datetime.utcnow()
                 )
 

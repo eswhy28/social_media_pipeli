@@ -1166,3 +1166,8 @@ class DataService:
             logger.error(f"Error re-analyzing tweets: {str(e)}")
             await self.db.rollback()
             return 0
+
+# Factory function for dependency injection
+def get_data_service(db: AsyncSession) -> DataService:
+    """Get data service instance with database session"""
+    return DataService(db)

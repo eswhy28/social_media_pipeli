@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-11-13T08:24:44.556088",
+  "tests": [
+    {
+      "test": "Database Connection",
+      "status": "FAIL",
+      "details": "",
+      "error": "connect() got an unexpected keyword argument 'check_same_thread'",
+      "timestamp": "2025-11-13T08:24:45.393819"
+    },
+    {
+      "test": "Redis Connection",
+      "status": "FAIL",
+      "details": "",
+      "error": "cannot import name 'get_redis_client' from 'app.redis_client' (/home/mukhtar/Documents/social_media_pipeli/app/redis_client.py)",
+      "timestamp": "2025-11-13T08:24:46.464599"
+    },
+    {
+      "test": "Google Trends Service",
+      "status": "FAIL",
+      "details": "",
+      "error": "C function scipy.spatial._qhull._barycentric_coordinates has wrong signature (expected void (int, double *, double *, double *), got void (int, double *, double const *, double *))",
+      "timestamp": "2025-11-13T08:24:48.722875"
+    },
+    {
+      "test": "TikTok-Api Service",
+      "status": "FAIL",
+      "details": "",
+      "error": "C function scipy.spatial._qhull._barycentric_coordinates has wrong signature (expected void (int, double *, double *, double *), got void (int, double *, double const *, double *))",
+      "timestamp": "2025-11-13T08:24:50.737815"
+    },
+    {
+      "test": "Facebook Scraper Service",
+      "status": "FAIL",
+      "details": "",
+      "error": "C function scipy.spatial._qhull._barycentric_coordinates has wrong signature (expected void (int, double *, double *, double *), got void (int, double *, double const *, double *))",
+      "timestamp": "2025-11-13T08:24:52.751173"
+    },
+    {
+      "test": "Apify Twitter Service",
+      "status": "FAIL",
+      "details": "",
+      "error": "C function scipy.spatial._qhull._barycentric_coordinates has wrong signature (expected void (int, double *, double *, double *), got void (int, double *, double const *, double *))",
+      "timestamp": "2025-11-13T08:24:54.764371"
+    },
+    {
+      "test": "Hashtag Discovery Service",
+      "status": "FAIL",
+      "details": "",
+      "error": "C function scipy.spatial._qhull._barycentric_coordinates has wrong signature (expected void (int, double *, double *, double *), got void (int, double *, double const *, double *))",
+      "timestamp": "2025-11-13T08:24:56.779995"
+    },
+    {
+      "test": "API Endpoints",
+      "status": "WARN",
+      "details": "API running but endpoint returned status 422",
+      "error": "",
+      "timestamp": "2025-11-13T08:24:58.480302"
+    }
+  ]
+}

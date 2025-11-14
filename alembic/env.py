@@ -10,13 +10,24 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from app.database import Base
 from app.models import *
+# Import social media source models explicitly for migration generation
+from app.models.social_media_sources import (
+    GoogleTrendsData,
+    TikTokContent,
+    FacebookContent,
+    ApifyScrapedData,
+    SocialMediaAggregation,
+    DataSourceMonitoring
+)
 from app.config import settings
 
 # this is the Alembic Config object
 config = context.config
 
 # Override sqlalchemy.url with value from settings
-config.set_main_option('sqlalchemy.url', settings.DATABASE_URL.replace('+asyncpg', ''))
+# Convert async database URL to sync URL for Alembic
+sync_db_url = settings.DATABASE_URL.replace('+aiosqlite', '').replace('+asyncpg', '')
+config.set_main_option('sqlalchemy.url', sync_db_url)
 
 # Interpret the config file for Python logging
 if config.config_file_name is not None:

@@ -1,17 +1,17 @@
 """
 Facebook Service for Nigerian Social Media Analysis
 Scrapes public Facebook posts and engagement metrics focused on Nigeria
+Now uses Apify for robust scraping
 """
 
 import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 import asyncio
-from facebook_scraper import get_posts, set_user_agent, enable_logging
-import random
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from app.config import settings
+from app.services.apify_service import get_apify_service
 
 logger = logging.getLogger(__name__)
 
@@ -19,55 +19,26 @@ logger = logging.getLogger(__name__)
 class FacebookService:
     """
     Service for scraping Facebook public data with focus on Nigerian content
-    Uses facebook-scraper for public post collection
+    Uses Apify for robust and scalable scraping
     """
 
     def __init__(self):
         """Initialize Facebook service"""
-        self.app_id = settings.FACEBOOK_APP_ID
-        self.app_secret = settings.FACEBOOK_APP_SECRET
-        self.access_token = settings.FACEBOOK_ACCESS_TOKEN
-
-        # User agents for rotation
-        self.user_agents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)",
-        ]
+        self.apify_service = get_apify_service()
 
         # Nigerian pages and groups to monitor
         self.nigerian_pages = [
-            "legit.ng",
-            "lindaikejisblog",
-            "punchng",
-            "guardiannigeria",
-            "thenationonlineng",
-            "vanguardngrnews",
-            "dailytrustng",
-            "premiumtimesng"
+            "https://www.facebook.com/legit.ng",
+            "https://www.facebook.com/lindaikejisblog",
+            "https://www.facebook.com/punchng",
+            "https://www.facebook.com/guardiannigeria",
+            "https://www.facebook.com/thenationonlineng",
+            "https://www.facebook.com/vanguardngrnews",
+            "https://www.facebook.com/dailytrustng",
+            "https://www.facebook.com/premiumtimesng"
         ]
 
-        # Rate limiting
-        self.request_delay = 3  # seconds between requests
-        self.last_request_time = None
-
-        # Set default user agent
-        set_user_agent(random.choice(self.user_agents))
-
-        logger.info("Facebook Service initialized")
-
-    async def _rate_limit(self):
-        """Implement rate limiting between requests"""
-        if self.last_request_time:
-            elapsed = (datetime.utcnow() - self.last_request_time).total_seconds()
-            if elapsed < self.request_delay:
-                await asyncio.sleep(self.request_delay - elapsed)
-        self.last_request_time = datetime.utcnow()
-
-    def _rotate_user_agent(self):
-        """Rotate user agent for each request"""
-        set_user_agent(random.choice(self.user_agents))
+        logger.info("Facebook Service initialized with Apify integration")
 
     @retry(
         stop=stop_after_attempt(3),
@@ -75,205 +46,70 @@ class FacebookService:
     )
     async def scrape_page_posts(
         self,
-        page_name: str,
-        pages: int = 2,
-        timeout: int = 30
+        page_url: str,
+        posts_limit: int = 50
     ) -> List[Dict[str, Any]]:
         """
-        Scrape posts from a Facebook page
+        Scrape posts from a Facebook page using Apify
 
         Args:
-            page_name: Facebook page username/id
-            pages: Number of pages to scrape (each page ~2-10 posts)
-            timeout: Request timeout in seconds
+            page_url: Facebook page URL
+            posts_limit: Maximum number of posts to scrape
 
         Returns:
             List of post data dictionaries
         """
         try:
-            logger.info(f"Scraping posts from page: {page_name}")
-            await self._rate_limit()
-            self._rotate_user_agent()
+            logger.info(f"Scraping posts from page: {page_url} using Apify")
 
-            posts_data = []
+            # Use Apify service to scrape Facebook page
+            result = await self.apify_service.scrape_facebook_page(
+                page_url=page_url,
+                posts_limit=posts_limit
+            )
 
-            # Run in thread pool to avoid blocking
-            loop = asyncio.get_event_loop()
+            if "error" in result:
+                logger.error(f"Apify scraping error: {result['error']}")
+                return []
 
-            def scrape():
-                posts = []
-                try:
-                    for post in get_posts(
-                        page_name,
-                        pages=pages,
-                        timeout=timeout,
-                        options={
-                            "comments": True,
-                            "reactors": False,
-                            "posts_per_page": 10
-                        }
-                    ):
-                        posts.append(self._extract_post_data(post, page_name))
-
-                        # Limit to prevent excessive scraping
-                        if len(posts) >= pages * 10:
-                            break
-                except Exception as e:
-                    logger.error(f"Error in scraping loop: {e}")
-
-                return posts
-
-            posts_data = await loop.run_in_executor(None, scrape)
-
-            logger.info(f"Scraped {len(posts_data)} posts from {page_name}")
-            return posts_data
+            posts = result.get("posts", [])
+            logger.info(f"Scraped {len(posts)} posts from {page_url}")
+            return posts
 
         except Exception as e:
-            logger.error(f"Error scraping page {page_name}: {e}")
-            return []
-
-    def _extract_post_data(
-        self,
-        post: Dict[str, Any],
-        page_name: str
-    ) -> Dict[str, Any]:
-        """
-        Extract and structure relevant data from Facebook post
-
-        Args:
-            post: Raw post data from facebook-scraper
-            page_name: Name of the page
-
-        Returns:
-            Structured post data dictionary
-        """
-        try:
-            # Extract engagement metrics
-            likes = post.get("likes", 0) or 0
-            comments = post.get("comments", 0) or 0
-            shares = post.get("shares", 0) or 0
-
-            # Calculate engagement rate (relative to typical page performance)
-            total_engagement = likes + comments + shares
-
-            return {
-                "post_id": post.get("post_id"),
-                "page": page_name,
-                "author": post.get("username", page_name),
-                "content": {
-                    "text": post.get("text", ""),
-                    "post_text": post.get("post_text", ""),
-                    "has_image": bool(post.get("image")),
-                    "has_video": bool(post.get("video")),
-                    "link": post.get("link"),
-                    "post_url": post.get("post_url")
-                },
-                "metrics": {
-                    "likes": likes,
-                    "comments": comments,
-                    "shares": shares,
-                    "total_engagement": total_engagement,
-                    "reactions": post.get("reactions", {})
-                },
-                "timestamp": {
-                    "posted_at": post.get("time").isoformat() if post.get("time") else None,
-                    "collected_at": datetime.utcnow().isoformat()
-                },
-                "media": {
-                    "images": post.get("images", []),
-                    "video": post.get("video"),
-                    "video_thumbnail": post.get("video_thumbnail")
-                },
-                "engagement_details": {
-                    "comment_count": comments,
-                    "top_comments": post.get("comments_full", [])[:5] if post.get("comments_full") else []
-                },
-                "source": "facebook",
-                "geo_location": "Nigeria"  # Inferred from Nigerian page monitoring
-            }
-
-        except Exception as e:
-            logger.error(f"Error extracting post data: {e}")
-            return {
-                "post_id": post.get("post_id"),
-                "page": page_name,
-                "error": str(e)
-            }
-
-    async def scrape_group_posts(
-        self,
-        group_id: str,
-        pages: int = 2
-    ) -> List[Dict[str, Any]]:
-        """
-        Scrape posts from a Facebook group (requires group to be public)
-
-        Args:
-            group_id: Facebook group ID
-            pages: Number of pages to scrape
-
-        Returns:
-            List of post data dictionaries
-        """
-        try:
-            logger.info(f"Scraping posts from group: {group_id}")
-            await self._rate_limit()
-            self._rotate_user_agent()
-
-            posts_data = []
-            loop = asyncio.get_event_loop()
-
-            def scrape():
-                posts = []
-                try:
-                    for post in get_posts(
-                        group=group_id,
-                        pages=pages,
-                        options={"comments": True}
-                    ):
-                        posts.append(self._extract_post_data(post, f"group_{group_id}"))
-
-                        if len(posts) >= pages * 10:
-                            break
-                except Exception as e:
-                    logger.error(f"Error scraping group: {e}")
-
-                return posts
-
-            posts_data = await loop.run_in_executor(None, scrape)
-
-            logger.info(f"Scraped {len(posts_data)} posts from group {group_id}")
-            return posts_data
-
-        except Exception as e:
-            logger.error(f"Error scraping group {group_id}: {e}")
+            logger.error(f"Error scraping page {page_url}: {e}")
             return []
 
     async def monitor_nigerian_pages(
         self,
-        pages_per_source: int = 2
+        posts_per_page: int = 50,
+        page_list: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
-        Monitor multiple Nigerian Facebook pages for content
+        Monitor multiple Nigerian Facebook pages for content using Apify
 
         Args:
-            pages_per_source: Number of pages to scrape per source
+            posts_per_page: Number of posts to scrape per page
+            page_list: Optional list of page URLs to monitor (if None, uses default Nigerian pages)
 
         Returns:
             Aggregated post data from Nigerian pages
         """
         try:
-            logger.info("Starting Nigerian Facebook pages monitoring")
+            logger.info("Starting Nigerian Facebook pages monitoring with Apify")
+
+            # Use provided page list or default Nigerian pages
+            pages_to_monitor = page_list if page_list is not None else self.nigerian_pages
 
             all_posts = []
             page_stats = []
 
-            for page_name in self.nigerian_pages:
+            for page_url in pages_to_monitor:
                 try:
-                    # Scrape posts from each page
+                    # Scrape posts from each page using Apify
                     posts = await self.scrape_page_posts(
-                        page_name=page_name,
-                        pages=pages_per_source
+                        page_url=page_url,
+                        posts_limit=posts_per_page
                     )
 
                     all_posts.extend(posts)
@@ -281,23 +117,25 @@ class FacebookService:
                     # Calculate page stats
                     if posts:
                         total_engagement = sum(
-                            p.get("metrics", {}).get("total_engagement", 0)
+                            p.get("metrics", {}).get("likes", 0) +
+                            p.get("metrics", {}).get("comments", 0) +
+                            p.get("metrics", {}).get("shares", 0)
                             for p in posts
                         )
                         avg_engagement = total_engagement / len(posts) if posts else 0
 
                         page_stats.append({
-                            "page": page_name,
+                            "page": page_url,
                             "post_count": len(posts),
                             "total_engagement": total_engagement,
                             "avg_engagement": avg_engagement
                         })
 
                     # Rate limiting between pages
-                    await asyncio.sleep(5)
+                    await asyncio.sleep(10)  # Increased delay for Apify
 
                 except Exception as e:
-                    logger.error(f"Error monitoring page {page_name}: {e}")
+                    logger.error(f"Error monitoring page {page_url}: {e}")
                     continue
 
             result = {

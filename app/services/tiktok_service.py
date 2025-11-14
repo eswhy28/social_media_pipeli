@@ -58,10 +58,8 @@ class TikTokService:
             Configured TikTokApi instance
         """
         try:
-            # Create API instance with custom settings
+            # Create API instance with supported parameters only
             api = TikTokApi(
-                custom_verify_fp="",  # Optional: custom fingerprint
-                use_test_endpoints=False,
                 logging_level=logging.WARNING
             )
 
@@ -266,13 +264,15 @@ class TikTokService:
 
     async def monitor_nigerian_content(
         self,
-        max_videos_per_hashtag: int = 20
+        max_videos_per_hashtag: int = 20,
+        hashtags: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
         Monitor Nigerian TikTok content across popular hashtags
 
         Args:
             max_videos_per_hashtag: Maximum videos to fetch per hashtag
+            hashtags: Optional list of hashtags to monitor (if None, uses default Nigerian hashtags)
 
         Returns:
             Aggregated content data from Nigerian hashtags
@@ -280,10 +280,13 @@ class TikTokService:
         try:
             logger.info("Starting Nigerian content monitoring")
 
+            # Use provided hashtags or default Nigerian hashtags
+            hashtags_to_monitor = hashtags if hashtags is not None else self.nigerian_hashtags
+
             all_videos = []
             hashtag_stats = []
 
-            for hashtag in self.nigerian_hashtags:
+            for hashtag in hashtags_to_monitor:
                 try:
                     # Fetch videos for each hashtag
                     videos = await self.search_hashtag(

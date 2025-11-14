@@ -572,3 +572,8 @@ class EnhancedAIService:
 
 # Singleton instance
 enhanced_ai_service = EnhancedAIService()
+
+# Factory function for dependency injection
+def get_enhanced_ai_service() -> EnhancedAIService:
+    """Get enhanced AI service instance"""
+    return enhanced_ai_service

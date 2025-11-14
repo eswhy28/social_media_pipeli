@@ -17,6 +17,7 @@ from app.services.tiktok_service import get_tiktok_service
 from app.services.facebook_service import get_facebook_service
 from app.services.apify_service import get_apify_service
 from app.services.data_pipeline_service import get_data_pipeline_service
+from app.services.hashtag_discovery_service import get_hashtag_discovery_service
 from app.schemas import BaseResponse
 import logging
 
@@ -220,8 +221,8 @@ async def scrape_tiktok_hashtag(
 
 @router.get("/tiktok/monitor", response_model=BaseResponse)
 async def monitor_nigerian_tiktok(
-    max_videos: int = Query(default=20, ge=10, le=50),
     background_tasks: BackgroundTasks,
+    max_videos: int = Query(default=20, ge=10, le=50),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
 ):
@@ -337,8 +338,8 @@ async def scrape_facebook_page(
 
 @router.get("/facebook/monitor", response_model=BaseResponse)
 async def monitor_nigerian_facebook(
-    pages_per_source: int = Query(default=2, ge=1, le=5),
     background_tasks: BackgroundTasks,
+    pages_per_source: int = Query(default=2, ge=1, le=5),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
 ):
@@ -466,9 +467,9 @@ async def scrape_with_apify(
 
 @router.get("/apify/comprehensive", response_model=BaseResponse)
 async def comprehensive_scraping(
+    background_tasks: BackgroundTasks,
     platforms: str = Query(default="instagram,tiktok,facebook", description="Comma-separated platforms"),
     items_per_platform: int = Query(default=50, ge=10, le=100),
-    background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
 ):
@@ -501,6 +502,208 @@ async def comprehensive_scraping(
 
     except Exception as e:
         logger.error(f"Error in comprehensive scraping: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================
+# Hashtag Discovery Endpoints
+# ============================================
+
+@router.get("/hashtags/trending", response_model=BaseResponse)
+async def get_trending_hashtags(
+    include_google_trends: bool = Query(default=True, description="Include Google Trends data"),
+    include_collected: bool = Query(default=True, description="Include analysis of collected content"),
+    limit: int = Query(default=50, ge=10, le=100, description="Maximum hashtags to return"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get currently trending Nigerian hashtags from all sources
+
+    Discovers trending hashtags by combining:
+    - Google Trends API (Nigeria)
+    - Recently collected social media content
+    - Core Nigerian hashtags
+
+    Returns hashtags ranked by trend score (combination of frequency and engagement)
+    """
+    try:
+        hashtag_service = get_hashtag_discovery_service(db)
+
+        hashtags = await hashtag_service.discover_nigerian_hashtags(
+            include_google_trends=include_google_trends,
+            include_collected=include_collected,
+            limit=limit
+        )
+
+        return BaseResponse(
+            success=True,
+            data={
+                "trending_hashtags": hashtags,
+                "count": len(hashtags),
+                "sources": {
+                    "google_trends": include_google_trends,
+                    "collected_content": include_collected
+                },
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error getting trending hashtags: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/hashtags/category/{category}", response_model=BaseResponse)
+async def get_hashtags_by_category(
+    category: str,
+    limit: int = Query(default=20, ge=5, le=50, description="Maximum hashtags to return"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get trending hashtags for a specific category
+
+    Categories: politics, entertainment, sports, economy, tech, security, education
+
+    Returns category-specific trending hashtags
+    """
+    try:
+        hashtag_service = get_hashtag_discovery_service(db)
+
+        hashtags = await hashtag_service.get_hashtags_by_category(
+            category=category,
+            limit=limit
+        )
+
+        return BaseResponse(
+            success=True,
+            data={
+                "category": category,
+                "hashtags": hashtags,
+                "count": len(hashtags),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error getting hashtags for category {category}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/hashtags/engagement/{hashtag}", response_model=BaseResponse)
+async def get_hashtag_engagement(
+    hashtag: str,
+    hours_back: int = Query(default=24, ge=1, le=168, description="Hours of data to analyze"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get engagement metrics for a specific hashtag
+
+    Returns:
+    - Total likes, comments, shares, views
+    - Number of posts using this hashtag
+    - Platforms where it's trending
+    - Engagement rate
+    """
+    try:
+        hashtag_service = get_hashtag_discovery_service(db)
+
+        # Remove # if present
+        clean_hashtag = hashtag.lstrip('#')
+
+        metrics = await hashtag_service.get_engagement_metrics_for_hashtag(
+            hashtag=clean_hashtag,
+            hours_back=hours_back
+        )
+
+        return BaseResponse(
+            success=True,
+            data={
+                "hashtag": clean_hashtag,
+                "time_period_hours": hours_back,
+                "metrics": metrics,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error getting engagement for #{hashtag}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/hashtags/collected-trends", response_model=BaseResponse)
+async def get_collected_content_trends(
+    hours_back: int = Query(default=24, ge=1, le=168, description="Hours of data to analyze"),
+    min_occurrences: int = Query(default=5, ge=1, le=50, description="Minimum occurrences"),
+    limit: int = Query(default=50, ge=10, le=100, description="Maximum hashtags to return"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get trending hashtags from collected content with detailed engagement data
+
+    Analyzes recently collected tweets, TikToks, and Facebook posts
+    Returns hashtags with:
+    - Occurrence count
+    - Total engagement (likes + comments + shares)
+    - Trend score
+    - Last seen timestamp
+    """
+    try:
+        hashtag_service = get_hashtag_discovery_service(db)
+
+        trending_data = await hashtag_service.get_trending_from_collected_content(
+            hours_back=hours_back,
+            min_occurrences=min_occurrences,
+            limit=limit
+        )
+
+        return BaseResponse(
+            success=True,
+            data={
+                "trending_hashtags": trending_data,
+                "count": len(trending_data),
+                "time_period_hours": hours_back,
+                "min_occurrences": min_occurrences,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error getting collected content trends: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/hashtags/update-cache", response_model=BaseResponse)
+async def update_hashtag_cache(
+    background_tasks: BackgroundTasks,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Manually trigger hashtag cache update
+
+    Updates the trending hashtags cache with latest data from all sources
+    """
+    try:
+        # Run cache update in background
+        background_tasks.add_task(
+            _update_hashtag_cache_task,
+            db
+        )
+
+        return BaseResponse(
+            success=True,
+            data={
+                "message": "Hashtag cache update triggered",
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error triggering hashtag cache update: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -582,3 +785,13 @@ async def _store_comprehensive_apify_data(db: AsyncSession, result: Dict[str, An
 
     except Exception as e:
         logger.error(f"Error storing comprehensive Apify data in background: {e}")
+
+
+async def _update_hashtag_cache_task(db: AsyncSession):
+    """Background task to update hashtag cache"""
+    try:
+        hashtag_service = get_hashtag_discovery_service(db)
+        cache = await hashtag_service.update_trending_cache()
+        logger.info(f"Hashtag cache updated successfully: {len(cache.get('all', []))} total hashtags")
+    except Exception as e:
+        logger.error(f"Error updating hashtag cache in background: {e}")

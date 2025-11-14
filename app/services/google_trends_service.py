@@ -58,17 +58,18 @@ class GoogleTrendsService:
             backoff_factor=0.5
         )
 
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=2, max=10),
-        retry=retry_if_exception_type(ResponseError)
-    )
-    async def get_trending_searches(self, region: str = "NG") -> List[Dict[str, Any]]:
+    async def get_trending_searches(self, region: str = "NG", limit: int = 20) -> List[Dict[str, Any]]:
         """
         Get current trending searches in Nigeria
 
+        Uses multiple fallback methods:
+        1. Try trending_searches() API
+        2. Fallback to today's search trends data
+        3. Fallback to predefined Nigerian trending topics
+
         Args:
             region: ISO country code (default: NG for Nigeria)
+            limit: Maximum number of trends to return
 
         Returns:
             List of trending search terms with metadata
@@ -80,30 +81,101 @@ class GoogleTrendsService:
             loop = asyncio.get_event_loop()
             pytrends = self._get_pytrends_client()
 
-            # Get trending searches
-            trending_df = await loop.run_in_executor(
-                None,
-                pytrends.trending_searches,
-                region
-            )
+            # Method 1: Try trending_searches API
+            try:
+                trending_df = await loop.run_in_executor(
+                    None,
+                    pytrends.trending_searches,
+                    region
+                )
 
-            # Transform to list of dictionaries
-            trending_data = []
-            for idx, term in enumerate(trending_df[0].tolist()):
-                trending_data.append({
+                # Transform to list of dictionaries
+                trending_data = []
+                for idx, term in enumerate(trending_df[0].tolist()[:limit]):
+                    trending_data.append({
+                        "term": term,
+                        "rank": idx + 1,
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "region": region,
+                        "source": "google_trends"
+                    })
+
+                logger.info(f"Retrieved {len(trending_data)} trending searches")
+                return trending_data
+
+            except ResponseError as e:
+                logger.warning(f"trending_searches API failed: {e}, trying fallback methods")
+
+                # Method 2: Use today's search trends (alternative API)
+                try:
+                    # Get realtime trending searches
+                    realtime_df = await loop.run_in_executor(
+                        None,
+                        pytrends.today_searches,
+                        region
+                    )
+
+                    trending_data = []
+                    for idx, term in enumerate(realtime_df[0].tolist()[:limit]):
+                        trending_data.append({
+                            "term": term,
+                            "rank": idx + 1,
+                            "timestamp": datetime.utcnow().isoformat(),
+                            "region": region,
+                            "source": "google_trends_realtime"
+                        })
+
+                    logger.info(f"Retrieved {len(trending_data)} realtime trending searches")
+                    return trending_data
+
+                except Exception as realtime_error:
+                    logger.warning(f"Realtime trends failed: {realtime_error}, using predefined trends")
+
+                    # Method 3: Use predefined Nigerian trending topics as fallback
+                    nigerian_topics = [
+                        "Nigeria", "Lagos", "Abuja", "Naira", "Nigerian news",
+                        "Nigeria election", "Nigeria economy", "Lagos traffic",
+                        "Nigerian music", "Nollywood", "Nigeria football",
+                        "Afrobeats", "Nigeria politics", "Nigerian business",
+                        "Nigeria sports", "Lagos events", "Nigerian entertainment",
+                        "Nigeria tech", "Nigerian food", "Nigeria culture"
+                    ]
+
+                    trending_data = []
+                    for idx, term in enumerate(nigerian_topics[:limit]):
+                        trending_data.append({
+                            "term": term,
+                            "rank": idx + 1,
+                            "timestamp": datetime.utcnow().isoformat(),
+                            "region": region,
+                            "source": "predefined_nigerian_topics",
+                            "is_fallback": True
+                        })
+
+                    logger.info(f"Using {len(trending_data)} predefined Nigerian topics")
+                    return trending_data
+
+        except Exception as e:
+            logger.error(f"Error fetching trending searches: {e}")
+
+            # Final fallback: predefined topics
+            nigerian_topics = [
+                "Nigeria", "Lagos", "Abuja", "Naira", "Nigerian news",
+                "Nigeria election", "Nigeria economy", "Lagos traffic",
+                "Nigerian music", "Nollywood", "Nigeria football"
+            ]
+
+            return [
+                {
                     "term": term,
                     "rank": idx + 1,
                     "timestamp": datetime.utcnow().isoformat(),
                     "region": region,
-                    "source": "google_trends"
-                })
-
-            logger.info(f"Retrieved {len(trending_data)} trending searches")
-            return trending_data
-
-        except Exception as e:
-            logger.error(f"Error fetching trending searches: {e}")
-            return []
+                    "source": "fallback_topics",
+                    "is_fallback": True
+                }
+                for idx, term in enumerate(nigerian_topics[:limit])
+            ]
 
     @retry(
         stop=stop_after_attempt(3),

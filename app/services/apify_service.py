@@ -39,8 +39,8 @@ class ApifyService:
         # Popular Apify actors for social media
         self.actors = {
             "instagram": "apify/instagram-scraper",
-            "tiktok": "apify/tiktok-scraper",
-            "twitter": "apify/twitter-scraper",
+            "tiktok": "clockworks/tiktok-scraper",
+            "twitter": "apidojo/tweet-scraper",
             "facebook": "apify/facebook-pages-scraper",
             "youtube": "apify/youtube-scraper"
         }
@@ -260,6 +260,66 @@ class ApifyService:
         except Exception as e:
             logger.error(f"Error scraping Facebook page: {e}")
             return {"platform": "facebook", "page_url": page_url, "error": str(e)}
+
+    async def scrape_twitter_search(
+        self,
+        search_queries: List[str],
+        max_tweets: int = 50
+    ) -> Dict[str, Any]:
+        """
+        Scrape Twitter search results using Apify
+
+        Args:
+            search_queries: List of search queries/hashtags
+            max_tweets: Maximum number of tweets per query
+
+        Returns:
+            Twitter search results
+        """
+        try:
+            logger.info(f"Scraping Twitter search for: {search_queries}")
+
+            # Prepare search URLs
+            search_urls = [{"url": f"https://twitter.com/search?q={query}&src=typed_query&f=live"}
+                          for query in search_queries]
+
+            run_input = {
+                "startUrls": search_urls,
+                "tweetsDesired": max_tweets,
+                "proxyConfig": {"useApifyProxy": True},
+                "onlyImage": False,
+                "onlyQuote": False,
+                "onlyTwitterBlue": False,
+                "onlyVerifiedUsers": False
+            }
+
+            result = await self.run_actor(
+                actor_id=self.actors["twitter"],
+                run_input=run_input,
+                timeout_secs=300
+            )
+
+            # Transform data
+            transformed_data = self._transform_twitter_data(result.get("data", []))
+
+            return {
+                "success": True,
+                "platform": "twitter",
+                "queries": search_queries,
+                "tweets": transformed_data,
+                "total_tweets": len(transformed_data),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+
+        except Exception as e:
+            logger.error(f"Error scraping Twitter search: {e}")
+            return {
+                "success": False,
+                "platform": "twitter",
+                "queries": search_queries,
+                "error": str(e),
+                "tweets": []
+            }
 
     async def scrape_twitter_profile(
         self,

@@ -1,6 +1,6 @@
 # Core FastAPI dependencies
 fastapi>=0.68.0,<1.0.0
-uvicorn>=0.15.0,<1.0.0
+uvicorn[standard]>=0.15.0,<1.0.0
 python-multipart>=0.0.5
 python-dotenv>=0.19.0
 pydantic>=2.0.0,<3.0.0
@@ -8,9 +8,12 @@ pydantic-settings>=2.0.0,<3.0.0
 
 # Database
 sqlalchemy>=2.0.0,<3.0.0
-aiosqlite>=0.19.0
+aiosqlite>=0.19.0  # SQLite support (fallback)
+asyncpg>=0.29.0    # PostgreSQL support (recommended)
+psycopg2-binary>=2.9.0  # PostgreSQL support (sync)
+alembic>=1.7.0
 
-# Authentication
+# Authentication & Security
 python-jose[cryptography]>=3.3.0
 passlib[bcrypt]>=1.7.4
 
@@ -37,23 +40,34 @@ mangum>=0.17.0
 
 # Social media APIs
 tweepy>=4.14.0
-TikTok-Api>=5.3.0
+TikTokApi>=5.3.0  # Note: different package name
 facebook-scraper>=0.2.59
 pytrends>=4.9.2
 
 # Apify SDK for web scraping
 apify-client>=1.3.0
 
-# Background tasks (optional for Vercel)
+# Background tasks & Caching
 celery>=5.2.0
 redis>=4.0.0
 
 # Rate limiting
 slowapi>=0.1.8
 
-# Database migrations
-alembic>=1.7.0
-
 # Testing
 pytest>=6.2.0
 pytest-asyncio>=0.21.0
+unittest-mock>=1.5.0
+
+# Additional utilities
+python-dateutil>=2.8.0
+pytz>=2021.3
+
+# Logging and monitoring
+python-json-logger>=2.0.0
+
+# Data validation
+email-validator>=1.1.3
+
+# SpaCy English model (install separately)
+# python -m spacy download en_core_web_sm

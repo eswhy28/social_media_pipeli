@@ -28,8 +28,8 @@ def upgrade() -> None:
         sa.Column('sub_region', sa.String(length=50), nullable=True),
         sa.Column('timeframe', sa.String(length=50), nullable=True),
         sa.Column('trend_date', sa.DateTime(timezone=True), nullable=False),
-        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_google_trends_data_keyword'), 'google_trends_data', ['keyword'], unique=False)
@@ -56,8 +56,8 @@ def upgrade() -> None:
         sa.Column('hashtags', sa.JSON(), nullable=True),
         sa.Column('geo_location', sa.String(length=100), nullable=True),
         sa.Column('posted_at', sa.DateTime(timezone=True), nullable=True),
-        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_tiktok_content_author_username'), 'tiktok_content', ['author_username'], unique=False)
@@ -86,8 +86,8 @@ def upgrade() -> None:
         sa.Column('video_url', sa.String(length=1000), nullable=True),
         sa.Column('geo_location', sa.String(length=100), nullable=True),
         sa.Column('posted_at', sa.DateTime(timezone=True), nullable=True),
-        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_facebook_content_page_name'), 'facebook_content', ['page_name'], unique=False)
@@ -114,8 +114,8 @@ def upgrade() -> None:
         sa.Column('location', sa.String(length=255), nullable=True),
         sa.Column('geo_location', sa.String(length=100), nullable=True),
         sa.Column('posted_at', sa.DateTime(timezone=True), nullable=True),
-        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('collected_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_apify_scraped_data_platform'), 'apify_scraped_data', ['platform'], unique=False)
@@ -143,7 +143,7 @@ def upgrade() -> None:
         sa.Column('top_keywords', sa.JSON(), nullable=True),
         sa.Column('top_authors', sa.JSON(), nullable=True),
         sa.Column('geo_region', sa.String(length=100), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_social_media_aggregation_timestamp'), 'social_media_aggregation', ['timestamp'], unique=False)
@@ -168,7 +168,7 @@ def upgrade() -> None:
         sa.Column('requests_remaining', sa.Integer(), nullable=True),
         sa.Column('collection_frequency', sa.Integer(), nullable=True),
         sa.Column('priority', sa.Integer(), nullable=True),
-        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )

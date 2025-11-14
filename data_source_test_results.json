@@ -1,0 +1,44 @@
+{
+  "timestamp": "2025-11-13T08:38:56.941533",
+  "tests": [
+    {
+      "test": "Google Trends API",
+      "status": "FAIL",
+      "details": "",
+      "error": "The request failed: Google returned a response with code 404",
+      "timestamp": "2025-11-13T08:39:00.354980"
+    },
+    {
+      "test": "Apify API Client",
+      "status": "PASS",
+      "details": "Successfully authenticated with Apify",
+      "error": "",
+      "timestamp": "2025-11-13T08:39:04.112601",
+      "data_sample": {
+        "user_id": "kfQWVUhWTVpEM8Qcw",
+        "username": "ultramarine_layout"
+      }
+    },
+    {
+      "test": "Facebook Scraper Library",
+      "status": "WARN",
+      "details": "Library imported but no posts retrieved (Facebook may be blocking)",
+      "error": "",
+      "timestamp": "2025-11-13T08:39:07.201166"
+    },
+    {
+      "test": "TikTok-Api Library",
+      "status": "PASS",
+      "details": "Library imported and initialized successfully. Note: Full functionality requires Playwright setup",
+      "error": "",
+      "timestamp": "2025-11-13T08:39:09.568864"
+    },
+    {
+      "test": "Tweepy Library",
+      "status": "SKIP",
+      "details": "No TWITTER_BEARER_TOKEN found in environment. Using Apify instead is recommended.",
+      "error": "",
+      "timestamp": "2025-11-13T08:39:10.615014"
+    }
+  ]
+}

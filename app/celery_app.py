@@ -10,6 +10,7 @@ celery_app = Celery(
         "app.tasks.sentiment_analysis",
         "app.tasks.report_generation",
         "app.tasks.anomaly_detection",
+        "app.tasks.social_media_collection",  # Nigerian data collection tasks
     ]
 )
 
@@ -28,10 +29,39 @@ celery_app.conf.update(
 
 # Periodic tasks schedule
 celery_app.conf.beat_schedule = {
-    'fetch-social-media-data-every-5-minutes': {
-        'task': 'app.tasks.data_ingestion.fetch_social_media_data',
-        'schedule': 300.0,  # 5 minutes
+    # Dynamic Hashtag Discovery Tasks
+    'update-hashtag-cache-hourly': {
+        'task': 'update_hashtag_cache',
+        'schedule': 3600.0,  # Every hour
     },
+    'track-hashtag-history-every-6-hours': {
+        'task': 'track_hashtag_history',
+        'schedule': 21600.0,  # Every 6 hours
+    },
+
+    # Nigerian Data Collection Tasks
+    'collect-google-trends-hourly': {
+        'task': 'collect_google_trends',
+        'schedule': 3600.0,  # Every hour
+    },
+    'collect-tiktok-content-every-2-hours': {
+        'task': 'collect_tiktok_content',
+        'schedule': 7200.0,  # Every 2 hours
+    },
+    'collect-facebook-content-every-3-hours': {
+        'task': 'collect_facebook_content',
+        'schedule': 10800.0,  # Every 3 hours
+    },
+    'aggregate-analytics-hourly': {
+        'task': 'aggregate_analytics',
+        'schedule': 3600.0,  # Every hour
+    },
+    'reset-counters-daily': {
+        'task': 'reset_daily_counters',
+        'schedule': 86400.0,  # Daily at midnight
+    },
+
+    # Legacy Tasks (keep for compatibility)
     'analyze-sentiment-every-10-minutes': {
         'task': 'app.tasks.sentiment_analysis.analyze_recent_posts',
         'schedule': 600.0,  # 10 minutes
