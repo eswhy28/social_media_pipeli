@@ -52,7 +52,7 @@ class FacebookPageRequest(BaseModel):
 
 class ApifyScrapeRequest(BaseModel):
     """Request model for Apify scraping"""
-    platform: str = Field(..., description="Platform to scrape (instagram, tiktok, twitter, facebook)")
+    platform: str = Field(..., description="Platform to scrape (twitter, facebook)")
     target: str = Field(..., description="Username, hashtag, or page URL to scrape")
     limit: int = Field(default=50, ge=10, le=100, description="Number of items to scrape")
 
@@ -401,7 +401,7 @@ async def get_facebook_page_analytics(
 
 
 # ============================================
-# Apify Endpoints
+# Apify Endpoints (Twitter & Facebook Only)
 # ============================================
 
 @router.post("/apify/scrape", response_model=BaseResponse)
@@ -413,24 +413,16 @@ async def scrape_with_apify(
 ):
     """
     Scrape social media content using Apify
-
-    Advanced scraping for Instagram, TikTok, Twitter, and Facebook
+    
+    Supports Twitter and Facebook scraping using official Apify actors:
+    - Twitter: apidojo/tweet-scraper (Tweet Scraper V2)
+    - Facebook: apify/facebook-posts-scraper
     """
     try:
         apify_service = get_apify_service()
 
         # Route to appropriate scraper based on platform
-        if request.platform.lower() == "instagram":
-            result = await apify_service.scrape_instagram_profile(
-                username=request.target,
-                results_limit=request.limit
-            )
-        elif request.platform.lower() == "tiktok":
-            result = await apify_service.scrape_tiktok_hashtag(
-                hashtag=request.target,
-                results_limit=request.limit
-            )
-        elif request.platform.lower() == "facebook":
+        if request.platform.lower() == "facebook":
             result = await apify_service.scrape_facebook_page(
                 page_url=request.target,
                 posts_limit=request.limit
@@ -443,11 +435,11 @@ async def scrape_with_apify(
         else:
             raise HTTPException(
                 status_code=400,
-                detail=f"Unsupported platform: {request.platform}"
+                detail=f"Unsupported platform: {request.platform}. Only 'twitter' and 'facebook' are supported."
             )
 
         # Store in background
-        if result.get('posts') or result.get('videos') or result.get('tweets'):
+        if result.get('posts') or result.get('tweets'):
             background_tasks.add_task(
                 _store_apify_data,
                 db,
@@ -468,15 +460,16 @@ async def scrape_with_apify(
 @router.get("/apify/comprehensive", response_model=BaseResponse)
 async def comprehensive_scraping(
     background_tasks: BackgroundTasks,
-    platforms: str = Query(default="instagram,tiktok,facebook", description="Comma-separated platforms"),
+    platforms: str = Query(default="twitter,facebook", description="Comma-separated platforms (twitter, facebook)"),
     items_per_platform: int = Query(default=50, ge=10, le=100),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
 ):
     """
-    Comprehensive scraping across multiple platforms using Apify
-
-    Scrapes Nigerian content from multiple social media platforms
+    Comprehensive scraping across Twitter and Facebook using Apify
+    
+    Scrapes Nigerian content from Twitter and Facebook platforms
+    Only supports: twitter, facebook
     """
     try:
         apify_service = get_apify_service()

@@ -60,121 +60,292 @@ class GoogleTrendsService:
 
     async def get_trending_searches(self, region: str = "NG", limit: int = 20) -> List[Dict[str, Any]]:
         """
-        Get current trending searches in Nigeria
-
-        Uses multiple fallback methods:
-        1. Try trending_searches() API
-        2. Fallback to today's search trends data
-        3. Fallback to predefined Nigerian trending topics
-
+        Get comprehensive trending searches across Nigeria
+        
+        Combines multiple methods to get 15-20+ trending topics covering:
+        - National news and politics
+        - State-level discussions
+        - Sports and entertainment
+        - Economy and business
+        
+        Methods used (combines results from all):
+        1. Realtime trending stories
+        2. Rising queries for multiple Nigerian topics
+        3. Traditional trending searches
+        4. Suggestions for Nigerian keywords
+        5. State-specific trends
+        
         Args:
             region: ISO country code (default: NG for Nigeria)
             limit: Maximum number of trends to return
 
         Returns:
-            List of trending search terms with metadata
+            List of trending search terms from across Nigeria
         """
         try:
-            logger.info(f"Fetching trending searches for {region}")
+            logger.info(f"Fetching comprehensive trending searches for {region}")
 
-            # Run in thread pool to avoid blocking
             loop = asyncio.get_event_loop()
             pytrends = self._get_pytrends_client()
+            
+            all_trending_data = []
+            seen_terms = set()
 
-            # Method 1: Try trending_searches API
+            # Method 1: Realtime trending stories
             try:
+                logger.info("Method 1: Fetching realtime trending stories...")
+                trending_stories = await loop.run_in_executor(
+                    None,
+                    lambda: pytrends.realtime_trending_searches(pn=region)
+                )
+                
+                if trending_stories and not trending_stories.empty:
+                    for _, story in trending_stories.iterrows():
+                        title = story.get('title', '')
+                        if title and title not in seen_terms:
+                            all_trending_data.append({
+                                "term": title,
+                                "timestamp": datetime.utcnow().isoformat(),
+                                "region": region,
+                                "source": "realtime_stories",
+                                "traffic": story.get('traffic', 'Unknown')
+                            })
+                            seen_terms.add(title)
+                    
+                    logger.info(f"✅ Got {len([d for d in all_trending_data if d['source'] == 'realtime_stories'])} from realtime stories")
+
+            except Exception as e:
+                logger.warning(f"Method 1 failed: {e}")
+
+            # Method 2: Comprehensive rising queries from multiple Nigerian topics
+            try:
+                logger.info("Method 2: Fetching rising queries from Nigerian topics...")
+                
+                # Expanded keywords covering news, states, politics, economy
+                nigerian_keywords = [
+                    # Batch 1: National topics
+                    ["Nigeria news", "Nigerian", "Nigeria today", "Lagos",  "Abuja"],
+                    # Batch 2: Trending topics
+                    ["Nigerian politics", "Nigeria economy", "Naira", "Nigeria football", "Nigerian music"]
+                ]
+                
+                # Process in batches (API limit is 5 keywords)
+                for batch_idx, batch in enumerate(nigerian_keywords, 1):
+                    try:
+                        # Define the build function separately to avoid lambda issues
+                        def build_for_batch():
+                            pytrends.build_payload(
+                                batch,
+                                cat=0,
+                                timeframe='now 7-d',  # Last week for better data
+                                geo=region,
+                                gprop=''
+                            )
+                        
+                        await loop.run_in_executor(None, build_for_batch)
+                        
+                        related_dict = await loop.run_in_executor(
+                            None,
+                            pytrends.related_queries
+                        )
+                        
+                        # Extract rising queries
+                        for keyword in batch:
+                            if keyword in related_dict:
+                                # Get rising queries
+                                if related_dict[keyword]['rising'] is not None:
+                                    rising_df = related_dict[keyword]['rising']
+                                    for _, row in rising_df.head(10).iterrows():  # Get top 10 per keyword
+                                        query = row['query']
+                                        # Filter for meaningful terms (not just single words like "weather")
+                                        if query and query not in seen_terms and len(query.split()) >= 2:
+                                            all_trending_data.append({
+                                                "term": query,
+                                                "timestamp": datetime.utcnow().isoformat(),
+                                                "region": region,
+                                                "source": "rising_queries",
+                                                "growth": row.get('value', 'Rising'),
+                                                "parent_keyword": keyword
+                                            })
+                                            seen_terms.add(query)
+                                
+                                # Also get top queries for context
+                                if related_dict[keyword]['top'] is not None:
+                                    top_df = related_dict[keyword]['top']
+                                    for _, row in top_df.head(5).iterrows():  # Get top 5 per keyword
+                                        query = row['query']
+                                        if query and query not in seen_terms and len(query.split()) >= 2:
+                                            all_trending_data.append({
+                                                "term": query,
+                                                "timestamp": datetime.utcnow().isoformat(),
+                                                "region": region,
+                                                "source": "top_queries",
+                                                "relevance": row.get('value', 0),
+                                                "parent_keyword": keyword
+                                            })
+                                            seen_terms.add(query)
+                        
+                        # Rate limiting between batches
+                        if batch_idx < len(nigerian_keywords):
+                            await asyncio.sleep(2)
+                        
+                    except Exception as batch_error:
+                        logger.warning(f"Batch {batch_idx} failed: {batch_error}")
+                        continue
+                
+                logger.info(f"✅ Got {len([d for d in all_trending_data if 'queries' in d['source']])} from related queries")
+
+            except Exception as e:
+                logger.warning(f"Method 2 failed: {e}")
+
+            # Method 3:  Traditional trending searches
+            try:
+                logger.info("Method 3: Trying traditional trending_searches...")
                 trending_df = await loop.run_in_executor(
                     None,
                     pytrends.trending_searches,
                     region
                 )
 
-                # Transform to list of dictionaries
-                trending_data = []
-                for idx, term in enumerate(trending_df[0].tolist()[:limit]):
-                    trending_data.append({
-                        "term": term,
-                        "rank": idx + 1,
-                        "timestamp": datetime.utcnow().isoformat(),
-                        "region": region,
-                        "source": "google_trends"
-                    })
+                if not trending_df.empty:
+                    for term in trending_df[0].tolist()[:20]:
+                        if term and term not in seen_terms:
+                            all_trending_data.append({
+                                "term": term,
+                                "timestamp": datetime.utcnow().isoformat(),
+                                "region": region,
+                                "source": "traditional_api"
+                            })
+                            seen_terms.add(term)
+                    
+                    logger.info(f"✅ Got {len([d for d in all_trending_data if d['source'] == 'traditional_api'])} from traditional API")
 
-                logger.info(f"Retrieved {len(trending_data)} trending searches")
-                return trending_data
+            except Exception as e:
+                logger.warning(f"Method 3 failed: {e}")
 
-            except ResponseError as e:
-                logger.warning(f"trending_searches API failed: {e}, trying fallback methods")
+            # Method 4: Suggestions for multiple Nigerian terms
+            try:
+                logger.info("Method 4: Getting suggestions...")
+                
+                suggestion_terms = [
+                    "Nigeria", "Nigerian", "Lagos", "Abuja",
+                    "Naija", "FCT", "Port Harcourt", "Kano"
+                ]
+                
+                for base_term in suggestion_terms:
+                    try:
+                        suggestions = await loop.run_in_executor(
+                            None,
+                            pytrends.suggestions,
+                            base_term
+                        )
+                        
+                        for suggestion in suggestions:
+                            term = suggestion.get('title', '')
+                            if term and term not in seen_terms and term != base_term:
+                                all_trending_data.append({
+                                    "term": term,
+                                    "timestamp": datetime.utcnow().isoformat(),
+                                    "region": region,
+                                    "source": "suggestions"
+                                })
+                                seen_terms.add(term)
+                        
+                        await asyncio.sleep(1)  # Rate limiting
+                        
+                    except:
+                        continue
+                
+                logger.info(f"✅ Got {len([d for d in all_trending_data if d['source'] == 'suggestions'])} from suggestions")
 
-                # Method 2: Use today's search trends (alternative API)
-                try:
-                    # Get realtime trending searches
-                    realtime_df = await loop.run_in_executor(
-                        None,
-                        pytrends.today_searches,
-                        region
+            except Exception as e:
+                logger.warning(f"Method 4 failed: {e}")
+
+            # Rank and return results
+            if all_trending_data:
+                # Prioritize by source (realtime > rising > top > traditional > suggestions)
+                source_priority = {
+                    "realtime_stories": 1,
+                    "rising_queries": 2,
+                    "top_queries": 3,
+                    "traditional_api": 4,
+                    "suggestions": 5
+                }
+                
+                # Sort by source priority, then by growth/relevance
+                all_trending_data.sort(
+                    key=lambda x: (
+                        source_priority.get(x['source'], 10),
+                        -(x.get('growth', 0) if isinstance(x.get('growth'), (int, float)) else 0),
+                        -(x.get('relevance', 0))
                     )
-
-                    trending_data = []
-                    for idx, term in enumerate(realtime_df[0].tolist()[:limit]):
-                        trending_data.append({
-                            "term": term,
-                            "rank": idx + 1,
-                            "timestamp": datetime.utcnow().isoformat(),
-                            "region": region,
-                            "source": "google_trends_realtime"
-                        })
-
-                    logger.info(f"Retrieved {len(trending_data)} realtime trending searches")
-                    return trending_data
-
-                except Exception as realtime_error:
-                    logger.warning(f"Realtime trends failed: {realtime_error}, using predefined trends")
-
-                    # Method 3: Use predefined Nigerian trending topics as fallback
-                    nigerian_topics = [
-                        "Nigeria", "Lagos", "Abuja", "Naira", "Nigerian news",
-                        "Nigeria election", "Nigeria economy", "Lagos traffic",
-                        "Nigerian music", "Nollywood", "Nigeria football",
-                        "Afrobeats", "Nigeria politics", "Nigerian business",
-                        "Nigeria sports", "Lagos events", "Nigerian entertainment",
-                        "Nigeria tech", "Nigerian food", "Nigeria culture"
-                    ]
-
-                    trending_data = []
-                    for idx, term in enumerate(nigerian_topics[:limit]):
-                        trending_data.append({
-                            "term": term,
-                            "rank": idx + 1,
-                            "timestamp": datetime.utcnow().isoformat(),
-                            "region": region,
-                            "source": "predefined_nigerian_topics",
-                            "is_fallback": True
-                        })
-
-                    logger.info(f"Using {len(trending_data)} predefined Nigerian topics")
-                    return trending_data
-
-        except Exception as e:
-            logger.error(f"Error fetching trending searches: {e}")
-
-            # Final fallback: predefined topics
-            nigerian_topics = [
-                "Nigeria", "Lagos", "Abuja", "Naira", "Nigerian news",
-                "Nigeria election", "Nigeria economy", "Lagos traffic",
-                "Nigerian music", "Nollywood", "Nigeria football"
+                )
+                
+                # Add rank
+                for idx, item in enumerate(all_trending_data[:limit], 1):
+                    item['rank'] = idx
+                
+                final_trending = all_trending_data[:limit]
+                logger.info(f"🎯 Returning {len(final_trending)} comprehensive trending topics from {len(set(d['source'] for d in final_trending))} sources")
+                
+                return final_trending
+            
+            # Fallback: Use curated Nigerian topics covering all states
+            logger.warning("All API methods returned no data, using comprehensive curated topics")
+            
+            curated_topics = [
+                # National news
+                "Nigeria news today", "Nigerian breaking news", "Nigeria latest news",
+                # Politics & Government
+                "Nigeria president", "Nigerian government", "Nigeria election",
+                # Economy
+                "Naira exchange rate", "Nigeria economy", "CBN Nigeria",
+                # Major cities & states
+                "Lagos news", "Abuja news", "Port Harcourt news", "Kano news",
+                "Ibadan news", "Enugu news", "Kaduna news", "Jos news",
+                # Sports
+                "Nigeria football", "Super Eagles", "Nigerian Premier League",
+                # Entertainment
+                "Nigerian music", "Nollywood", "Afrobeats",
+                # Current affairs
+                "Nigeria security", "Nigerian universities", "ASUU strike"
             ]
-
+            
             return [
                 {
                     "term": term,
                     "rank": idx + 1,
                     "timestamp": datetime.utcnow().isoformat(),
                     "region": region,
-                    "source": "fallback_topics",
+                    "source": "curated_comprehensive",
                     "is_fallback": True
                 }
-                for idx, term in enumerate(nigerian_topics[:limit])
+                for idx, term in enumerate(curated_topics[:limit])
+            ]
+
+        except Exception as e:
+            logger.error(f"Critical error: {e}")
+            
+            # Emergency fallback
+            emergency_topics = [
+                "Nigeria news", "Lagos", "Abuja", "Nigerian politics",
+                "Naira", "Nigeria football", "Nigerian music", "Nigeria today",
+                "Port Harcourt", "Kano", "Ibadan", "Nigeria president",
+                "Nigerian government", "Nigeria economy", "Nollywood",
+                "Super Eagles", "Nigerian universities", "Nigeria security",
+                "Lagos traffic", "Afrobeats"
+            ]
+            
+            return [
+                {
+                    "term": term,
+                    "rank": idx + 1,
+                    "timestamp": datetime.utcnow().isoformat(),
+                    "region": region,
+                    "source": "emergency_fallback",
+                    "is_fallback": True
+                }
+                for idx, term in enumerate(emergency_topics[:limit])
             ]
 
     @retry(

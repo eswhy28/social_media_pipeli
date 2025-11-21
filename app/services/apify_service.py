@@ -7,6 +7,7 @@ import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 import asyncio
+import uuid
 from apify_client import ApifyClient
 from apify_client.client import ApifyClientAsync
 from tenacity import retry, stop_after_attempt, wait_exponential
@@ -36,13 +37,10 @@ class ApifyService:
             self.async_client = ApifyClientAsync(self.api_token)
             logger.info("Apify Service initialized")
 
-        # Popular Apify actors for social media
+        # Official Apify actors for Twitter and Facebook scraping
         self.actors = {
-            "instagram": "apify/instagram-scraper",
-            "tiktok": "clockworks/tiktok-scraper",
-            "twitter": "apidojo/tweet-scraper",
-            "facebook": "apify/facebook-pages-scraper",
-            "youtube": "apify/youtube-scraper"
+            "twitter": "apidojo/tweet-scraper",  # Tweet Scraper V2 - X / Twitter Scraper
+            "facebook": "apify/facebook-posts-scraper"  # Facebook Posts Scraper
         }
 
     def _check_client(self):
@@ -123,96 +121,9 @@ class ApifyService:
                 "error": str(e)
             }
 
-    async def scrape_instagram_profile(
-        self,
-        username: str,
-        results_limit: int = 50
-    ) -> Dict[str, Any]:
-        """
-        Scrape Instagram profile data
 
-        Args:
-            username: Instagram username to scrape
-            results_limit: Maximum number of posts to scrape
 
-        Returns:
-            Instagram profile and posts data
-        """
-        try:
-            logger.info(f"Scraping Instagram profile: {username}")
 
-            run_input = {
-                "username": [username],
-                "resultsLimit": results_limit,
-                "addParentData": True
-            }
-
-            result = await self.run_actor(
-                actor_id=self.actors["instagram"],
-                run_input=run_input,
-                timeout_secs=300
-            )
-
-            # Transform data
-            transformed_data = self._transform_instagram_data(result.get("data", []))
-
-            return {
-                "platform": "instagram",
-                "username": username,
-                "posts": transformed_data,
-                "total_posts": len(transformed_data),
-                "timestamp": datetime.utcnow().isoformat()
-            }
-
-        except Exception as e:
-            logger.error(f"Error scraping Instagram profile: {e}")
-            return {"platform": "instagram", "username": username, "error": str(e)}
-
-    async def scrape_tiktok_hashtag(
-        self,
-        hashtag: str,
-        results_limit: int = 50
-    ) -> Dict[str, Any]:
-        """
-        Scrape TikTok hashtag data using Apify
-
-        Args:
-            hashtag: Hashtag to scrape (without #)
-            results_limit: Maximum number of videos to scrape
-
-        Returns:
-            TikTok hashtag data
-        """
-        try:
-            logger.info(f"Scraping TikTok hashtag: #{hashtag}")
-
-            run_input = {
-                "hashtags": [hashtag],
-                "resultsPerPage": results_limit,
-                "shouldDownloadVideos": False,
-                "shouldDownloadCovers": False
-            }
-
-            result = await self.run_actor(
-                actor_id=self.actors["tiktok"],
-                run_input=run_input,
-                timeout_secs=300
-            )
-
-            # Transform data
-            transformed_data = self._transform_tiktok_data(result.get("data", []))
-
-            return {
-                "platform": "tiktok",
-                "hashtag": hashtag,
-                "videos": transformed_data,
-                "total_videos": len(transformed_data),
-                "timestamp": datetime.utcnow().isoformat()
-            }
-
-        except Exception as e:
-            logger.error(f"Error scraping TikTok hashtag: {e}")
-            return {"platform": "tiktok", "hashtag": hashtag, "error": str(e)}
 
     async def scrape_facebook_page(
         self,
@@ -220,24 +131,29 @@ class ApifyService:
         posts_limit: int = 50
     ) -> Dict[str, Any]:
         """
-        Scrape Facebook page data using Apify
+        Scrape Facebook page posts using official Facebook Posts Scraper
+        
+        Uses apify/facebook-posts-scraper actor with proper input format:
+        - startUrls: Array of Facebook page/profile URLs
+        - resultsLimit: Maximum number of posts to return
 
         Args:
-            page_url: Facebook page URL
+            page_url: Facebook page URL (e.g., "https://www.facebook.com/nytimes")
             posts_limit: Maximum number of posts to scrape
 
         Returns:
-            Facebook page data
+            Facebook page posts data
         """
         try:
             logger.info(f"Scraping Facebook page: {page_url}")
 
+            # Official Facebook Posts Scraper input format
             run_input = {
-                "startUrls": [{"url": page_url}],
-                "maxPosts": posts_limit,
-                "scrapeAbout": True,
-                "scrapeReviews": False,
-                "scrapeServices": False
+                "startUrls": [{"url": page_url}],  # Array of URLs to scrape
+                "resultsLimit": posts_limit,  # Maximum posts to return
+                "proxy": {
+                    "useApifyProxy": True
+                }
             }
 
             result = await self.run_actor(
@@ -246,7 +162,7 @@ class ApifyService:
                 timeout_secs=300
             )
 
-            # Transform data
+            # Transform data to standardized format
             transformed_data = self._transform_facebook_data(result.get("data", []))
 
             return {
@@ -264,33 +180,47 @@ class ApifyService:
     async def scrape_twitter_search(
         self,
         search_queries: List[str],
-        max_tweets: int = 50
+        max_tweets: int = 50,
+        add_filters: bool = True
     ) -> Dict[str, Any]:
         """
-        Scrape Twitter search results using Apify
+        Scrape Twitter (X) search results using Tweet Scraper V2
+        
+        Uses official apidojo/tweet-scraper actor with proper input format:
+        - searchTerms: Array of search queries/hashtags
+        - maxItems: Maximum number of tweets to return
+        - sort: Sort order (Latest)
 
         Args:
-            search_queries: List of search queries/hashtags
-            max_tweets: Maximum number of tweets per query
+            search_queries: List of search terms or hashtags
+            max_tweets: Maximum number of tweets to scrape
+            add_filters: Add quality filters (min engagement, language, etc.)
 
         Returns:
-            Twitter search results
+            Twitter search results with transformed data
         """
         try:
-            logger.info(f"Scraping Twitter search for: {search_queries}")
+            logger.info(f"Scraping Twitter (X) search: {search_queries}")
 
-            # Prepare search URLs
-            search_urls = [{"url": f"https://twitter.com/search?q={query}&src=typed_query&f=live"}
-                          for query in search_queries]
+            # Add Nigeria-specific filters for better quality content
+            if add_filters:
+                filtered_queries = []
+                for query in search_queries:
+                    # Add advanced filters for Nigerian content
+                    enhanced_query = f"{query} lang:en min_retweets:2 min_faves:5"
+                    filtered_queries.append(enhanced_query)
+                search_queries = filtered_queries
+                logger.info(f"Enhanced queries with filters: {search_queries}")
 
+            # Official Tweet Scraper V2 input format
             run_input = {
-                "startUrls": search_urls,
-                "tweetsDesired": max_tweets,
-                "proxyConfig": {"useApifyProxy": True},
-                "onlyImage": False,
-                "onlyQuote": False,
-                "onlyTwitterBlue": False,
-                "onlyVerifiedUsers": False
+                "searchTerms": search_queries,  # Array of search queries
+                "maxItems": max_tweets,  # Maximum tweets to return
+                "sort": "Latest",  # Latest tweets first
+                "onlyVerifiedUsers": False,  # Include all users
+                "onlyImage": False,  # Include all tweet types
+                "onlyVideo": False,
+                "onlyQuote": False
             }
 
             result = await self.run_actor(
@@ -299,12 +229,12 @@ class ApifyService:
                 timeout_secs=300
             )
 
-            # Transform data
+            # Transform data to standardized format
             transformed_data = self._transform_twitter_data(result.get("data", []))
 
             return {
-                "success": True,
                 "platform": "twitter",
+                "success": True,
                 "queries": search_queries,
                 "tweets": transformed_data,
                 "total_tweets": len(transformed_data),
@@ -314,11 +244,10 @@ class ApifyService:
         except Exception as e:
             logger.error(f"Error scraping Twitter search: {e}")
             return {
-                "success": False,
                 "platform": "twitter",
+                "success": False,
                 "queries": search_queries,
-                "error": str(e),
-                "tweets": []
+                "error": str(e)
             }
 
     async def scrape_twitter_profile(
@@ -327,7 +256,9 @@ class ApifyService:
         tweets_limit: int = 50
     ) -> Dict[str, Any]:
         """
-        Scrape Twitter profile data using Apify
+        Scrape Twitter (X) profile data using Tweet Scraper V2
+        
+        Uses official apidojo/tweet-scraper actor with twitterHandles input
 
         Args:
             username: Twitter username (without @)
@@ -337,12 +268,13 @@ class ApifyService:
             Twitter profile and tweets data
         """
         try:
-            logger.info(f"Scraping Twitter profile: @{username}")
+            logger.info(f"Scraping Twitter (X) profile: @{username}")
 
+            # Official Tweet Scraper V2 input format for profiles
             run_input = {
-                "startUrls": [f"https://twitter.com/{username}"],
-                "tweetsDesired": tweets_limit,
-                "proxyConfig": {"useApifyProxy": True}
+                "twitterHandles": [username],  # Array of Twitter handles
+                "maxItems": tweets_limit,  # Maximum tweets to return
+                "sort": "Latest"  # Latest tweets first
             }
 
             result = await self.run_actor(
@@ -351,7 +283,7 @@ class ApifyService:
                 timeout_secs=300
             )
 
-            # Transform data
+            # Transform data to standardized format
             transformed_data = self._transform_twitter_data(result.get("data", []))
 
             return {
@@ -366,96 +298,26 @@ class ApifyService:
             logger.error(f"Error scraping Twitter profile: {e}")
             return {"platform": "twitter", "username": username, "error": str(e)}
 
-    def _transform_instagram_data(
-        self,
-        raw_data: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
-        """Transform Instagram data to standard format"""
-        transformed = []
 
-        for item in raw_data:
-            try:
-                transformed_item = {
-                    "source": "instagram",
-                    "source_id": item.get("id") or item.get("shortCode"),
-                    "author": item.get("ownerUsername"),
-                    "content": item.get("caption", ""),
-                    "media_type": item.get("type", "post"),
-                    "metrics": {
-                        "likes": item.get("likesCount", 0),
-                        "comments": item.get("commentsCount", 0),
-                        "views": item.get("videoViewCount", 0)
-                    },
-                    "hashtags": item.get("hashtags", []),
-                    "posted_at": item.get("timestamp"),
-                    "collected_at": datetime.utcnow().isoformat(),
-                    "url": item.get("url"),
-                    "location": item.get("locationName"),
-                    "geo_location": "Nigeria"  # If Nigerian account
-                }
-                transformed.append(transformed_item)
-            except Exception as e:
-                logger.error(f"Error transforming Instagram item: {e}")
-                continue
 
-        return transformed
 
-    def _transform_tiktok_data(
-        self,
-        raw_data: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
-        """Transform TikTok data to standard format"""
-        transformed = []
-
-        for item in raw_data:
-            try:
-                transformed_item = {
-                    "source": "tiktok",
-                    "source_id": item.get("id"),
-                    "author": item.get("authorMeta", {}).get("name"),
-                    "content": item.get("text", ""),
-                    "media_type": "video",
-                    "metrics": {
-                        "views": item.get("playCount", 0),
-                        "likes": item.get("diggCount", 0),
-                        "comments": item.get("commentCount", 0),
-                        "shares": item.get("shareCount", 0)
-                    },
-                    "hashtags": [h.get("name") for h in item.get("hashtags", [])],
-                    "music": item.get("musicMeta", {}).get("musicName"),
-                    "posted_at": item.get("createTime"),
-                    "collected_at": datetime.utcnow().isoformat(),
-                    "url": item.get("webVideoUrl"),
-                    "duration": item.get("videoMeta", {}).get("duration"),
-                    "geo_location": "Nigeria"
-                }
-                transformed.append(transformed_item)
-            except Exception as e:
-                logger.error(f"Error transforming TikTok item: {e}")
-                continue
-
-        return transformed
 
     def _transform_facebook_data(
         self,
         raw_data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
-        """Transform Facebook data to standard format"""
+        """
+        Transform Facebook data from Facebook Posts Scraper to standard format
+        
+        Facebook Posts Scraper returns posts with fields like:
+        - postText, postUrl, likes, comments, shares, time, etc.
+        """
         transformed = []
 
         for item in raw_data:
             try:
-                # Handle both page info and posts
-                if item.get("posts"):
-                    # Page with posts
-                    for post in item.get("posts", []):
-                        transformed_item = self._transform_facebook_post(post, item.get("name"))
-                        transformed.append(transformed_item)
-                else:
-                    # Single post
-                    transformed_item = self._transform_facebook_post(item)
-                    transformed.append(transformed_item)
-
+                transformed_item = self._transform_facebook_post(item)
+                transformed.append(transformed_item)
             except Exception as e:
                 logger.error(f"Error transforming Facebook item: {e}")
                 continue
@@ -467,21 +329,40 @@ class ApifyService:
         post: Dict[str, Any],
         page_name: Optional[str] = None
     ) -> Dict[str, Any]:
-        """Transform single Facebook post"""
+        """
+        Transform single Facebook post from Facebook Posts Scraper
+        
+        Expected fields: postText, postUrl, likes, comments, shares, time, etc.
+        """
+        # Extract metrics
+        likes = post.get("likes", 0)
+        comments = post.get("comments", 0)
+        shares = post.get("shares", 0)
+        
+        # Get post ID from URL or use a generated one
+        post_url = post.get("postUrl") or post.get("url", "")
+        post_id = post.get("postId") or post_url.split("/")[-1] if post_url else str(uuid.uuid4())
+        
         return {
             "source": "facebook",
-            "source_id": post.get("postId"),
-            "page": page_name or post.get("pageName"),
-            "content": post.get("text", ""),
+            "source_id": post_id,
+            "page": page_name or post.get("pageName", ""),
+            "author": post.get("profileName") or post.get("author", ""),
+            "content": post.get("postText") or post.get("text", ""),
             "metrics": {
-                "likes": post.get("likes", 0),
-                "comments": post.get("comments", 0),
-                "shares": post.get("shares", 0)
+                "likes": likes,
+                "comments": comments,
+                "shares": shares,
+                "reactions": post.get("reactions", 0)
             },
-            "media_type": post.get("type", "post"),
-            "posted_at": post.get("time"),
+            "media_type": "video" if post.get("video") else ("image" if post.get("image") else "text"),
+            "has_video": bool(post.get("video")),
+            "has_image": bool(post.get("image")),
+            "images": post.get("images", []),
+            "video_url": post.get("video"),
+            "posted_at": post.get("time") or post.get("timestamp"),
             "collected_at": datetime.utcnow().isoformat(),
-            "url": post.get("postUrl"),
+            "url": post_url,
             "geo_location": "Nigeria"
         }
 
@@ -489,31 +370,83 @@ class ApifyService:
         self,
         raw_data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
-        """Transform Twitter data to standard format"""
+        """
+        Transform Twitter (X) data from Tweet Scraper V2 to standard format
+        
+        Tweet Scraper V2 actual output format:
+        - id, url, fullText/text
+        - likeCount, retweetCount, replyCount, quoteCount, viewCount
+        - author{userName, name, id, followers, etc.}
+        - entities{hashtags, user_mentions, urls}
+        - createdAt, lang, isRetweet, isQuote
+        """
         transformed = []
 
         for item in raw_data:
             try:
+                # Extract author info (nested object)
+                author = item.get("author", {})
+                
+                # Extract metrics (exact field names from Apify)
+                like_count = item.get("likeCount", 0)
+                retweet_count = item.get("retweetCount", 0)
+                reply_count = item.get("replyCount", 0)
+                view_count = item.get("viewCount", 0)
+                quote_count = item.get("quoteCount", 0)
+                
+                # Extract text content (fullText is primary, fallback to text)
+                content = item.get("fullText") or item.get("text", "")
+                
+                # Extract entities
+                entities = item.get("entities", {})
+                
+                # Extract hashtags (array of objects with 'text' field)
+                hashtags_raw = entities.get("hashtags", [])
+                hashtags = [h.get("text", "") for h in hashtags_raw] if isinstance(hashtags_raw, list) else []
+                
+                # Extract mentions (array of objects)
+                mentions_raw = entities.get("user_mentions", [])
+                mentions = [m.get("screen_name", "") for m in mentions_raw] if isinstance(mentions_raw, list) else []
+                
+                # Extract tweet ID
+                tweet_id = item.get("id", "")
+                
+                # Extract username (author.userName is the @ handle)
+                username = author.get("userName", "") or author.get("screen_name", "")
+                
                 transformed_item = {
                     "source": "twitter",
-                    "source_id": item.get("id"),
-                    "author": item.get("user", {}).get("screen_name"),
-                    "content": item.get("text", ""),
+                    "source_id": str(tweet_id),
+                    "author": username,
+                    "author_name": author.get("name", ""),
+                    "author_id": author.get("id", ""),
+                    "author_followers": author.get("followers", 0),
+                    "author_verified": author.get("isVerified", False) or author.get("isBlueVerified", False),
+                    "content": content,
                     "metrics": {
-                        "likes": item.get("favorite_count", 0),
-                        "retweets": item.get("retweet_count", 0),
-                        "replies": item.get("reply_count", 0)
+                        "likes": like_count,
+                        "retweets": retweet_count,
+                        "replies": reply_count,
+                        "quotes": quote_count,
+                        "views": view_count
                     },
-                    "hashtags": [h.get("text") for h in item.get("entities", {}).get("hashtags", [])],
-                    "posted_at": item.get("created_at"),
+                    "hashtags": hashtags,
+                    "mentions": mentions,
+                    "posted_at": item.get("createdAt"),
                     "collected_at": datetime.utcnow().isoformat(),
-                    "url": item.get("url"),
-                    "is_retweet": item.get("retweeted", False),
-                    "geo_location": "Nigeria"
+                    "url": item.get("url") or item.get("twitterUrl", ""),
+                    "is_retweet": item.get("isRetweet", False),
+                    "is_quote": item.get("isQuote", False),
+                    "is_reply": item.get("isReply", False),
+                    "language": item.get("lang", ""),
+                    "source_app": item.get("source", ""),
+                    "geo_location": "Nigeria",
+                    "raw_data": item  # CRITICAL: Store complete raw data
                 }
                 transformed.append(transformed_item)
             except Exception as e:
                 logger.error(f"Error transforming Twitter item: {e}")
+                logger.error(f"Problematic item: {item}")
                 continue
 
         return transformed
@@ -524,20 +457,26 @@ class ApifyService:
         items_per_platform: int = 50
     ) -> Dict[str, Any]:
         """
-        Comprehensive scraping across multiple Nigerian social media sources
+        Comprehensive scraping across Twitter and Facebook for Nigerian content
+        
+        Only supports Twitter and Facebook platforms as per requirements.
 
         Args:
-            platforms: List of platforms to scrape (default: all)
+            platforms: List of platforms to scrape (default: ["twitter", "facebook"])
             items_per_platform: Number of items to scrape per platform
 
         Returns:
-            Aggregated social media data
+            Aggregated social media data from Twitter and Facebook
         """
         try:
             if platforms is None:
-                platforms = ["instagram", "tiktok", "facebook"]
+                platforms = ["twitter", "facebook"]
+            
+            # Filter to only supported platforms
+            supported = ["twitter", "facebook"]
+            platforms = [p for p in platforms if p in supported]
 
-            logger.info(f"Starting comprehensive Nigerian social media scraping: {platforms}")
+            logger.info(f"Starting Nigerian social media scraping for: {platforms}")
 
             results = {
                 "platforms": {},
@@ -546,39 +485,35 @@ class ApifyService:
             }
 
             # Nigerian accounts/pages to monitor
-            nigerian_accounts = {
-                "instagram": ["lagosnigeria", "visitnigeria", "nigerianweddings"],
-                "tiktok": ["nigeria", "lagos", "naija"],
+            nigerian_sources = {
+                "twitter": [
+                    "#Nigeria",
+                    "#Lagos", 
+                    "#Abuja",
+                    "#Naija"
+                ],
                 "facebook": [
                     "https://www.facebook.com/legit.ng",
-                    "https://www.facebook.com/lindaikejisblog"
+                    "https://www.facebook.com/lindaikejisblog",
+                    "https://www.facebook.com/NigeriaNewsdesk"
                 ]
             }
 
             # Scrape each platform
             for platform in platforms:
                 try:
-                    if platform == "instagram" and platform in nigerian_accounts:
-                        # Scrape first Instagram account
-                        username = nigerian_accounts["instagram"][0]
-                        data = await self.scrape_instagram_profile(
-                            username=username,
-                            results_limit=items_per_platform
+                    if platform == "twitter":
+                        # Scrape Twitter using search terms
+                        search_terms = nigerian_sources["twitter"]
+                        data = await self.scrape_twitter_search(
+                            search_queries=search_terms,
+                            max_tweets=items_per_platform
                         )
-                        results["platforms"]["instagram"] = data
+                        results["platforms"]["twitter"] = data
 
-                    elif platform == "tiktok" and platform in nigerian_accounts:
-                        # Scrape first TikTok hashtag
-                        hashtag = nigerian_accounts["tiktok"][0]
-                        data = await self.scrape_tiktok_hashtag(
-                            hashtag=hashtag,
-                            results_limit=items_per_platform
-                        )
-                        results["platforms"]["tiktok"] = data
-
-                    elif platform == "facebook" and platform in nigerian_accounts:
+                    elif platform == "facebook":
                         # Scrape first Facebook page
-                        page_url = nigerian_accounts["facebook"][0]
+                        page_url = nigerian_sources["facebook"][0]
                         data = await self.scrape_facebook_page(
                             page_url=page_url,
                             posts_limit=items_per_platform
@@ -592,7 +527,7 @@ class ApifyService:
                     logger.error(f"Error scraping {platform}: {e}")
                     results["platforms"][platform] = {"error": str(e)}
 
-            logger.info("Comprehensive scraping completed")
+            logger.info("Nigerian social media scraping completed")
             return results
 
         except Exception as e:
