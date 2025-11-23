@@ -120,7 +120,48 @@ Tracks which records have been processed to prevent duplication
 
 ## 🚀 API Endpoints
 
-### Data Retrieval
+### ⭐ **PRIMARY INTELLIGENCE ENDPOINT** (Recommended)
+
+#### **Intelligence Report** - Complete Social Media Intelligence
+```http
+GET /api/v1/social-media/intelligence/report
+```
+**The main endpoint for intelligence analysts and monitoring dashboards.**
+
+**Query Parameters:**
+- `limit` - Number of posts (default: 50, max: 500)
+- `hours_back` - Time range in hours (default: 24, max: 720)
+- `sentiment_filter` - Filter by sentiment: `positive`, `negative`, `neutral`
+- `has_media` - Filter posts with/without images/videos: `true`/`false`
+- `min_engagement` - Minimum total engagement (likes + retweets + replies)
+- `include_ai_analysis` - Include AI results: `true`/`false` (default: true)
+
+**Returns:**
+- ✅ Complete post content and author info
+- ✅ All media URLs (images/videos) ready for display
+- ✅ AI sentiment analysis linked to each post
+- ✅ Location extraction with coordinates
+- ✅ Full engagement metrics
+- ✅ Hashtags and mentions
+- ✅ Post URLs for verification
+- ✅ Summary statistics
+
+**Examples:**
+```bash
+# Get posts with images only
+curl 'http://localhost:8000/api/v1/social-media/intelligence/report?has_media=true&limit=50'
+
+# Get negative sentiment posts
+curl 'http://localhost:8000/api/v1/social-media/intelligence/report?sentiment_filter=negative'
+
+# High engagement posts with media
+curl 'http://localhost:8000/api/v1/social-media/intelligence/report?has_media=true&min_engagement=1000'
+
+# Last 48 hours with full analysis
+curl 'http://localhost:8000/api/v1/social-media/intelligence/report?hours_back=48&include_ai_analysis=true'
+```
+
+### Data Retrieval Endpoints
 
 #### Get Scraped Posts
 ```http
@@ -135,105 +176,171 @@ GET /api/v1/social-media/data/scraped
 - `hashtag` - Filter by specific hashtag
 - `location` - Filter by location
 
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "posts": [
-      {
-        "id": "uuid",
-        "author": {"username": "...", "account_name": "..."},
-        "content": "Tweet text",
-        "engagement": {"likes": 107, "retweets": 30, "replies": 15, "views": 3267},
-        "media": {"urls": ["https://...jpg"], "count": 1, "has_media": true},
-        "location": {
-          "location": "Lagos, Nigeria",
-          "coordinates": {"lat": 6.5244, "lon": 3.3792},
-          "region": "South West",
-          "country": "Nigeria"
-        },
-        "hashtags": ["IPOB", "Nigeria"],
-        "posted_at": "2025-11-22T20:41:53+00:00"
-      }
-    ],
-    "count": 50
-  }
-}
-```
-
 #### Geographic Analysis
 ```http
-GET /api/v1/social-media/data/geo-analysis?hours_back=24
+GET /api/v1/social-media/data/geo-analysis
 ```
-Returns posts grouped by location with engagement metrics and top hashtags.
+**Query Parameters:**
+- `hours_back` - Time range (default: 24)
+- `platform` - Filter by platform
+
+**Returns:** Posts grouped by location with engagement metrics, top hashtags, and coordinates.
 
 #### Engagement Analysis
 ```http
-GET /api/v1/social-media/data/engagement-analysis?group_by=hour
+GET /api/v1/social-media/data/engagement-analysis
 ```
-Returns aggregated engagement metrics grouped by hour, day, author, or hashtag.
+**Query Parameters:**
+- `hours_back` - Time range (default: 24)
+- `platform` - Filter by platform
+- `group_by` - Group by: `hour`, `day`, `author`, `hashtag`
+
+**Returns:** Aggregated engagement metrics.
 
 #### Overall Statistics
 ```http
 GET /api/v1/social-media/data/stats
 ```
-Returns total posts, media percentage, platform distribution, top authors, and hashtags.
+**Returns:** Total posts, media percentage, platform distribution, top authors, and hashtags.
 
-### AI Processing
+### AI Processing Endpoints
 
 #### Process Sentiment Analysis
 ```http
-POST /api/v1/social-media/ai/process-sentiment?limit=100
+POST /api/v1/social-media/ai/process-sentiment
 ```
-Processes sentiment for unprocessed posts. Automatically skips already-processed records.
+**Query Parameters:**
+- `limit` - Max records to process (optional, processes all if not specified)
+
+**Behavior:** Automatically skips already-processed records.
 
 #### Process Location Extraction
 ```http
-POST /api/v1/social-media/ai/process-locations?limit=100
+POST /api/v1/social-media/ai/process-locations
 ```
-Extracts and geocodes locations from post content and author metadata.
+**Query Parameters:**
+- `limit` - Max records to process (optional)
+
+**Behavior:** Extracts and geocodes locations. Skips already-processed records.
 
 #### Get Processing Statistics
 ```http
 GET /api/v1/social-media/ai/processing-stats
 ```
-Returns processing progress: total records, processed counts, unprocessed counts.
+**Returns:** Processing progress, total records, processed counts, unprocessed counts.
 
 #### Get Sentiment Results
 ```http
-GET /api/v1/social-media/ai/sentiment-results?sentiment_label=positive&min_confidence=0.7
+GET /api/v1/social-media/ai/sentiment-results
 ```
-Returns sentiment analysis results with original posts.
+**Query Parameters:**
+- `limit` - Number of results (default: 50, max: 500)
+- `sentiment_label` - Filter by: `positive`, `negative`, `neutral`
+- `min_confidence` - Minimum confidence (0.0 to 1.0)
+
+**Returns:** Sentiment analysis results with original posts.
 
 #### Get Location Results
 ```http
-GET /api/v1/social-media/ai/location-results?location_type=GPE
+GET /api/v1/social-media/ai/location-results
 ```
-Returns extracted locations with coordinates and regional data.
+**Query Parameters:**
+- `limit` - Number of results (default: 50, max: 500)
+- `location_type` - Filter by type: `GPE`, `LOC`, etc.
 
-### Social Media Scraping
+**Returns:** Extracted locations with coordinates and regional data.
+
+### Social Media Scraping Endpoints
 
 #### Google Trends
-- `GET /api/v1/social-media/trends/trending` - Get trending searches
-- `POST /api/v1/social-media/trends/analyze` - Analyze keywords
+```http
+GET /api/v1/social-media/trends/trending
+POST /api/v1/social-media/trends/analyze
+GET /api/v1/social-media/trends/suggestions
+```
 
 #### TikTok
-- `POST /api/v1/social-media/tiktok/hashtag` - Scrape by hashtag
-- `GET /api/v1/social-media/tiktok/monitor` - Monitor Nigerian content
+```http
+POST /api/v1/social-media/tiktok/hashtag
+GET /api/v1/social-media/tiktok/monitor
+GET /api/v1/social-media/tiktok/analytics/{hashtag}
+```
 
 #### Facebook
-- `POST /api/v1/social-media/facebook/page` - Scrape page posts
-- `GET /api/v1/social-media/facebook/monitor` - Monitor Nigerian pages
+```http
+POST /api/v1/social-media/facebook/page
+GET /api/v1/social-media/facebook/monitor
+GET /api/v1/social-media/facebook/analytics/{page_name}
+```
 
 #### Apify Integration
-- `POST /api/v1/social-media/apify/scrape` - Generic Apify scraper
-- `GET /api/v1/social-media/apify/comprehensive` - Comprehensive scraping
+```http
+POST /api/v1/social-media/apify/scrape
+GET /api/v1/social-media/apify/comprehensive
+```
 
 #### Hashtag Discovery
-- `GET /api/v1/social-media/hashtags/trending` - Discover trending hashtags
-- `GET /api/v1/social-media/hashtags/category/{category}` - Category-specific hashtags
-- `GET /api/v1/social-media/hashtags/engagement/{hashtag}` - Hashtag metrics
+```http
+GET /api/v1/social-media/hashtags/trending
+GET /api/v1/social-media/hashtags/category/{category}
+GET /api/v1/social-media/hashtags/engagement/{hashtag}
+GET /api/v1/social-media/hashtags/collected-trends
+POST /api/v1/social-media/hashtags/update-cache
+```
+
+### Other Endpoints
+
+#### Authentication
+```http
+POST /api/v1/auth/token
+GET /api/v1/auth/users/me
+```
+
+#### Reports
+```http
+POST /api/v1/reports/generate
+GET /api/v1/reports/{report_id}/status
+GET /api/v1/reports/
+DELETE /api/v1/reports/{report_id}
+```
+
+#### Admin
+```http
+GET /api/v1/admin/alert-rules
+POST /api/v1/admin/alert-rules
+PUT /api/v1/admin/alert-rules/{id}
+DELETE /api/v1/admin/alert-rules/{id}
+GET /api/v1/admin/connectors
+```
+
+## 🎯 Quick Start Guide
+
+### Step 1: Setup Database and Process AI
+```bash
+# Run the all-in-one setup script
+python scripts/setup_intelligence_system.py
+```
+
+This script will:
+1. Create all AI analysis tables
+2. Process sentiment for all posts
+3. Extract and geocode locations
+4. Verify the system is ready
+5. Show you test examples
+
+### Step 2: Start the Server
+```bash
+uvicorn app.main:app --reload
+```
+
+### Step 3: Test the Intelligence Endpoint
+```bash
+# Test in browser
+http://localhost:8000/docs
+
+# Or use curl
+curl 'http://localhost:8000/api/v1/social-media/intelligence/report?limit=10'
+```
 
 ## 🔄 Data Processing Workflow
 

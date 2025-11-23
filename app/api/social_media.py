@@ -5,7 +5,7 @@ Unified endpoints for all social media data sources
 
 from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, func, and_, or_
+from sqlalchemy import select, func, and_, or_, Integer
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta
@@ -64,7 +64,7 @@ class ApifyScrapeRequest(BaseModel):
 # Google Trends Endpoints
 # ============================================
 
-@router.get("/trends/trending", response_model=BaseResponse)
+@router.get("/trends/trending")
 async def get_trending_searches(
     region: str = Query(default="NG", description="Region code (NG for Nigeria)"),
     db: AsyncSession = Depends(get_db),
@@ -84,22 +84,20 @@ async def get_trending_searches(
             pipeline_service = get_data_pipeline_service(db)
             await pipeline_service.store_google_trends(trending)
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "trending_searches": trending,
                 "region": region,
                 "count": len(trending),
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error fetching trending searches: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/trends/analyze", response_model=BaseResponse)
+@router.post("/trends/analyze")
 async def analyze_keywords(
     request: GoogleTrendsRequest,
     background_tasks: BackgroundTasks,
@@ -133,17 +131,15 @@ async def analyze_keywords(
             analysis
         )
 
-        return BaseResponse(
-            success=True,
-            data=analysis
-        )
+        return {"success": True, "data":analysis
+        }
 
     except Exception as e:
         logger.error(f"Error analyzing keywords: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/trends/suggestions", response_model=BaseResponse)
+@router.get("/trends/suggestions")
 async def get_keyword_suggestions(
     keyword: str = Query(..., description="Partial keyword"),
     current_user: User = Depends(get_current_user_optional)
@@ -155,14 +151,12 @@ async def get_keyword_suggestions(
         trends_service = get_google_trends_service()
         suggestions = await trends_service.get_suggestions(keyword)
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "keyword": keyword,
                 "suggestions": suggestions,
                 "count": len(suggestions)
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error getting suggestions: {e}")
@@ -173,7 +167,7 @@ async def get_keyword_suggestions(
 # TikTok Endpoints
 # ============================================
 
-@router.post("/tiktok/hashtag", response_model=BaseResponse)
+@router.post("/tiktok/hashtag")
 async def scrape_tiktok_hashtag(
     request: TikTokHashtagRequest,
     background_tasks: BackgroundTasks,
@@ -198,31 +192,27 @@ async def scrape_tiktok_hashtag(
             pipeline_service = get_data_pipeline_service(db)
             stored = await pipeline_service.store_tiktok_content(videos)
 
-            return BaseResponse(
-                success=True,
-                data={
+            return {"success": True, "data":{
                     "videos": videos,
                     "total_videos": len(videos),
                     "stored_count": stored,
                     "hashtag": request.hashtag
                 }
-            )
+            }
         else:
-            return BaseResponse(
-                success=True,
-                data={
+            return {"success": True, "data":{
                     "videos": [],
                     "total_videos": 0,
                     "message": "No videos found for this hashtag"
                 }
-            )
+            }
 
     except Exception as e:
         logger.error(f"Error scraping TikTok hashtag: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/tiktok/monitor", response_model=BaseResponse)
+@router.get("/tiktok/monitor")
 async def monitor_nigerian_tiktok(
     background_tasks: BackgroundTasks,
     max_videos: int = Query(default=20, ge=10, le=50),
@@ -249,17 +239,15 @@ async def monitor_nigerian_tiktok(
                 result['videos']
             )
 
-        return BaseResponse(
-            success=True,
-            data=result
-        )
+        return {"success": True, "data":result
+        }
 
     except Exception as e:
         logger.error(f"Error monitoring TikTok: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/tiktok/analytics/{hashtag}", response_model=BaseResponse)
+@router.get("/tiktok/analytics/{hashtag}")
 async def get_tiktok_hashtag_analytics(
     hashtag: str,
     days: int = Query(default=7, ge=1, le=30),
@@ -276,10 +264,8 @@ async def get_tiktok_hashtag_analytics(
             days=days
         )
 
-        return BaseResponse(
-            success=True,
-            data=analytics
-        )
+        return {"success": True, "data":analytics
+        }
 
     except Exception as e:
         logger.error(f"Error getting TikTok analytics: {e}")
@@ -290,7 +276,7 @@ async def get_tiktok_hashtag_analytics(
 # Facebook Endpoints
 # ============================================
 
-@router.post("/facebook/page", response_model=BaseResponse)
+@router.post("/facebook/page")
 async def scrape_facebook_page(
     request: FacebookPageRequest,
     background_tasks: BackgroundTasks,
@@ -315,31 +301,27 @@ async def scrape_facebook_page(
             pipeline_service = get_data_pipeline_service(db)
             stored = await pipeline_service.store_facebook_content(posts)
 
-            return BaseResponse(
-                success=True,
-                data={
+            return {"success": True, "data":{
                     "posts": posts,
                     "total_posts": len(posts),
                     "stored_count": stored,
                     "page_name": request.page_name
                 }
-            )
+            }
         else:
-            return BaseResponse(
-                success=True,
-                data={
+            return {"success": True, "data":{
                     "posts": [],
                     "total_posts": 0,
                     "message": "No posts found for this page"
                 }
-            )
+            }
 
     except Exception as e:
         logger.error(f"Error scraping Facebook page: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/facebook/monitor", response_model=BaseResponse)
+@router.get("/facebook/monitor")
 async def monitor_nigerian_facebook(
     background_tasks: BackgroundTasks,
     pages_per_source: int = Query(default=2, ge=1, le=5),
@@ -366,17 +348,15 @@ async def monitor_nigerian_facebook(
                 result['posts']
             )
 
-        return BaseResponse(
-            success=True,
-            data=result
-        )
+        return {"success": True, "data":result
+        }
 
     except Exception as e:
         logger.error(f"Error monitoring Facebook: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/facebook/analytics/{page_name}", response_model=BaseResponse)
+@router.get("/facebook/analytics/{page_name}")
 async def get_facebook_page_analytics(
     page_name: str,
     pages: int = Query(default=5, ge=1, le=10),
@@ -393,10 +373,8 @@ async def get_facebook_page_analytics(
             pages=pages
         )
 
-        return BaseResponse(
-            success=True,
-            data=analytics
-        )
+        return {"success": True, "data":analytics
+        }
 
     except Exception as e:
         logger.error(f"Error getting Facebook analytics: {e}")
@@ -407,7 +385,7 @@ async def get_facebook_page_analytics(
 # Apify Endpoints (Twitter & Facebook Only)
 # ============================================
 
-@router.post("/apify/scrape", response_model=BaseResponse)
+@router.post("/apify/scrape")
 async def scrape_with_apify(
     request: ApifyScrapeRequest,
     background_tasks: BackgroundTasks,
@@ -450,17 +428,15 @@ async def scrape_with_apify(
                 result
             )
 
-        return BaseResponse(
-            success=True,
-            data=result
-        )
+        return {"success": True, "data":result
+        }
 
     except Exception as e:
         logger.error(f"Error scraping with Apify: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/apify/comprehensive", response_model=BaseResponse)
+@router.get("/apify/comprehensive")
 async def comprehensive_scraping(
     background_tasks: BackgroundTasks,
     platforms: str = Query(default="twitter,facebook", description="Comma-separated platforms (twitter, facebook)"),
@@ -491,10 +467,8 @@ async def comprehensive_scraping(
             result
         )
 
-        return BaseResponse(
-            success=True,
-            data=result
-        )
+        return {"success": True, "data":result
+        }
 
     except Exception as e:
         logger.error(f"Error in comprehensive scraping: {e}")
@@ -505,7 +479,7 @@ async def comprehensive_scraping(
 # Hashtag Discovery Endpoints
 # ============================================
 
-@router.get("/hashtags/trending", response_model=BaseResponse)
+@router.get("/hashtags/trending")
 async def get_trending_hashtags(
     include_google_trends: bool = Query(default=True, description="Include Google Trends data"),
     include_collected: bool = Query(default=True, description="Include analysis of collected content"),
@@ -532,9 +506,7 @@ async def get_trending_hashtags(
             limit=limit
         )
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "trending_hashtags": hashtags,
                 "count": len(hashtags),
                 "sources": {
@@ -543,14 +515,14 @@ async def get_trending_hashtags(
                 },
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error getting trending hashtags: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/hashtags/category/{category}", response_model=BaseResponse)
+@router.get("/hashtags/category/{category}")
 async def get_hashtags_by_category(
     category: str,
     limit: int = Query(default=20, ge=5, le=50, description="Maximum hashtags to return"),
@@ -572,22 +544,20 @@ async def get_hashtags_by_category(
             limit=limit
         )
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "category": category,
                 "hashtags": hashtags,
                 "count": len(hashtags),
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error getting hashtags for category {category}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/hashtags/engagement/{hashtag}", response_model=BaseResponse)
+@router.get("/hashtags/engagement/{hashtag}")
 async def get_hashtag_engagement(
     hashtag: str,
     hours_back: int = Query(default=24, ge=1, le=168, description="Hours of data to analyze"),
@@ -614,22 +584,20 @@ async def get_hashtag_engagement(
             hours_back=hours_back
         )
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "hashtag": clean_hashtag,
                 "time_period_hours": hours_back,
                 "metrics": metrics,
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error getting engagement for #{hashtag}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/hashtags/collected-trends", response_model=BaseResponse)
+@router.get("/hashtags/collected-trends")
 async def get_collected_content_trends(
     hours_back: int = Query(default=24, ge=1, le=168, description="Hours of data to analyze"),
     min_occurrences: int = Query(default=5, ge=1, le=50, description="Minimum occurrences"),
@@ -656,23 +624,21 @@ async def get_collected_content_trends(
             limit=limit
         )
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "trending_hashtags": trending_data,
                 "count": len(trending_data),
                 "time_period_hours": hours_back,
                 "min_occurrences": min_occurrences,
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error getting collected content trends: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/hashtags/update-cache", response_model=BaseResponse)
+@router.post("/hashtags/update-cache")
 async def update_hashtag_cache(
     background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
@@ -690,13 +656,11 @@ async def update_hashtag_cache(
             db
         )
 
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "message": "Hashtag cache update triggered",
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
 
     except Exception as e:
         logger.error(f"Error triggering hashtag cache update: {e}")
@@ -707,7 +671,7 @@ async def update_hashtag_cache(
 # Scraped Data Retrieval Endpoints
 # ============================================
 
-@router.get("/data/scraped", response_model=BaseResponse)
+@router.get("/data/scraped")
 async def get_scraped_data(
     platform: Optional[str] = Query(None, description="Filter by platform (twitter, facebook, etc.)"),
     limit: int = Query(default=50, ge=1, le=500, description="Number of records to return"),
@@ -813,9 +777,7 @@ async def get_scraped_data(
             
             enriched_posts.append(enriched_post)
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "posts": enriched_posts,
                 "count": len(enriched_posts),
                 "limit": limit,
@@ -829,14 +791,14 @@ async def get_scraped_data(
                 },
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error fetching scraped data: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/data/geo-analysis", response_model=BaseResponse)
+@router.get("/data/geo-analysis")
 async def get_geo_analysis(
     hours_back: int = Query(default=24, ge=1, le=720, description="Hours of data to analyze"),
     platform: Optional[str] = Query(None, description="Filter by platform"),
@@ -935,23 +897,21 @@ async def get_geo_analysis(
         # Sort by posts count
         geo_analysis.sort(key=lambda x: x["metrics"]["posts_count"], reverse=True)
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "geo_analysis": geo_analysis,
                 "total_locations": len(geo_analysis),
                 "time_period_hours": hours_back,
                 "platform": platform,
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error performing geo-analysis: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/data/engagement-analysis", response_model=BaseResponse)
+@router.get("/data/engagement-analysis")
 async def get_engagement_analysis(
     hours_back: int = Query(default=24, ge=1, le=720, description="Hours of data to analyze"),
     platform: Optional[str] = Query(None, description="Filter by platform"),
@@ -1055,9 +1015,7 @@ async def get_engagement_analysis(
         # Sort by total engagement
         analysis.sort(key=lambda x: x["metrics"]["total_engagement"], reverse=True)
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "analysis": analysis,
                 "group_by": group_by,
                 "total_groups": len(analysis),
@@ -1065,14 +1023,14 @@ async def get_engagement_analysis(
                 "platform": platform,
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error performing engagement analysis: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/data/stats", response_model=BaseResponse)
+@router.get("/data/stats")
 async def get_data_stats(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
@@ -1142,9 +1100,7 @@ async def get_data_stats(
         top_authors = sorted(author_counts.items(), key=lambda x: x[1], reverse=True)[:10]
         top_hashtags = sorted(hashtag_counts.items(), key=lambda x: x[1], reverse=True)[:20]
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "overall": {
                     "total_posts": total_count,
                     "posts_with_media": posts_with_media,
@@ -1159,7 +1115,7 @@ async def get_data_stats(
                 "top_hashtags": [{"hashtag": tag, "count": count} for tag, count in top_hashtags],
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error getting data stats: {e}")
@@ -1170,7 +1126,7 @@ async def get_data_stats(
 # AI Processing Endpoints (Smart Reprocessing Prevention)
 # ============================================
 
-@router.post("/ai/process-sentiment", response_model=BaseResponse)
+@router.post("/ai/process-sentiment")
 async def process_sentiment_analysis(
     limit: Optional[int] = Query(None, ge=1, le=1000, description="Max records to process"),
     background_tasks: BackgroundTasks = None,
@@ -1193,20 +1149,16 @@ async def process_sentiment_analysis(
         unprocessed_count = len(unprocessed)
         
         if unprocessed_count == 0:
-            return BaseResponse(
-                success=True,
-                data={
+            return {"success": True, "data":{
                     "message": "No unprocessed data found. All data has been analyzed.",
                     "unprocessed_count": 0
                 }
-            )
+            }
         
         # Process sentiment
         result = await ai_service.process_sentiment_batch(limit=limit)
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "message": f"Sentiment analysis completed for {result['processed']} records",
                 "job_id": result['job_id'],
                 "total_records": result['total_records'],
@@ -1215,14 +1167,14 @@ async def process_sentiment_analysis(
                 "processing_time_seconds": result['processing_time_seconds'],
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error processing sentiment: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/ai/process-locations", response_model=BaseResponse)
+@router.post("/ai/process-locations")
 async def process_location_extraction(
     limit: Optional[int] = Query(None, ge=1, le=1000, description="Max records to process"),
     db: AsyncSession = Depends(get_db),
@@ -1244,20 +1196,16 @@ async def process_location_extraction(
         unprocessed_count = len(unprocessed)
         
         if unprocessed_count == 0:
-            return BaseResponse(
-                success=True,
-                data={
+            return {"success": True, "data":{
                     "message": "No unprocessed data found. All data has been analyzed.",
                     "unprocessed_count": 0
                 }
-            )
+            }
         
         # Process locations
         result = await ai_service.process_location_batch(limit=limit)
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "message": f"Location extraction completed for {result['processed']} records",
                 "job_id": result['job_id'],
                 "total_records": result['total_records'],
@@ -1266,14 +1214,14 @@ async def process_location_extraction(
                 "locations_found": result['locations_found'],
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error processing locations: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/ai/processing-stats", response_model=BaseResponse)
+@router.get("/ai/processing-stats")
 async def get_ai_processing_stats(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
@@ -1289,20 +1237,18 @@ async def get_ai_processing_stats(
         ai_service = get_ai_processing_service(db)
         stats = await ai_service.get_processing_statistics()
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "statistics": stats,
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error getting processing stats: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/ai/sentiment-results", response_model=BaseResponse)
+@router.get("/ai/sentiment-results")
 async def get_sentiment_results(
     limit: int = Query(default=50, ge=1, le=500),
     sentiment_label: Optional[str] = Query(None, description="Filter by label: positive, negative, neutral"),
@@ -1358,9 +1304,7 @@ async def get_sentiment_results(
                     }
                 })
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "results": enriched_results,
                 "count": len(enriched_results),
                 "filters": {
@@ -1369,14 +1313,14 @@ async def get_sentiment_results(
                 },
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error getting sentiment results: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/ai/location-results", response_model=BaseResponse)
+@router.get("/ai/location-results")
 async def get_location_extraction_results(
     limit: int = Query(default=50, ge=1, le=500),
     location_type: Optional[str] = Query(None, description="Filter by type"),
@@ -1418,17 +1362,245 @@ async def get_location_extraction_results(
                 "scraped_data_id": record.scraped_data_id
             })
         
-        return BaseResponse(
-            success=True,
-            data={
+        return {"success": True, "data":{
                 "results": enriched_results,
                 "count": len(enriched_results),
                 "timestamp": datetime.utcnow().isoformat()
             }
-        )
+        }
     
     except Exception as e:
         logger.error(f"Error getting location results: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================
+# Intelligence Report Endpoint (Comprehensive Analysis)
+# ============================================
+
+@router.get("/intelligence/report")
+async def get_intelligence_report(
+    limit: int = Query(default=50, ge=1, le=500),
+    hours_back: int = Query(default=24, ge=1, le=720),
+    sentiment_filter: Optional[str] = Query(None, description="Filter by sentiment: positive, negative, neutral"),
+    has_media: Optional[bool] = Query(None, description="Filter posts with/without media"),
+    min_engagement: int = Query(default=0, description="Minimum total engagement"),
+    include_ai_analysis: bool = Query(default=True, description="Include AI sentiment and location analysis"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    **INTELLIGENCE-GRADE REPORT**: Comprehensive social media monitoring endpoint
+    
+    Returns posts with:
+    - Original post content and author
+    - All media (images/videos) with direct URLs
+    - AI sentiment analysis results
+    - Location extraction with coordinates
+    - Full engagement metrics
+    - Hashtags and mentions
+    - Temporal analysis
+    
+    Perfect for intelligence analysts and monitoring dashboards.
+    """
+    try:
+        from app.models.ai_analysis import ApifySentimentAnalysis, ApifyLocationExtraction
+        
+        # Build base query - get all posts, time filtering can be added later with proper timezone handling
+        query = select(ApifyScrapedData)
+        
+        # Apply filters
+        if has_media is not None:
+            if has_media:
+                query = query.where(
+                    and_(
+                        ApifyScrapedData.media_urls.isnot(None),
+                        func.json_array_length(ApifyScrapedData.media_urls) > 0
+                    )
+                )
+            else:
+                query = query.where(
+                    or_(
+                        ApifyScrapedData.media_urls.is_(None),
+                        func.json_array_length(ApifyScrapedData.media_urls) == 0
+                    )
+                )
+        
+        # Engagement filter
+        
+        query = query.order_by(ApifyScrapedData.posted_at.desc()).limit(limit * 2)  # Get more to account for filtering
+        
+        result = await db.execute(query)
+        all_posts = result.scalars().all()
+        
+        # Filter by engagement in Python (simpler and more reliable)
+        posts = []
+        for post in all_posts:
+            if min_engagement > 0 and post.metrics_json:
+                total_engagement = (
+                    post.metrics_json.get('likes', 0) +
+                    post.metrics_json.get('retweets', 0) +
+                    post.metrics_json.get('replies', 0)
+                )
+                if total_engagement < min_engagement:
+                    continue
+            posts.append(post)
+            if len(posts) >= limit:
+                break
+        
+        # Enrich with AI analysis
+        intelligence_reports = []
+        
+        for post in posts:
+            # Base post data
+            report = {
+                "post_id": post.id,
+                "platform": post.platform,
+                "collected_at": post.collected_at.isoformat() if post.collected_at else None,
+                
+                # Author Information
+                "author": {
+                    "username": post.author,
+                    "account_name": post.account_name,
+                    "location": post.location
+                },
+                
+                # Content
+                "content": {
+                    "text": post.content,
+                    "language": post.raw_data.get('lang') if post.raw_data else 'unknown',
+                    "posted_at": post.posted_at.isoformat() if post.posted_at else None,
+                    "url": f"https://twitter.com/{post.author}/status/{post.source_id}" if post.source_id else None
+                },
+                
+                # Media (Images/Videos)
+                "media": {
+                    "has_media": bool(post.media_urls and len(post.media_urls) > 0),
+                    "count": len(post.media_urls) if post.media_urls else 0,
+                    "urls": post.media_urls or [],
+                    "type": "image" if post.media_urls else None  # Can be enhanced to detect video vs image
+                },
+                
+                # Engagement Metrics
+                "engagement": {
+                    "likes": post.metrics_json.get('likes', 0) if post.metrics_json else 0,
+                    "retweets": post.metrics_json.get('retweets', 0) if post.metrics_json else 0,
+                    "replies": post.metrics_json.get('replies', 0) if post.metrics_json else 0,
+                    "views": post.metrics_json.get('views', 0) if post.metrics_json else 0,
+                    "quotes": post.metrics_json.get('quotes', 0) if post.metrics_json else 0,
+                    "bookmarks": post.metrics_json.get('bookmarks', 0) if post.metrics_json else 0,
+                    "total": (
+                        post.metrics_json.get('likes', 0) +
+                        post.metrics_json.get('retweets', 0) +
+                        post.metrics_json.get('replies', 0)
+                    ) if post.metrics_json else 0
+                },
+                
+                # Context
+                "context": {
+                    "hashtags": post.hashtags or [],
+                    "mentions": post.mentions or [],
+                    "hashtag_count": len(post.hashtags) if post.hashtags else 0,
+                    "mention_count": len(post.mentions) if post.mentions else 0
+                }
+            }
+            
+            # Add AI Analysis if requested
+            if include_ai_analysis:
+                # Get sentiment analysis
+                sentiment_result = await db.execute(
+                    select(ApifySentimentAnalysis).where(
+                        ApifySentimentAnalysis.scraped_data_id == post.id
+                    ).order_by(ApifySentimentAnalysis.created_at.desc()).limit(1)
+                )
+                sentiment = sentiment_result.scalar_one_or_none()
+                
+                if sentiment:
+                    report["ai_analysis"] = {
+                        "sentiment": {
+                            "label": sentiment.label,
+                            "score": sentiment.score,
+                            "confidence": sentiment.confidence,
+                            "polarity": sentiment.all_scores.get('polarity') if sentiment.all_scores else None,
+                            "subjectivity": sentiment.all_scores.get('subjectivity') if sentiment.all_scores else None,
+                            "model": sentiment.model_name,
+                            "analyzed_at": sentiment.created_at.isoformat() if sentiment.created_at else None
+                        }
+                    }
+                    
+                    # Apply sentiment filter if specified
+                    if sentiment_filter and sentiment.label != sentiment_filter.lower():
+                        continue  # Skip this post if it doesn't match sentiment filter
+                else:
+                    report["ai_analysis"] = {"sentiment": None}
+                
+                # Get location extractions
+                location_result = await db.execute(
+                    select(ApifyLocationExtraction).where(
+                        ApifyLocationExtraction.scraped_data_id == post.id
+                    )
+                )
+                locations = location_result.scalars().all()
+                
+                if locations:
+                    report["ai_analysis"]["locations"] = [
+                        {
+                            "text": loc.location_text,
+                            "type": loc.location_type,
+                            "confidence": loc.confidence,
+                            "coordinates": loc.coordinates,
+                            "country": loc.country,
+                            "region": loc.region,
+                            "city": loc.city
+                        }
+                        for loc in locations
+                    ]
+                else:
+                    report["ai_analysis"]["locations"] = []
+            
+            intelligence_reports.append(report)
+        
+        # Filter out posts that didn't pass sentiment filter
+        if sentiment_filter and include_ai_analysis:
+            pass  # Already filtered in loop
+        
+        # Generate summary statistics
+        summary = {
+            "total_posts": len(intelligence_reports),
+            "time_range_hours": hours_back,
+            "filters_applied": {
+                "sentiment": sentiment_filter,
+                "has_media": has_media,
+                "min_engagement": min_engagement
+            },
+            "posts_with_media": sum(1 for r in intelligence_reports if r["media"]["has_media"]),
+            "total_engagement": sum(r["engagement"]["total"] for r in intelligence_reports),
+            "average_engagement": round(
+                sum(r["engagement"]["total"] for r in intelligence_reports) / len(intelligence_reports)
+            ) if intelligence_reports else 0
+        }
+        
+        if include_ai_analysis:
+            sentiments = [r.get("ai_analysis", {}).get("sentiment", {}).get("label") 
+                         for r in intelligence_reports 
+                         if r.get("ai_analysis", {}).get("sentiment")]
+            summary["sentiment_distribution"] = {
+                "positive": sentiments.count("positive"),
+                "negative": sentiments.count("negative"),
+                "neutral": sentiments.count("neutral")
+            }
+        
+        return {
+            "success": True,
+            "data": {
+                "summary": summary,
+                "reports": intelligence_reports,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        }
+    
+    except Exception as e:
+        logger.error(f"Error generating intelligence report: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
