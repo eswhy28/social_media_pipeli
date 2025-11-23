@@ -5,19 +5,22 @@ Unified endpoints for all social media data sources
 
 from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks, Query
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, func, and_, or_
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from app.database import get_db
 from app.api.auth import get_current_user_optional
 from app.models import User
+from app.models.social_media_sources import ApifyScrapedData
 from app.services.google_trends_service import get_google_trends_service
 from app.services.tiktok_service import get_tiktok_service
 from app.services.facebook_service import get_facebook_service
 from app.services.apify_service import get_apify_service
 from app.services.data_pipeline_service import get_data_pipeline_service
 from app.services.hashtag_discovery_service import get_hashtag_discovery_service
+from app.services.geocoding_service import get_geocoding_service
 from app.schemas import BaseResponse
 import logging
 
@@ -697,6 +700,735 @@ async def update_hashtag_cache(
 
     except Exception as e:
         logger.error(f"Error triggering hashtag cache update: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================
+# Scraped Data Retrieval Endpoints
+# ============================================
+
+@router.get("/data/scraped", response_model=BaseResponse)
+async def get_scraped_data(
+    platform: Optional[str] = Query(None, description="Filter by platform (twitter, facebook, etc.)"),
+    limit: int = Query(default=50, ge=1, le=500, description="Number of records to return"),
+    offset: int = Query(default=0, ge=0, description="Offset for pagination"),
+    hours_back: Optional[int] = Query(None, ge=1, le=720, description="Filter by hours back"),
+    has_media: Optional[bool] = Query(None, description="Filter posts with images/media"),
+    hashtag: Optional[str] = Query(None, description="Filter by hashtag"),
+    location: Optional[str] = Query(None, description="Filter by location"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get scraped social media data with all insights
+    
+    Returns posts with:
+    - Full content and metadata
+    - Media URLs (images, videos)
+    - Location with geographic coordinates
+    - Engagement metrics
+    - Hashtags and mentions
+    - Author information
+    """
+    try:
+        # Build query
+        query = select(ApifyScrapedData)
+        
+        # Apply filters
+        filters = []
+        
+        if platform:
+            filters.append(ApifyScrapedData.platform == platform.lower())
+        
+        if hours_back:
+            cutoff_time = datetime.utcnow() - timedelta(hours=hours_back)
+            filters.append(ApifyScrapedData.posted_at >= cutoff_time)
+        
+        if has_media is not None:
+            if has_media:
+                filters.append(func.json_array_length(ApifyScrapedData.media_urls) > 0)
+            else:
+                filters.append(
+                    or_(
+                        ApifyScrapedData.media_urls == None,
+                        func.json_array_length(ApifyScrapedData.media_urls) == 0
+                    )
+                )
+        
+        if hashtag:
+            clean_tag = hashtag.lstrip('#').lower()
+            filters.append(
+                func.lower(func.cast(ApifyScrapedData.hashtags, str)).contains(clean_tag)
+            )
+        
+        if location:
+            filters.append(
+                func.lower(ApifyScrapedData.location).contains(location.lower())
+            )
+        
+        if filters:
+            query = query.where(and_(*filters))
+        
+        # Order by posted_at descending
+        query = query.order_by(ApifyScrapedData.posted_at.desc())
+        
+        # Apply pagination
+        query = query.limit(limit).offset(offset)
+        
+        # Execute query
+        result = await db.execute(query)
+        posts = result.scalars().all()
+        
+        # Enrich data with coordinates and format for frontend
+        geocoding_service = get_geocoding_service()
+        enriched_posts = []
+        
+        for post in posts:
+            # Enrich location with coordinates
+            location_data = geocoding_service.enrich_location_data(post.location)
+            
+            enriched_post = {
+                "id": post.id,
+                "platform": post.platform,
+                "source_id": post.source_id,
+                "author": {
+                    "username": post.author,
+                    "account_name": post.account_name,
+                },
+                "content": post.content,
+                "content_type": post.content_type,
+                "engagement": post.metrics_json or {},
+                "hashtags": post.hashtags or [],
+                "mentions": post.mentions or [],
+                "media": {
+                    "urls": post.media_urls or [],
+                    "count": len(post.media_urls) if post.media_urls else 0,
+                    "has_media": bool(post.media_urls and len(post.media_urls) > 0)
+                },
+                "location": location_data,
+                "posted_at": post.posted_at.isoformat() if post.posted_at else None,
+                "collected_at": post.collected_at.isoformat() if post.collected_at else None,
+                "url": f"https://twitter.com/{post.author}/status/{post.source_id}" if post.platform == "twitter" else None
+            }
+            
+            enriched_posts.append(enriched_post)
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "posts": enriched_posts,
+                "count": len(enriched_posts),
+                "limit": limit,
+                "offset": offset,
+                "filters": {
+                    "platform": platform,
+                    "hours_back": hours_back,
+                    "has_media": has_media,
+                    "hashtag": hashtag,
+                    "location": location
+                },
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error fetching scraped data: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/data/geo-analysis", response_model=BaseResponse)
+async def get_geo_analysis(
+    hours_back: int = Query(default=24, ge=1, le=720, description="Hours of data to analyze"),
+    platform: Optional[str] = Query(None, description="Filter by platform"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get geographic analysis of scraped data
+    
+    Returns:
+    - Posts grouped by region/state
+    - Each location with coordinates
+    - Engagement metrics per location
+    - Top hashtags per location
+    """
+    try:
+        cutoff_time = datetime.utcnow() - timedelta(hours=hours_back)
+        
+        # Build query
+        query = select(ApifyScrapedData).where(
+            ApifyScrapedData.posted_at >= cutoff_time
+        )
+        
+        if platform:
+            query = query.where(ApifyScrapedData.platform == platform.lower())
+        
+        result = await db.execute(query)
+        posts = result.scalars().all()
+        
+        # Group by location
+        geocoding_service = get_geocoding_service()
+        location_data = {}
+        
+        for post in posts:
+            if not post.location:
+                continue
+            
+            loc = post.location
+            if loc not in location_data:
+                enriched_loc = geocoding_service.enrich_location_data(loc)
+                location_data[loc] = {
+                    "location": enriched_loc,
+                    "posts_count": 0,
+                    "total_engagement": 0,
+                    "hashtags": {},
+                    "authors": set(),
+                    "sample_posts": []
+                }
+            
+            location_data[loc]["posts_count"] += 1
+            location_data[loc]["authors"].add(post.author)
+            
+            # Add engagement
+            if post.metrics_json:
+                likes = post.metrics_json.get('likes', 0)
+                retweets = post.metrics_json.get('retweets', 0)
+                replies = post.metrics_json.get('replies', 0)
+                location_data[loc]["total_engagement"] += likes + retweets + replies
+            
+            # Count hashtags
+            if post.hashtags:
+                for tag in post.hashtags:
+                    location_data[loc]["hashtags"][tag] = location_data[loc]["hashtags"].get(tag, 0) + 1
+            
+            # Add sample post (max 3 per location)
+            if len(location_data[loc]["sample_posts"]) < 3:
+                location_data[loc]["sample_posts"].append({
+                    "author": post.author,
+                    "content": post.content[:100] + "..." if len(post.content) > 100 else post.content,
+                    "engagement": post.metrics_json,
+                    "posted_at": post.posted_at.isoformat() if post.posted_at else None
+                })
+        
+        # Format output
+        geo_analysis = []
+        for loc, data in location_data.items():
+            # Get top 5 hashtags for this location
+            top_hashtags = sorted(
+                data["hashtags"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            )[:5]
+            
+            geo_analysis.append({
+                "location": data["location"],
+                "metrics": {
+                    "posts_count": data["posts_count"],
+                    "unique_authors": len(data["authors"]),
+                    "total_engagement": data["total_engagement"],
+                    "avg_engagement": data["total_engagement"] / data["posts_count"] if data["posts_count"] > 0 else 0
+                },
+                "top_hashtags": [{"tag": tag, "count": count} for tag, count in top_hashtags],
+                "sample_posts": data["sample_posts"]
+            })
+        
+        # Sort by posts count
+        geo_analysis.sort(key=lambda x: x["metrics"]["posts_count"], reverse=True)
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "geo_analysis": geo_analysis,
+                "total_locations": len(geo_analysis),
+                "time_period_hours": hours_back,
+                "platform": platform,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error performing geo-analysis: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/data/engagement-analysis", response_model=BaseResponse)
+async def get_engagement_analysis(
+    hours_back: int = Query(default=24, ge=1, le=720, description="Hours of data to analyze"),
+    platform: Optional[str] = Query(None, description="Filter by platform"),
+    group_by: str = Query(default="hour", description="Group by: hour, day, author, hashtag"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get engagement analysis of scraped data
+    
+    Returns aggregated engagement metrics grouped by time, author, or hashtag
+    """
+    try:
+        cutoff_time = datetime.utcnow() - timedelta(hours=hours_back)
+        
+        # Build query
+        query = select(ApifyScrapedData).where(
+            ApifyScrapedData.posted_at >= cutoff_time
+        )
+        
+        if platform:
+            query = query.where(ApifyScrapedData.platform == platform.lower())
+        
+        result = await db.execute(query)
+        posts = result.scalars().all()
+        
+        # Aggregate based on group_by parameter
+        aggregated = {}
+        
+        for post in posts:
+            if group_by == "hour":
+                key = post.posted_at.strftime("%Y-%m-%d %H:00") if post.posted_at else "Unknown"
+            elif group_by == "day":
+                key = post.posted_at.strftime("%Y-%m-%d") if post.posted_at else "Unknown"
+            elif group_by == "author":
+                key = post.author or "Unknown"
+            elif group_by == "hashtag":
+                # We'll handle hashtags separately since one post can have multiple
+                if post.hashtags:
+                    for tag in post.hashtags:
+                        if tag not in aggregated:
+                            aggregated[tag] = {
+                                "posts": [],
+                                "total_likes": 0,
+                                "total_retweets": 0,
+                                "total_replies": 0,
+                                "total_views": 0,
+                                "posts_count": 0
+                            }
+                        
+                        aggregated[tag]["posts"].append(post.source_id)
+                        aggregated[tag]["posts_count"] += 1
+                        
+                        if post.metrics_json:
+                            aggregated[tag]["total_likes"] += post.metrics_json.get('likes', 0)
+                            aggregated[tag]["total_retweets"] += post.metrics_json.get('retweets', 0)
+                            aggregated[tag]["total_replies"] += post.metrics_json.get('replies', 0)
+                            aggregated[tag]["total_views"] += post.metrics_json.get('views', 0)
+                continue
+            else:
+                key = "All"
+            
+            if key not in aggregated:
+                aggregated[key] = {
+                    "posts": [],
+                    "total_likes": 0,
+                    "total_retweets": 0,
+                    "total_replies": 0,
+                    "total_views": 0,
+                    "posts_count": 0
+                }
+            
+            aggregated[key]["posts"].append(post.source_id)
+            aggregated[key]["posts_count"] += 1
+            
+            if post.metrics_json:
+                aggregated[key]["total_likes"] += post.metrics_json.get('likes', 0)
+                aggregated[key]["total_retweets"] += post.metrics_json.get('retweets', 0)
+                aggregated[key]["total_replies"] += post.metrics_json.get('replies', 0)
+                aggregated[key]["total_views"] += post.metrics_json.get('views', 0)
+        
+        # Format output
+        analysis = []
+        for key, metrics in aggregated.items():
+            total_engagement = metrics["total_likes"] + metrics["total_retweets"] + metrics["total_replies"]
+            avg_engagement = total_engagement / metrics["posts_count"] if metrics["posts_count"] > 0 else 0
+            
+            analysis.append({
+                group_by: key,
+                "metrics": {
+                    "posts_count": metrics["posts_count"],
+                    "total_likes": metrics["total_likes"],
+                    "total_retweets": metrics["total_retweets"],
+                    "total_replies": metrics["total_replies"],
+                    "total_views": metrics["total_views"],
+                    "total_engagement": total_engagement,
+                    "avg_engagement": round(avg_engagement, 2)
+                }
+            })
+        
+        # Sort by total engagement
+        analysis.sort(key=lambda x: x["metrics"]["total_engagement"], reverse=True)
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "analysis": analysis,
+                "group_by": group_by,
+                "total_groups": len(analysis),
+                "time_period_hours": hours_back,
+                "platform": platform,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error performing engagement analysis: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/data/stats", response_model=BaseResponse)
+async def get_data_stats(
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get overall statistics for scraped data
+    
+    Returns:
+    - Total posts count
+    - Posts by platform
+    - Posts with media count
+    - Date range of data
+    - Top authors
+    - Top hashtags
+    """
+    try:
+        # Get total count
+        total_result = await db.execute(select(func.count(ApifyScrapedData.id)))
+        total_count = total_result.scalar()
+        
+        # Get platform distribution
+        platform_result = await db.execute(
+            select(
+                ApifyScrapedData.platform,
+                func.count(ApifyScrapedData.id).label('count')
+            ).group_by(ApifyScrapedData.platform)
+        )
+        platforms = {row[0]: row[1] for row in platform_result.all()}
+        
+        # Get posts with media count
+        media_result = await db.execute(
+            select(func.count(ApifyScrapedData.id)).where(
+                func.json_array_length(ApifyScrapedData.media_urls) > 0
+            )
+        )
+        posts_with_media = media_result.scalar()
+        
+        # Get date range
+        date_range_result = await db.execute(
+            select(
+                func.min(ApifyScrapedData.posted_at),
+                func.max(ApifyScrapedData.posted_at)
+            )
+        )
+        min_date, max_date = date_range_result.first()
+        
+        # Get all posts for detailed analysis
+        all_posts_result = await db.execute(
+            select(ApifyScrapedData).order_by(ApifyScrapedData.posted_at.desc()).limit(1000)
+        )
+        all_posts = all_posts_result.scalars().all()
+        
+        # Get top authors
+        author_counts = {}
+        hashtag_counts = {}
+        
+        for post in all_posts:
+            # Count authors
+            if post.author:
+                author_counts[post.author] = author_counts.get(post.author, 0) + 1
+            
+            # Count hashtags
+            if post.hashtags:
+                for tag in post.hashtags:
+                    hashtag_counts[tag] = hashtag_counts.get(tag, 0) + 1
+        
+        top_authors = sorted(author_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+        top_hashtags = sorted(hashtag_counts.items(), key=lambda x: x[1], reverse=True)[:20]
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "overall": {
+                    "total_posts": total_count,
+                    "posts_with_media": posts_with_media,
+                    "media_percentage": round(posts_with_media / total_count * 100, 2) if total_count > 0 else 0
+                },
+                "platforms": platforms,
+                "date_range": {
+                    "earliest": min_date.isoformat() if min_date else None,
+                    "latest": max_date.isoformat() if max_date else None
+                },
+                "top_authors": [{"author": author, "posts_count": count} for author, count in top_authors],
+                "top_hashtags": [{"hashtag": tag, "count": count} for tag, count in top_hashtags],
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error getting data stats: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================
+# AI Processing Endpoints (Smart Reprocessing Prevention)
+# ============================================
+
+@router.post("/ai/process-sentiment", response_model=BaseResponse)
+async def process_sentiment_analysis(
+    limit: Optional[int] = Query(None, ge=1, le=1000, description="Max records to process"),
+    background_tasks: BackgroundTasks = None,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Process sentiment analysis for unprocessed scraped data
+    
+    Only processes data that hasn't been analyzed yet.
+    Results are saved to avoid reprocessing.
+    """
+    try:
+        from app.services.ai_processing_service import get_ai_processing_service
+        
+        ai_service = get_ai_processing_service(db)
+        
+        # Get count of unprocessed data
+        unprocessed = await ai_service.get_unprocessed_data("sentiment", limit=10)
+        unprocessed_count = len(unprocessed)
+        
+        if unprocessed_count == 0:
+            return BaseResponse(
+                success=True,
+                data={
+                    "message": "No unprocessed data found. All data has been analyzed.",
+                    "unprocessed_count": 0
+                }
+            )
+        
+        # Process sentiment
+        result = await ai_service.process_sentiment_batch(limit=limit)
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "message": f"Sentiment analysis completed for {result['processed']} records",
+                "job_id": result['job_id'],
+                "total_records": result['total_records'],
+                "processed": result['processed'],
+                "failed": result['failed'],
+                "processing_time_seconds": result['processing_time_seconds'],
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error processing sentiment: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/ai/process-locations", response_model=BaseResponse)
+async def process_location_extraction(
+    limit: Optional[int] = Query(None, ge=1, le=1000, description="Max records to process"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Process location extraction for unprocessed scraped data
+    
+    Extracts locations from content and geocodes them.
+    Only processes data that hasn't been analyzed yet.
+    """
+    try:
+        from app.services.ai_processing_service import get_ai_processing_service
+        
+        ai_service = get_ai_processing_service(db)
+        
+        # Get count of unprocessed data
+        unprocessed = await ai_service.get_unprocessed_data("location", limit=10)
+        unprocessed_count = len(unprocessed)
+        
+        if unprocessed_count == 0:
+            return BaseResponse(
+                success=True,
+                data={
+                    "message": "No unprocessed data found. All data has been analyzed.",
+                    "unprocessed_count": 0
+                }
+            )
+        
+        # Process locations
+        result = await ai_service.process_location_batch(limit=limit)
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "message": f"Location extraction completed for {result['processed']} records",
+                "job_id": result['job_id'],
+                "total_records": result['total_records'],
+                "processed": result['processed'],
+                "failed": result['failed'],
+                "locations_found": result['locations_found'],
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error processing locations: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/ai/processing-stats", response_model=BaseResponse)
+async def get_ai_processing_stats(
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get AI processing statistics
+    
+    Shows how many records have been processed vs unprocessed
+    """
+    try:
+        from app.services.ai_processing_service import get_ai_processing_service
+        
+        ai_service = get_ai_processing_service(db)
+        stats = await ai_service.get_processing_statistics()
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "statistics": stats,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error getting processing stats: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/ai/sentiment-results", response_model=BaseResponse)
+async def get_sentiment_results(
+    limit: int = Query(default=50, ge=1, le=500),
+    sentiment_label: Optional[str] = Query(None, description="Filter by label: positive, negative, neutral"),
+    min_confidence: float = Query(default=0.0, ge=0.0, le=1.0),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get sentiment analysis results
+    
+    Returns sentiment analysis results with the original posts
+    """
+    try:
+        from app.models.ai_analysis import ApifySentimentAnalysis
+        from sqlalchemy import select
+        
+        # Build query
+        query = select(ApifySentimentAnalysis).where(
+            ApifySentimentAnalysis.confidence >= min_confidence
+        )
+        
+        if sentiment_label:
+            query = query.where(ApifySentimentAnalysis.label == sentiment_label.lower())
+        
+        query = query.order_by(ApifySentimentAnalysis.created_at.desc()).limit(limit)
+        
+        result = await db.execute(query)
+        sentiment_records = result.scalars().all()
+        
+        # Enrich with post data
+        enriched_results = []
+        for record in sentiment_records:
+            # Get the original post
+            post_result = await db.execute(
+                select(ApifyScrapedData).where(ApifyScrapedData.id == record.scraped_data_id)
+            )
+            post = post_result.scalar_one_or_none()
+            
+            if post:
+                enriched_results.append({
+                    "sentiment": {
+                        "label": record.label,
+                        "score": record.score,
+                        "confidence": record.confidence,
+                        "model": record.model_name
+                    },
+                    "post": {
+                        "id": post.id,
+                        "author": post.author,
+                        "content": post.content[:200] + "..." if len(post.content) > 200 else post.content,
+                        "posted_at": post.posted_at.isoformat() if post.posted_at else None,
+                        "engagement": post.metrics_json
+                    }
+                })
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "results": enriched_results,
+                "count": len(enriched_results),
+                "filters": {
+                    "sentiment_label": sentiment_label,
+                    "min_confidence": min_confidence
+                },
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error getting sentiment results: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/ai/location-results", response_model=BaseResponse)
+async def get_location_extraction_results(
+    limit: int = Query(default=50, ge=1, le=500),
+    location_type: Optional[str] = Query(None, description="Filter by type"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get location extraction results
+    
+    Returns extracted and geocoded locations from posts
+    """
+    try:
+        from app.models.ai_analysis import ApifyLocationExtraction
+        from sqlalchemy import select
+        
+        # Build query
+        query = select(ApifyLocationExtraction)
+        
+        if location_type:
+            query = query.where(ApifyLocationExtraction.location_type == location_type.upper())
+        
+        query = query.order_by(ApifyLocationExtraction.created_at.desc()).limit(limit)
+        
+        result = await db.execute(query)
+        location_records = result.scalars().all()
+        
+        # Format results
+        enriched_results = []
+        for record in location_records:
+            enriched_results.append({
+                "location": {
+                    "text": record.location_text,
+                    "type": record.location_type,
+                    "confidence": record.confidence,
+                    "coordinates": record.coordinates,
+                    "region": record.region,
+                    "country": record.country
+                },
+                "scraped_data_id": record.scraped_data_id
+            })
+        
+        return BaseResponse(
+            success=True,
+            data={
+                "results": enriched_results,
+                "count": len(enriched_results),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        )
+    
+    except Exception as e:
+        logger.error(f"Error getting location results: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

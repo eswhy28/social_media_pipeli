@@ -1,0 +1,2262 @@
+[{
+  "type": "tweet",
+  "id": "1992376795438747924",
+  "url": "https://x.com/sunrisemvmt/status/1992376795438747924",
+  "twitterUrl": "https://twitter.com/sunrisemvmt/status/1992376795438747924",
+  "text": "BREAKING: 30 young people were just arrested after blocking an ICE detention facility near Alligator Alcatraz.\n\nICE is kidnapping our neighbors on behalf of fascist billionaires. It's time for every single American to stand up to their intimidation tactics. Let's shut it down. https://t.co/Kp6OFxJMUq",
+  "fullText": "BREAKING: 30 young people were just arrested after blocking an ICE detention facility near Alligator Alcatraz.\n\nICE is kidnapping our neighbors on behalf of fascist billionaires. It's time for every single American to stand up to their intimidation tactics. Let's shut it down. https://t.co/Kp6OFxJMUq",
+  "source": "Twitter Web App",
+  "retweetCount": 791,
+  "replyCount": 788,
+  "likeCount": 2450,
+  "quoteCount": 62,
+  "viewCount": 74607,
+  "createdAt": "Sat Nov 22 23:36:59 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 111,
+  "isReply": false,
+  "conversationId": "1992376795438747924",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "sunrisemvmt",
+    "url": "https://x.com/sunrisemvmt",
+    "twitterUrl": "https://twitter.com/sunrisemvmt",
+    "id": "1880725393",
+    "name": "Sunrise Movement 🌅",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1709312605607673856/9jNdiuZE_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1880725393/1742503651",
+    "description": "We’re building a movement of young people to stop climate change & create millions of good jobs in the process #GreenNewDeal | Text GND to 88504 for updates ☀️",
+    "location": "United States",
+    "followers": 238133,
+    "following": 2616,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Wed Sep 18 20:00:13 +0000 2013",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "linkin.bio/sunrisemvmt/",
+            "expanded_url": "https://linkin.bio/sunrisemvmt/",
+            "url": "https://t.co/RD4rv1DZQ8",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 28380,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 5096,
+    "statusesCount": 26600,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/Kp6OFxJMUq",
+        "expanded_url": "https://x.com/sunrisemvmt/status/1992376795438747924/video/1",
+        "id_str": "1992376426666844160",
+        "indices": [
+          278,
+          301
+        ],
+        "media_key": "13_1992376426666844160",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992376426666844160/img/B8wLLXoa_oIw2gEI.jpg",
+        "type": "video",
+        "url": "https://t.co/Kp6OFxJMUq",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1920,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1920,
+          "width": 1080,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 35033,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/pl/kM5HqV_OVeZy76K-.m3u8?tag=21&v=cd5"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/320x568/qBvkQOcQUWIRfrf1.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/480x852/OpFf28UopuuEbfcP.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/720x1280/7A9Wc69qCS4KH6UK.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/1080x1920/DsVJX_S7WfRxftVX.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992376426666844160"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/Kp6OFxJMUq",
+        "expanded_url": "https://x.com/sunrisemvmt/status/1992376795438747924/video/1",
+        "id_str": "1992376426666844160",
+        "indices": [
+          278,
+          301
+        ],
+        "media_key": "13_1992376426666844160",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992376426666844160/img/B8wLLXoa_oIw2gEI.jpg",
+        "type": "video",
+        "url": "https://t.co/Kp6OFxJMUq",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1920,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1920,
+          "width": 1080,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 35033,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/pl/kM5HqV_OVeZy76K-.m3u8?tag=21&v=cd5"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/320x568/qBvkQOcQUWIRfrf1.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/480x852/OpFf28UopuuEbfcP.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/720x1280/7A9Wc69qCS4KH6UK.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992376426666844160/vid/avc1/1080x1920/DsVJX_S7WfRxftVX.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992376426666844160"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1992376426666844160/img/B8wLLXoa_oIw2gEI.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992371508266824067",
+  "url": "https://x.com/RT_com/status/1992371508266824067",
+  "twitterUrl": "https://twitter.com/RT_com/status/1992371508266824067",
+  "text": "Trump officials pushed lethal boat strikes despite legal warnings — WaPo\n\nBy midsummer the White House was weighing Venezuela options including physically SEIZING oil fields and even KIDNAPPING Maduro\n\nA covert war built on deniability, slowly spilling into daylight https://t.co/ftM60elTsI",
+  "fullText": "Trump officials pushed lethal boat strikes despite legal warnings — WaPo\n\nBy midsummer the White House was weighing Venezuela options including physically SEIZING oil fields and even KIDNAPPING Maduro\n\nA covert war built on deniability, slowly spilling into daylight https://t.co/ftM60elTsI",
+  "source": "Twitter Web App",
+  "retweetCount": 13,
+  "replyCount": 14,
+  "likeCount": 30,
+  "quoteCount": 1,
+  "viewCount": 8229,
+  "createdAt": "Sat Nov 22 23:15:58 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 4,
+  "isReply": false,
+  "conversationId": "1992371508266824067",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "RT_com",
+    "url": "https://x.com/RT_com",
+    "twitterUrl": "https://twitter.com/RT_com",
+    "id": "64643056",
+    "name": "RT",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1922066094182830080/UY-fskwb_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/64643056/1643706218",
+    "description": "Freedom over censorship, Truth over narrative",
+    "location": "",
+    "followers": 3345097,
+    "following": 937,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Tue Aug 11 06:12:45 +0000 2009",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 2312,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 308139,
+    "statusesCount": 546948,
+    "withheldInCountries": [
+      "AT",
+      "BE",
+      "BG",
+      "CY",
+      "CZ",
+      "DE",
+      "DK",
+      "EE",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "GR",
+      "HR",
+      "HU",
+      "IE",
+      "IT",
+      "LT",
+      "LU",
+      "LV",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SE",
+      "SI",
+      "SK"
+    ],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1992417643924738108"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/ftM60elTsI",
+        "expanded_url": "https://x.com/RT_com/status/1992371508266824067/photo/1",
+        "id_str": "1992371458329169920",
+        "indices": [
+          267,
+          290
+        ],
+        "media_key": "3_1992371458329169920",
+        "media_url_https": "https://pbs.twimg.com/media/G6ZTSQpWUAAmunb.png",
+        "type": "photo",
+        "url": "https://t.co/ftM60elTsI",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 471,
+                "y": 40,
+                "h": 113,
+                "w": 113
+              },
+              {
+                "x": 498,
+                "y": 156,
+                "h": 84,
+                "w": 84
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 471,
+                "y": 40,
+                "h": 113,
+                "w": 113
+              },
+              {
+                "x": 498,
+                "y": 156,
+                "h": 84,
+                "w": 84
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 373,
+                "y": 31,
+                "h": 89,
+                "w": 89
+              },
+              {
+                "x": 394,
+                "y": 123,
+                "h": 66,
+                "w": 66
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 471,
+                "y": 40,
+                "h": 113,
+                "w": 113
+              },
+              {
+                "x": 498,
+                "y": 156,
+                "h": 84,
+                "w": 84
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 706,
+            "w": 858,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 706,
+            "w": 858,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 560,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 706,
+          "width": 858,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 858,
+              "h": 480
+            },
+            {
+              "x": 152,
+              "y": 0,
+              "w": 706,
+              "h": 706
+            },
+            {
+              "x": 227,
+              "y": 0,
+              "w": 619,
+              "h": 706
+            },
+            {
+              "x": 360,
+              "y": 0,
+              "w": 353,
+              "h": 706
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 858,
+              "h": 706
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992371458329169920"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/ftM60elTsI",
+        "expanded_url": "https://x.com/RT_com/status/1992371508266824067/photo/1",
+        "id_str": "1992371458329169920",
+        "indices": [
+          267,
+          290
+        ],
+        "media_key": "3_1992371458329169920",
+        "media_url_https": "https://pbs.twimg.com/media/G6ZTSQpWUAAmunb.png",
+        "type": "photo",
+        "url": "https://t.co/ftM60elTsI",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 471,
+                "y": 40,
+                "h": 113,
+                "w": 113
+              },
+              {
+                "x": 498,
+                "y": 156,
+                "h": 84,
+                "w": 84
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 471,
+                "y": 40,
+                "h": 113,
+                "w": 113
+              },
+              {
+                "x": 498,
+                "y": 156,
+                "h": 84,
+                "w": 84
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 373,
+                "y": 31,
+                "h": 89,
+                "w": 89
+              },
+              {
+                "x": 394,
+                "y": 123,
+                "h": 66,
+                "w": 66
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 471,
+                "y": 40,
+                "h": 113,
+                "w": 113
+              },
+              {
+                "x": 498,
+                "y": 156,
+                "h": 84,
+                "w": 84
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 706,
+            "w": 858,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 706,
+            "w": 858,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 560,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 706,
+          "width": 858,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 858,
+              "h": 480
+            },
+            {
+              "x": 152,
+              "y": 0,
+              "w": 706,
+              "h": 706
+            },
+            {
+              "x": 227,
+              "y": 0,
+              "w": 619,
+              "h": 706
+            },
+            {
+              "x": 360,
+              "y": 0,
+              "w": 353,
+              "h": 706
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 858,
+              "h": 706
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992371458329169920"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6ZTSQpWUAAmunb.png"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992360232241217678",
+  "url": "https://x.com/AbujomaaGaza/status/1992360232241217678",
+  "twitterUrl": "https://twitter.com/AbujomaaGaza/status/1992360232241217678",
+  "text": "Since the ceasefire took effect, Israeli occupation forces have killed 342 people and wounded 835 others in addition to kidnapping 35 others across the Gaza Strip..\n\n#Israeli_violations https://t.co/zRLZmDTnot",
+  "fullText": "Since the ceasefire took effect, Israeli occupation forces have killed 342 people and wounded 835 others in addition to kidnapping 35 others across the Gaza Strip..\n\n#Israeli_violations https://t.co/zRLZmDTnot",
+  "source": "Twitter for iPhone",
+  "retweetCount": 2224,
+  "replyCount": 151,
+  "likeCount": 3382,
+  "quoteCount": 40,
+  "viewCount": 68830,
+  "createdAt": "Sat Nov 22 22:31:10 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 59,
+  "isReply": false,
+  "conversationId": "1992360232241217678",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "AbujomaaGaza",
+    "url": "https://x.com/AbujomaaGaza",
+    "twitterUrl": "https://twitter.com/AbujomaaGaza",
+    "id": "436189806",
+    "name": "Motasem A Dalloul",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1781706900674879488/Qa7pGpTi_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/436189806/1713641713",
+    "description": "MA Inte'l #Journalism. Gaza-based journalist. You can support me if you are happy with my coverage from Gaza: https://t.co/TZWB0HBMau",
+    "location": "Gaza",
+    "followers": 196420,
+    "following": 2826,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Tue Dec 13 22:10:07 +0000 2011",
+    "entities": {
+      "description": {
+        "urls": [
+          {
+            "display_url": "paypal.me/paltelegraph",
+            "expanded_url": "https://www.paypal.me/paltelegraph",
+            "url": "https://t.co/TZWB0HBMau",
+            "indices": [
+              110,
+              133
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 13770,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 15436,
+    "statusesCount": 38151,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/zRLZmDTnot",
+        "expanded_url": "https://x.com/AbujomaaGaza/status/1992360232241217678/photo/1",
+        "id_str": "1992360204848037888",
+        "indices": [
+          186,
+          209
+        ],
+        "media_key": "3_1992360204848037888",
+        "media_url_https": "https://pbs.twimg.com/media/G6ZJDOKXgAAvA5w.jpg",
+        "type": "photo",
+        "url": "https://t.co/zRLZmDTnot",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 891,
+            "w": 1024,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 891,
+            "w": 1024,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 592,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 891,
+          "width": 1024,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 318,
+              "w": 1024,
+              "h": 573
+            },
+            {
+              "x": 133,
+              "y": 0,
+              "w": 891,
+              "h": 891
+            },
+            {
+              "x": 242,
+              "y": 0,
+              "w": 782,
+              "h": 891
+            },
+            {
+              "x": 578,
+              "y": 0,
+              "w": 446,
+              "h": 891
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1024,
+              "h": 891
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992360204848037888"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          166,
+          185
+        ],
+        "text": "Israeli_violations"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/zRLZmDTnot",
+        "expanded_url": "https://x.com/AbujomaaGaza/status/1992360232241217678/photo/1",
+        "id_str": "1992360204848037888",
+        "indices": [
+          186,
+          209
+        ],
+        "media_key": "3_1992360204848037888",
+        "media_url_https": "https://pbs.twimg.com/media/G6ZJDOKXgAAvA5w.jpg",
+        "type": "photo",
+        "url": "https://t.co/zRLZmDTnot",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 891,
+            "w": 1024,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 891,
+            "w": 1024,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 592,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 891,
+          "width": 1024,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 318,
+              "w": 1024,
+              "h": 573
+            },
+            {
+              "x": 133,
+              "y": 0,
+              "w": 891,
+              "h": 891
+            },
+            {
+              "x": 242,
+              "y": 0,
+              "w": 782,
+              "h": 891
+            },
+            {
+              "x": 578,
+              "y": 0,
+              "w": 446,
+              "h": 891
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1024,
+              "h": 891
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992360204848037888"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6ZJDOKXgAAvA5w.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992353123986509922",
+  "url": "https://x.com/Row_Haastrup/status/1992353123986509922",
+  "twitterUrl": "https://twitter.com/Row_Haastrup/status/1992353123986509922",
+  "text": "“The terrorists need the money they’re getting from kidnapping, It’s not like they are living luxurious lives; Government is putting too much pressure on them so they need money to finance their war machines.” – Sheik Gumi\n\nTHIS MAN IS A TERRORIST 💯 \nhttps://t.co/ec2H0N852I",
+  "fullText": "“The terrorists need the money they’re getting from kidnapping, It’s not like they are living luxurious lives; Government is putting too much pressure on them so they need money to finance their war machines.” – Sheik Gumi\n\nTHIS MAN IS A TERRORIST 💯 \nhttps://t.co/ec2H0N852I",
+  "source": "Twitter for iPhone",
+  "retweetCount": 17,
+  "replyCount": 15,
+  "likeCount": 27,
+  "quoteCount": 2,
+  "viewCount": 2088,
+  "createdAt": "Sat Nov 22 22:02:55 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 8,
+  "isReply": false,
+  "conversationId": "1992353123986509922",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Row_Haastrup",
+    "url": "https://x.com/Row_Haastrup",
+    "twitterUrl": "https://twitter.com/Row_Haastrup",
+    "id": "1309844897059549184",
+    "name": "DON “Tobechukwu” Ade 👑",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1876159355525177344/NeXGSb-j_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1309844897059549184/1621707226",
+    "description": "Your Brother in Christ || Founder @AriseSLG || #BibleStudyOnSpace || Son of @DrPaulEnenche || Chess",
+    "location": "The Secret Place",
+    "followers": 76889,
+    "following": 4852,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Sat Sep 26 13:19:21 +0000 2020",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "ariseslg.org",
+            "expanded_url": "http://www.ariseslg.org",
+            "url": "https://t.co/HEjkKj8e2m",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 24390,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 9438,
+    "statusesCount": 97153,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1649422164003549187"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/ec2H0N852I",
+        "expanded_url": "https://x.com/Neutral_OC/status/1992159059391176929/video/1",
+        "id_str": "1992158991229636608",
+        "indices": [
+          251,
+          274
+        ],
+        "media_key": "13_1992158991229636608",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992158991229636608/img/l7HhI9cq6mFYn64p.jpg",
+        "source_status_id_str": "1992159059391176929",
+        "source_user_id_str": "1270849253053796353",
+        "type": "video",
+        "url": "https://t.co/ec2H0N852I",
+        "additional_media_info": {
+          "monetizable": false,
+          "source_user": {
+            "user_results": {
+              "result": {
+                "__typename": "User",
+                "id": "VXNlcjoxMjcwODQ5MjUzMDUzNzk2MzUz",
+                "rest_id": "1270849253053796353",
+                "affiliates_highlighted_label": {},
+                "has_graduated_access": true,
+                "is_blue_verified": true,
+                "legacy": {
+                  "following": false,
+                  "can_dm": true,
+                  "can_media_tag": false,
+                  "created_at": "Wed Jun 10 22:44:35 +0000 2020",
+                  "default_profile": true,
+                  "default_profile_image": false,
+                  "description": "For the love of the game!",
+                  "entities": {
+                    "description": {
+                      "urls": []
+                    }
+                  },
+                  "fast_followers_count": 0,
+                  "favourites_count": 18690,
+                  "followers_count": 11777,
+                  "friends_count": 6395,
+                  "has_custom_timelines": true,
+                  "is_translator": false,
+                  "listed_count": 24,
+                  "location": "In The Wind",
+                  "media_count": 1726,
+                  "name": "Dera II",
+                  "normal_followers_count": 11777,
+                  "pinned_tweet_ids_str": [],
+                  "possibly_sensitive": false,
+                  "profile_banner_url": "https://pbs.twimg.com/profile_banners/1270849253053796353/1761073866",
+                  "profile_image_url_https": "https://pbs.twimg.com/profile_images/1987402610270257153/rCegidXI_normal.jpg",
+                  "profile_interstitial_type": "",
+                  "screen_name": "Neutral_OC",
+                  "statuses_count": 18656,
+                  "translator_type": "none",
+                  "verified": false,
+                  "want_retweets": false,
+                  "withheld_in_countries": []
+                },
+                "parody_commentary_fan_label": "None",
+                "profile_image_shape": "Circle",
+                "professional": {
+                  "rest_id": "1629419182025474048",
+                  "professional_type": "Creator",
+                  "category": []
+                },
+                "tipjar_settings": {
+                  "is_enabled": false
+                }
+              }
+            }
+          }
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 360,
+            "w": 640,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 360,
+            "w": 640,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 360,
+            "w": 640,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 360,
+          "width": 640,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            16,
+            9
+          ],
+          "duration_millis": 88500,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992158991229636608/pl/ZH0i3fIieeQVLW1Y.m3u8?tag=21&v=a99"
+            },
+            {
+              "bitrate": 256000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992158991229636608/vid/avc1/480x270/W2SXkPrVH1Gb3zZw.mp4?tag=21"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992158991229636608/vid/avc1/640x360/yv_mJvFyi3Efaquc.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992158991229636608"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/ec2H0N852I",
+        "expanded_url": "https://x.com/Neutral_OC/status/1992159059391176929/video/1",
+        "id_str": "1992158991229636608",
+        "indices": [
+          251,
+          274
+        ],
+        "media_key": "13_1992158991229636608",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992158991229636608/img/l7HhI9cq6mFYn64p.jpg",
+        "source_status_id_str": "1992159059391176929",
+        "source_user_id_str": "1270849253053796353",
+        "type": "video",
+        "url": "https://t.co/ec2H0N852I",
+        "additional_media_info": {
+          "monetizable": false,
+          "source_user": {
+            "user_results": {
+              "result": {
+                "__typename": "User",
+                "id": "VXNlcjoxMjcwODQ5MjUzMDUzNzk2MzUz",
+                "rest_id": "1270849253053796353",
+                "affiliates_highlighted_label": {},
+                "has_graduated_access": true,
+                "is_blue_verified": true,
+                "legacy": {
+                  "following": false,
+                  "can_dm": true,
+                  "can_media_tag": false,
+                  "created_at": "Wed Jun 10 22:44:35 +0000 2020",
+                  "default_profile": true,
+                  "default_profile_image": false,
+                  "description": "For the love of the game!",
+                  "entities": {
+                    "description": {
+                      "urls": []
+                    }
+                  },
+                  "fast_followers_count": 0,
+                  "favourites_count": 18690,
+                  "followers_count": 11777,
+                  "friends_count": 6395,
+                  "has_custom_timelines": true,
+                  "is_translator": false,
+                  "listed_count": 24,
+                  "location": "In The Wind",
+                  "media_count": 1726,
+                  "name": "Dera II",
+                  "normal_followers_count": 11777,
+                  "pinned_tweet_ids_str": [],
+                  "possibly_sensitive": false,
+                  "profile_banner_url": "https://pbs.twimg.com/profile_banners/1270849253053796353/1761073866",
+                  "profile_image_url_https": "https://pbs.twimg.com/profile_images/1987402610270257153/rCegidXI_normal.jpg",
+                  "profile_interstitial_type": "",
+                  "screen_name": "Neutral_OC",
+                  "statuses_count": 18656,
+                  "translator_type": "none",
+                  "verified": false,
+                  "want_retweets": false,
+                  "withheld_in_countries": []
+                },
+                "parody_commentary_fan_label": "None",
+                "profile_image_shape": "Circle",
+                "professional": {
+                  "rest_id": "1629419182025474048",
+                  "professional_type": "Creator",
+                  "category": []
+                },
+                "tipjar_settings": {
+                  "is_enabled": false
+                }
+              }
+            }
+          }
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 360,
+            "w": 640,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 360,
+            "w": 640,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 360,
+            "w": 640,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 360,
+          "width": 640,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            16,
+            9
+          ],
+          "duration_millis": 88500,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992158991229636608/pl/ZH0i3fIieeQVLW1Y.m3u8?tag=21&v=a99"
+            },
+            {
+              "bitrate": 256000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992158991229636608/vid/avc1/480x270/W2SXkPrVH1Gb3zZw.mp4?tag=21"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992158991229636608/vid/avc1/640x360/yv_mJvFyi3Efaquc.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992158991229636608"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1992158991229636608/img/l7HhI9cq6mFYn64p.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992352125737984261",
+  "url": "https://x.com/perfectrose2011/status/1992352125737984261",
+  "twitterUrl": "https://twitter.com/perfectrose2011/status/1992352125737984261",
+  "text": "@allenanalysis When one considers during the years when Obama and Biden were in the WH, there were no uprisings like this and no ICE/thugs kidnapping residents and children off the streets, out of schools/hospitals and their homes. Protest is valid since now it's acknowledge 'he's;'  a fascist.",
+  "fullText": "@allenanalysis When one considers during the years when Obama and Biden were in the WH, there were no uprisings like this and no ICE/thugs kidnapping residents and children off the streets, out of schools/hospitals and their homes. Protest is valid since now it's acknowledge 'he's;'  a fascist.",
+  "source": "Twitter Web App",
+  "retweetCount": 7,
+  "replyCount": 8,
+  "likeCount": 35,
+  "quoteCount": 0,
+  "viewCount": 1371,
+  "createdAt": "Sat Nov 22 21:58:57 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": true,
+  "inReplyToId": "1992308482192572603",
+  "conversationId": "1992308482192572603",
+  "inReplyToUserId": "2898790691",
+  "inReplyToUsername": "allenanalysis",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "perfectrose2011",
+    "url": "https://x.com/perfectrose2011",
+    "twitterUrl": "https://twitter.com/perfectrose2011",
+    "id": "342313862",
+    "name": "Wendy 🇨🇦",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1462169043/image004_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/342313862/1762484852",
+    "description": "Enjoy appreciating dedication of actors to roles such as PBS series: Sherlock, Grantchester; Canada's Murdoch Mysteries & US daytime drama, YR.",
+    "location": "Vancouver, Canada",
+    "followers": 7201,
+    "following": 4183,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": false,
+    "createdAt": "Mon Jul 25 20:26:52 +0000 2011",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "twerbles.wordpress.com",
+            "expanded_url": "https://twerbles.wordpress.com",
+            "url": "https://t.co/eusAQy6waF",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 487439,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 30951,
+    "statusesCount": 467715,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1986631069689614570"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "2898790691",
+        "name": "Brian Allen",
+        "screen_name": "allenanalysis",
+        "indices": [
+          0,
+          14
+        ]
+      }
+    ]
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992341444850553240",
+  "url": "https://x.com/warsurveillance/status/1992341444850553240",
+  "twitterUrl": "https://twitter.com/warsurveillance/status/1992341444850553240",
+  "text": "🚨🇻🇪 ALERT: Venezuela on the brink!\n\nThe U.S. warns all citizens and residents to leave immediately. Travel is strictly prohibited due to extreme risks of kidnapping, crime, and civil unrest.\n\n⚠️ U.S. Embassy in Caracas is closed—no consular services available. The situation is escalating fast.",
+  "fullText": "🚨🇻🇪 ALERT: Venezuela on the brink!\n\nThe U.S. warns all citizens and residents to leave immediately. Travel is strictly prohibited due to extreme risks of kidnapping, crime, and civil unrest.\n\n⚠️ U.S. Embassy in Caracas is closed—no consular services available. The situation is https://t.co/UdKYyXZZU4",
+  "source": "Twitter for Android",
+  "retweetCount": 71,
+  "replyCount": 16,
+  "likeCount": 191,
+  "quoteCount": 5,
+  "viewCount": 19969,
+  "createdAt": "Sat Nov 22 21:16:31 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 25,
+  "isReply": false,
+  "conversationId": "1992341444850553240",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "warsurveillance",
+    "url": "https://x.com/warsurveillance",
+    "twitterUrl": "https://twitter.com/warsurveillance",
+    "id": "1919992165146447872",
+    "name": "WAR",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1936685094124535808/firAfIRk_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1919992165146447872/1763411164",
+    "description": "Eyes on every conflict. Real-time updates on battles| strikes| and military moves worldwide",
+    "location": "",
+    "followers": 19702,
+    "following": 3246,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed May 07 05:46:57 +0000 2025",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 102190,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 8245,
+    "statusesCount": 60285,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/UdKYyXZZU4",
+        "expanded_url": "https://x.com/warsurveillance/status/1992341444850553240/video/1",
+        "id_str": "1992341300948221952",
+        "indices": [
+          278,
+          301
+        ],
+        "media_key": "7_1992341300948221952",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1992341300948221952/pu/img/Lw_lrOkrkTmbyw9j.jpg",
+        "type": "video",
+        "url": "https://t.co/UdKYyXZZU4",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1024,
+            "w": 576,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1024,
+            "w": 576,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1024,
+          "width": 576,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 61068,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/ext_tw_video/1992341300948221952/pu/pl/islM9QdvGzFSHVSY.m3u8?tag=19&v=cfc"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1992341300948221952/pu/vid/avc1/320x568/kduWCq3IUImxY7Z6.mp4?tag=19"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1992341300948221952/pu/vid/avc1/480x852/VawGIWZO9J7DySq9.mp4?tag=19"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1992341300948221952/pu/vid/avc1/576x1024/2SNc6ersH61Xpseq.mp4?tag=19"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "7_1992341300948221952"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/ext_tw_video_thumb/1992341300948221952/pu/img/Lw_lrOkrkTmbyw9j.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992339422457790899",
+  "url": "https://x.com/EYakoby/status/1992339422457790899",
+  "twitterUrl": "https://twitter.com/EYakoby/status/1992339422457790899",
+  "text": "BREAKING: Bishop Robert Barron speaks out on the kidnapping of over 300 Christian young girls by Islamists in Nigeria.\n\nHe directly calls out Sharia Law and states that this is religiously-targeted attacks. https://t.co/mP3ROX5ico",
+  "fullText": "BREAKING: Bishop Robert Barron speaks out on the kidnapping of over 300 Christian young girls by Islamists in Nigeria.\n\nHe directly calls out Sharia Law and states that this is religiously-targeted attacks. https://t.co/mP3ROX5ico",
+  "source": "Twitter for iPhone",
+  "retweetCount": 23,
+  "replyCount": 8,
+  "likeCount": 114,
+  "quoteCount": 3,
+  "viewCount": 4565,
+  "createdAt": "Sat Nov 22 21:08:28 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 6,
+  "isReply": false,
+  "conversationId": "1992339422457790899",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "EYakoby",
+    "url": "https://x.com/EYakoby",
+    "twitterUrl": "https://twitter.com/EYakoby",
+    "id": "1249148165112160257",
+    "name": "Eyal Yakoby",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1787004128473853952/VtlECdP1_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1249148165112160257/1737079678",
+    "description": "23-year-old UPenn grad, incoming MIT student dedicated to combating anti-Americanism | Seen on @CNN, @FoxNews, @WashingtonPost, and more | Views are my own.",
+    "location": "Rent-Free in Ian Carrol’s Head",
+    "followers": 230339,
+    "following": 2015,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Sun Apr 12 01:32:00 +0000 2020",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/eyalyakobynews",
+            "expanded_url": "https://t.me/eyalyakobynews",
+            "url": "https://t.co/FCHaYASYX0",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 60764,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 31443,
+    "statusesCount": 55589,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1992319410686816486"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/mP3ROX5ico",
+        "expanded_url": "https://x.com/BishopBarron/status/1992285960361628120/video/1",
+        "id_str": "1992285663350104064",
+        "indices": [
+          207,
+          230
+        ],
+        "media_key": "13_1992285663350104064",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992285663350104064/img/8H8AC0gKATmIXYY4.jpg",
+        "source_status_id_str": "1992285960361628120",
+        "source_user_id_str": "54277123",
+        "type": "video",
+        "url": "https://t.co/mP3ROX5ico",
+        "additional_media_info": {
+          "monetizable": false,
+          "source_user": {
+            "user_results": {
+              "result": {
+                "__typename": "User",
+                "id": "VXNlcjo1NDI3NzEyMw==",
+                "rest_id": "54277123",
+                "affiliates_highlighted_label": {},
+                "has_graduated_access": true,
+                "is_blue_verified": true,
+                "legacy": {
+                  "following": false,
+                  "can_dm": false,
+                  "can_media_tag": true,
+                  "created_at": "Mon Jul 06 17:48:23 +0000 2009",
+                  "default_profile": false,
+                  "default_profile_image": false,
+                  "description": "Bishop of Diocese of Winona-Rochester (MN); founder of @WordOnFire; host of CATHOLICISM series.",
+                  "entities": {
+                    "description": {
+                      "urls": []
+                    },
+                    "url": {
+                      "urls": [
+                        {
+                          "display_url": "wordonfire.org",
+                          "expanded_url": "http://www.wordonfire.org",
+                          "url": "https://t.co/PeGpB04NcB",
+                          "indices": [
+                            0,
+                            23
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "fast_followers_count": 0,
+                  "favourites_count": 4281,
+                  "followers_count": 394293,
+                  "friends_count": 125,
+                  "has_custom_timelines": false,
+                  "is_translator": false,
+                  "listed_count": 2131,
+                  "location": "Rochester, MN",
+                  "media_count": 7080,
+                  "name": "Bishop Robert Barron",
+                  "normal_followers_count": 394293,
+                  "pinned_tweet_ids_str": [
+                    "1973401521082560544"
+                  ],
+                  "possibly_sensitive": false,
+                  "profile_banner_url": "https://pbs.twimg.com/profile_banners/54277123/1740156927",
+                  "profile_image_url_https": "https://pbs.twimg.com/profile_images/1600509579019919363/gonS49JU_normal.jpg",
+                  "profile_interstitial_type": "",
+                  "screen_name": "BishopBarron",
+                  "statuses_count": 9762,
+                  "translator_type": "none",
+                  "url": "https://t.co/PeGpB04NcB",
+                  "verified": false,
+                  "want_retweets": false,
+                  "withheld_in_countries": []
+                },
+                "parody_commentary_fan_label": "None",
+                "profile_image_shape": "Circle",
+                "tipjar_settings": {}
+              }
+            }
+          }
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1920,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1920,
+          "width": 1080,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 276256,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/pl/8TEvLXFmkRDIoqiM.m3u8?tag=21&v=c2d"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/320x568/fJ5M7dny8x_pfz7t.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/480x852/3TSiJqZEjqQlWZpO.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/720x1280/B_usTGTJ9_ie1Z6O.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/1080x1920/5NB8HRCr_hlyB1MN.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992285663350104064"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/mP3ROX5ico",
+        "expanded_url": "https://x.com/BishopBarron/status/1992285960361628120/video/1",
+        "id_str": "1992285663350104064",
+        "indices": [
+          207,
+          230
+        ],
+        "media_key": "13_1992285663350104064",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992285663350104064/img/8H8AC0gKATmIXYY4.jpg",
+        "source_status_id_str": "1992285960361628120",
+        "source_user_id_str": "54277123",
+        "type": "video",
+        "url": "https://t.co/mP3ROX5ico",
+        "additional_media_info": {
+          "monetizable": false,
+          "source_user": {
+            "user_results": {
+              "result": {
+                "__typename": "User",
+                "id": "VXNlcjo1NDI3NzEyMw==",
+                "rest_id": "54277123",
+                "affiliates_highlighted_label": {},
+                "has_graduated_access": true,
+                "is_blue_verified": true,
+                "legacy": {
+                  "following": false,
+                  "can_dm": false,
+                  "can_media_tag": true,
+                  "created_at": "Mon Jul 06 17:48:23 +0000 2009",
+                  "default_profile": false,
+                  "default_profile_image": false,
+                  "description": "Bishop of Diocese of Winona-Rochester (MN); founder of @WordOnFire; host of CATHOLICISM series.",
+                  "entities": {
+                    "description": {
+                      "urls": []
+                    },
+                    "url": {
+                      "urls": [
+                        {
+                          "display_url": "wordonfire.org",
+                          "expanded_url": "http://www.wordonfire.org",
+                          "url": "https://t.co/PeGpB04NcB",
+                          "indices": [
+                            0,
+                            23
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "fast_followers_count": 0,
+                  "favourites_count": 4281,
+                  "followers_count": 394293,
+                  "friends_count": 125,
+                  "has_custom_timelines": false,
+                  "is_translator": false,
+                  "listed_count": 2131,
+                  "location": "Rochester, MN",
+                  "media_count": 7080,
+                  "name": "Bishop Robert Barron",
+                  "normal_followers_count": 394293,
+                  "pinned_tweet_ids_str": [
+                    "1973401521082560544"
+                  ],
+                  "possibly_sensitive": false,
+                  "profile_banner_url": "https://pbs.twimg.com/profile_banners/54277123/1740156927",
+                  "profile_image_url_https": "https://pbs.twimg.com/profile_images/1600509579019919363/gonS49JU_normal.jpg",
+                  "profile_interstitial_type": "",
+                  "screen_name": "BishopBarron",
+                  "statuses_count": 9762,
+                  "translator_type": "none",
+                  "url": "https://t.co/PeGpB04NcB",
+                  "verified": false,
+                  "want_retweets": false,
+                  "withheld_in_countries": []
+                },
+                "parody_commentary_fan_label": "None",
+                "profile_image_shape": "Circle",
+                "tipjar_settings": {}
+              }
+            }
+          }
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1920,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1920,
+          "width": 1080,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 276256,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/pl/8TEvLXFmkRDIoqiM.m3u8?tag=21&v=c2d"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/320x568/fJ5M7dny8x_pfz7t.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/480x852/3TSiJqZEjqQlWZpO.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/720x1280/B_usTGTJ9_ie1Z6O.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992285663350104064/vid/avc1/1080x1920/5NB8HRCr_hlyB1MN.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992285663350104064"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1992285663350104064/img/8H8AC0gKATmIXYY4.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992330685722624344",
+  "url": "https://x.com/BuzzPatterson/status/1992330685722624344",
+  "twitterUrl": "https://twitter.com/BuzzPatterson/status/1992330685722624344",
+  "text": "Did she fake a kidnapping too? Oh, wait. That was the governor. 🤣",
+  "fullText": "Did she fake a kidnapping too? Oh, wait. That was the governor. 🤣",
+  "source": "Twitter for iPad",
+  "retweetCount": 63,
+  "replyCount": 15,
+  "likeCount": 452,
+  "quoteCount": 0,
+  "viewCount": 11663,
+  "createdAt": "Sat Nov 22 20:33:45 +0000 2025",
+  "lang": "en",
+  "quoteId": "1992057962966524070",
+  "bookmarkCount": 2,
+  "isReply": false,
+  "conversationId": "1992330685722624344",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "BuzzPatterson",
+    "url": "https://x.com/BuzzPatterson",
+    "twitterUrl": "https://twitter.com/BuzzPatterson",
+    "id": "15986949",
+    "name": "Buzz Patterson",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1739515417889284096/sjMmZruS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/15986949/1721964040",
+    "description": "Husband, Dad, Speaker, Author, Pilot, Former Carrier of the Nuke Football. @RedState Columnist. NYT Bestselling author x 2. DM for speaking and media requests.",
+    "location": "California, USA",
+    "followers": 499850,
+    "following": 26423,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": false,
+    "createdAt": "Mon Aug 25 20:33:25 +0000 2008",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "redstate.com/author/buzzpat…",
+            "expanded_url": "https://redstate.com/author/buzzpatterson",
+            "url": "https://t.co/6recNds1nG",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 501636,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 5901,
+    "statusesCount": 114059,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1992057962966524070",
+    "text": "BREAKING:\n\nSen. Elissa Slotkin says police responded to her home tonight in response to a bomb threat. Slotkin wasn't at home at the time.\n\nThis is two days after Trump said Slotkin and other Democrats committed \"seditious conspiracy, punishable by death.\"",
+    "source": "Twitter for iPhone",
+    "retweetCount": 2771,
+    "replyCount": 1644,
+    "likeCount": 7826,
+    "quoteCount": 151,
+    "viewCount": 427813,
+    "createdAt": "Sat Nov 22 02:30:03 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 265,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "kylegriffin1",
+      "url": "https://x.com/kylegriffin1",
+      "twitterUrl": "https://twitter.com/kylegriffin1",
+      "id": "32871086",
+      "name": "Kyle Griffin",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1743436870917267456/7n5SVp1g_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/32871086/1455243585",
+      "description": "Executive Producer @weeknightmsnow. Opinions mine. Do not congratulate. THREADS @griffinkyle BLUESKY @kylegriffin1",
+      "location": "New York, NY",
+      "followers": 1297636,
+      "following": 676,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Sat Apr 18 12:45:48 +0000 2009",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 31662,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 13667,
+      "statusesCount": 93388,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1352117491485564929"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992320705808183550",
+  "url": "https://x.com/FlyingpenguinEd/status/1992320705808183550",
+  "twitterUrl": "https://twitter.com/FlyingpenguinEd/status/1992320705808183550",
+  "text": "@Kaos_Vs_Control Deporting illegal criminals is not kidnapping. This is why we can’t even talk to you clowns anymore.",
+  "fullText": "@Kaos_Vs_Control Deporting illegal criminals is not kidnapping. This is why we can’t even talk to you clowns anymore.",
+  "source": "Twitter for iPhone",
+  "retweetCount": 7,
+  "replyCount": 7,
+  "likeCount": 190,
+  "quoteCount": 0,
+  "viewCount": 3912,
+  "createdAt": "Sat Nov 22 19:54:06 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 1,
+  "isReply": true,
+  "inReplyToId": "1992219225545445576",
+  "conversationId": "1992219225545445576",
+  "inReplyToUserId": "838372548156993541",
+  "inReplyToUsername": "Kaos_Vs_Control",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "FlyingpenguinEd",
+    "url": "https://x.com/FlyingpenguinEd",
+    "twitterUrl": "https://twitter.com/FlyingpenguinEd",
+    "id": "1473495884755210242",
+    "name": "Eddie S",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1473496216755269633/Ei2jzVQN_normal.jpg",
+    "description": "Giving it another go.",
+    "location": "",
+    "followers": 292,
+    "following": 1229,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Dec 22 03:29:37 +0000 2021",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 32518,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 58,
+    "statusesCount": 33998,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "838372548156993541",
+        "name": "Devin Nunes' Cattle Dog 🇺🇦 🇪🇺🇺🇸🇨🇦",
+        "screen_name": "Kaos_Vs_Control",
+        "indices": [
+          0,
+          16
+        ]
+      }
+    ]
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992320309320716417",
+  "url": "https://x.com/iamchefjoker/status/1992320309320716417",
+  "twitterUrl": "https://twitter.com/iamchefjoker/status/1992320309320716417",
+  "text": "follow me for more banditry and kidnapping tweets \n\ni hope you never get to be in a place to use them anyway",
+  "fullText": "follow me for more banditry and kidnapping tweets \n\ni hope you never get to be in a place to use them anyway",
+  "source": "Twitter for iPhone",
+  "retweetCount": 27,
+  "replyCount": 42,
+  "likeCount": 873,
+  "quoteCount": 15,
+  "viewCount": 110427,
+  "createdAt": "Sat Nov 22 19:52:31 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 14,
+  "isReply": true,
+  "inReplyToId": "1992267963316249004",
+  "conversationId": "1992267963316249004",
+  "inReplyToUserId": "1860265146079166464",
+  "inReplyToUsername": "iamchefjoker",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "iamchefjoker",
+    "url": "https://x.com/iamchefjoker",
+    "twitterUrl": "https://twitter.com/iamchefjoker",
+    "id": "1860265146079166464",
+    "name": "Chef Joker🍖🥘",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1953070006125625344/Vp_rmU0d_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1860265146079166464/1754483099",
+    "description": "Jah Is Merciful🙏💯\n\nIn The Pursuit Of Happiness....\n\nDJ.",
+    "location": "Lagos, Nigeria",
+    "followers": 482,
+    "following": 234,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": false,
+    "createdAt": "Sat Nov 23 10:12:38 +0000 2024",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 35567,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 54,
+    "statusesCount": 14888,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1992267963316249004"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kidnapping lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+}]

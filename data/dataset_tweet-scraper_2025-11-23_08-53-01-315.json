@@ -1,0 +1,3008 @@
+[{
+  "type": "tweet",
+  "id": "1992371876476121200",
+  "url": "https://x.com/agnes_nwanneka/status/1992371876476121200",
+  "twitterUrl": "https://twitter.com/agnes_nwanneka/status/1992371876476121200",
+  "text": "Justice Omotoso escapes assassination attempt \n\nJustice James Omotosho of the Federal High Court in Abuja narrowly survived an assassination attempt early this morning, just days after handing down a life sentence to Nnamdi Kanu.\n\nHe was rushed to a hospital, while security forces scrambled to secure the area.\n\nHis car was riddled with bullets, which was an indication of a calculated attempt to snuff life out of him .",
+  "fullText": "Justice Omotoso escapes assassination attempt \n\nJustice James Omotosho of the Federal High Court in Abuja narrowly survived an assassination attempt early this morning, just days after handing down a life sentence to Nnamdi Kanu.\n\nHe was rushed to a hospital, while security https://t.co/5jjjQZM3Dz",
+  "source": "Twitter for iPhone",
+  "retweetCount": 74,
+  "replyCount": 396,
+  "likeCount": 289,
+  "quoteCount": 120,
+  "viewCount": 100336,
+  "createdAt": "Sat Nov 22 23:17:26 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 60,
+  "isReply": false,
+  "conversationId": "1992371876476121200",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "agnes_nwanneka",
+    "url": "https://x.com/agnes_nwanneka",
+    "twitterUrl": "https://twitter.com/agnes_nwanneka",
+    "id": "1445123978574524417",
+    "name": "Nikky Agnes",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1869974971235348483/EiUxat3k_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1445123978574524417/1748923445",
+    "description": "https://t.co/vSoNVJG7db",
+    "location": "Burkina Faso",
+    "followers": 10692,
+    "following": 73,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Mon Oct 04 20:30:23 +0000 2021",
+    "entities": {
+      "description": {
+        "urls": [
+          {
+            "display_url": "youtube.com/@NikkyAgnes",
+            "expanded_url": "https://www.youtube.com/@NikkyAgnes",
+            "url": "https://t.co/vSoNVJG7db",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 5206,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 2058,
+    "statusesCount": 5910,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1992330462476558588"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/5jjjQZM3Dz",
+        "expanded_url": "https://x.com/agnes_nwanneka/status/1992371876476121200/photo/1",
+        "id_str": "1992371867802284032",
+        "indices": [
+          275,
+          298
+        ],
+        "media_key": "3_1992371867802284032",
+        "media_url_https": "https://pbs.twimg.com/media/G6ZTqGDWMAAK8XB.jpg",
+        "type": "photo",
+        "url": "https://t.co/5jjjQZM3Dz",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1286,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 1008,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 571,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1286,
+          "width": 1080,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1080,
+              "h": 605
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1080,
+              "h": 1080
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1080,
+              "h": 1231
+            },
+            {
+              "x": 437,
+              "y": 0,
+              "w": 643,
+              "h": 1286
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1080,
+              "h": 1286
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992371867802284032"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6ZTqGDWMAAK8XB.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992321821287530729",
+  "url": "https://x.com/Chukwuebuk35893/status/1992321821287530729",
+  "twitterUrl": "https://twitter.com/Chukwuebuk35893/status/1992321821287530729",
+  "text": "@vdmempire As an Igbo man tell one reason why I need to be proud of Nigeria, a bandit kill a police commissioner wear his uniform to peace deal but Mazi nnamdi KANU who only broadcast and didn't commit the alleged offence by himself was sentence to Life impressment, is Igbo part of Nigeria? https://t.co/rf7L2jLK2k",
+  "fullText": "@vdmempire As an Igbo man tell one reason why I need to be proud of Nigeria, a bandit kill a police commissioner wear his uniform to peace deal but Mazi nnamdi KANU who only broadcast and didn't commit the alleged offence by himself was sentence to Life impressment, is Igbo part of Nigeria? https://t.co/rf7L2jLK2k",
+  "source": "Twitter for Android",
+  "retweetCount": 25,
+  "replyCount": 10,
+  "likeCount": 116,
+  "quoteCount": 0,
+  "viewCount": 6551,
+  "createdAt": "Sat Nov 22 19:58:32 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 6,
+  "isReply": true,
+  "inReplyToId": "1992317756092367307",
+  "conversationId": "1992317756092367307",
+  "inReplyToUserId": "1643237785677987842",
+  "inReplyToUsername": "vdmempire",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Chukwuebuk35893",
+    "url": "https://x.com/Chukwuebuk35893",
+    "twitterUrl": "https://twitter.com/Chukwuebuk35893",
+    "id": "1696813836483887104",
+    "name": "BUKASON",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1696814893335285764/0l1A9tk2_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1696813836483887104/1693387224",
+    "description": "public figure",
+    "location": "Nigeria ",
+    "followers": 153,
+    "following": 1259,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Wed Aug 30 09:15:57 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 703,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 693,
+    "statusesCount": 3436,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321787648983040",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321787648983040",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHC8WwAAYZIe.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 94,
+                "y": 28,
+                "h": 120,
+                "w": 120
+              },
+              {
+                "x": 428,
+                "y": 185,
+                "h": 167,
+                "w": 167
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 94,
+                "y": 28,
+                "h": 120,
+                "w": 120
+              },
+              {
+                "x": 428,
+                "y": 185,
+                "h": 167,
+                "w": 167
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 74,
+                "y": 22,
+                "h": 95,
+                "w": 95
+              },
+              {
+                "x": 338,
+                "y": 146,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 94,
+                "y": 28,
+                "h": 120,
+                "w": 120
+              },
+              {
+                "x": 428,
+                "y": 185,
+                "h": 167,
+                "w": 167
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 859,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 859,
+            "w": 720,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 570,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 859,
+          "width": 720,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 403
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 720
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 821
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 430,
+              "h": 859
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 859
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321787648983040"
+          }
+        }
+      },
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321791843246080",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321791843246080",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHSkWIAAuLm0.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 166,
+                "y": 129,
+                "h": 90,
+                "w": 90
+              },
+              {
+                "x": 345,
+                "y": 205,
+                "h": 331,
+                "w": 331
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 166,
+                "y": 129,
+                "h": 90,
+                "w": 90
+              },
+              {
+                "x": 345,
+                "y": 205,
+                "h": 331,
+                "w": 331
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 157,
+                "y": 122,
+                "h": 85,
+                "w": 85
+              },
+              {
+                "x": 328,
+                "y": 194,
+                "h": 314,
+                "w": 314
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 166,
+                "y": 129,
+                "h": 90,
+                "w": 90
+              },
+              {
+                "x": 345,
+                "y": 205,
+                "h": 331,
+                "w": 331
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 715,
+            "w": 715,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 715,
+            "w": 715,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 715,
+          "width": 715,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 715,
+              "h": 400
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 715,
+              "h": 715
+            },
+            {
+              "x": 88,
+              "y": 0,
+              "w": 627,
+              "h": 715
+            },
+            {
+              "x": 357,
+              "y": 0,
+              "w": 358,
+              "h": 715
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 715,
+              "h": 715
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321791843246080"
+          }
+        }
+      },
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321797086228480",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321797086228480",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHmGXsAAVmuG.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 763,
+                "y": 357,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 763,
+                "y": 357,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 507,
+                "y": 237,
+                "h": 87,
+                "w": 87
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 763,
+                "y": 357,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1015,
+            "w": 1022,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1015,
+            "w": 1022,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 675,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1015,
+          "width": 1022,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 443,
+              "w": 1022,
+              "h": 572
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1015,
+              "h": 1015
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 890,
+              "h": 1015
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 508,
+              "h": 1015
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1022,
+              "h": 1015
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321797086228480"
+          }
+        }
+      },
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321797090398208",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321797090398208",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHmHXUAA_mdO.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 442,
+                "y": 328,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 552,
+                "y": 342,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 569,
+                "y": 589,
+                "h": 54,
+                "w": 54
+              },
+              {
+                "x": 304,
+                "y": 590,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 593,
+                "y": 669,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 371,
+                "y": 275,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 464,
+                "y": 287,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 478,
+                "y": 495,
+                "h": 45,
+                "w": 45
+              },
+              {
+                "x": 255,
+                "y": 496,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 498,
+                "y": 562,
+                "h": 51,
+                "w": 51
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 210,
+                "y": 156,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 263,
+                "y": 163,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 271,
+                "y": 280,
+                "h": 25,
+                "w": 25
+              },
+              {
+                "x": 144,
+                "y": 281,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 282,
+                "y": 318,
+                "h": 29,
+                "w": 29
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 442,
+                "y": 328,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 552,
+                "y": 342,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 569,
+                "y": 589,
+                "h": 54,
+                "w": 54
+              },
+              {
+                "x": 304,
+                "y": 590,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 593,
+                "y": 669,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1426,
+            "w": 1070,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 900,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 510,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1426,
+          "width": 1070,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 93,
+              "w": 1070,
+              "h": 599
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1070,
+              "h": 1070
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1070,
+              "h": 1220
+            },
+            {
+              "x": 357,
+              "y": 0,
+              "w": 713,
+              "h": 1426
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1070,
+              "h": 1426
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321797090398208"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321787648983040",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321787648983040",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHC8WwAAYZIe.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 94,
+                "y": 28,
+                "h": 120,
+                "w": 120
+              },
+              {
+                "x": 428,
+                "y": 185,
+                "h": 167,
+                "w": 167
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 94,
+                "y": 28,
+                "h": 120,
+                "w": 120
+              },
+              {
+                "x": 428,
+                "y": 185,
+                "h": 167,
+                "w": 167
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 74,
+                "y": 22,
+                "h": 95,
+                "w": 95
+              },
+              {
+                "x": 338,
+                "y": 146,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 94,
+                "y": 28,
+                "h": 120,
+                "w": 120
+              },
+              {
+                "x": 428,
+                "y": 185,
+                "h": 167,
+                "w": 167
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 859,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 859,
+            "w": 720,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 570,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 859,
+          "width": 720,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 403
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 720
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 821
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 430,
+              "h": 859
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 720,
+              "h": 859
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321787648983040"
+          }
+        }
+      },
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321791843246080",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321791843246080",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHSkWIAAuLm0.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 166,
+                "y": 129,
+                "h": 90,
+                "w": 90
+              },
+              {
+                "x": 345,
+                "y": 205,
+                "h": 331,
+                "w": 331
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 166,
+                "y": 129,
+                "h": 90,
+                "w": 90
+              },
+              {
+                "x": 345,
+                "y": 205,
+                "h": 331,
+                "w": 331
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 157,
+                "y": 122,
+                "h": 85,
+                "w": 85
+              },
+              {
+                "x": 328,
+                "y": 194,
+                "h": 314,
+                "w": 314
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 166,
+                "y": 129,
+                "h": 90,
+                "w": 90
+              },
+              {
+                "x": 345,
+                "y": 205,
+                "h": 331,
+                "w": 331
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 715,
+            "w": 715,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 715,
+            "w": 715,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 715,
+          "width": 715,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 715,
+              "h": 400
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 715,
+              "h": 715
+            },
+            {
+              "x": 88,
+              "y": 0,
+              "w": 627,
+              "h": 715
+            },
+            {
+              "x": 357,
+              "y": 0,
+              "w": 358,
+              "h": 715
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 715,
+              "h": 715
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321791843246080"
+          }
+        }
+      },
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321797086228480",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321797086228480",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHmGXsAAVmuG.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 763,
+                "y": 357,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 763,
+                "y": 357,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 507,
+                "y": 237,
+                "h": 87,
+                "w": 87
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 763,
+                "y": 357,
+                "h": 132,
+                "w": 132
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1015,
+            "w": 1022,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1015,
+            "w": 1022,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 675,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1015,
+          "width": 1022,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 443,
+              "w": 1022,
+              "h": 572
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1015,
+              "h": 1015
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 890,
+              "h": 1015
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 508,
+              "h": 1015
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1022,
+              "h": 1015
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321797086228480"
+          }
+        }
+      },
+      {
+        "display_url": "pic.x.com/rf7L2jLK2k",
+        "expanded_url": "https://x.com/Chukwuebuk35893/status/1992321821287530729/photo/1",
+        "id_str": "1992321797090398208",
+        "indices": [
+          292,
+          315
+        ],
+        "media_key": "3_1992321797090398208",
+        "media_url_https": "https://pbs.twimg.com/media/G6YmHmHXUAA_mdO.jpg",
+        "type": "photo",
+        "url": "https://t.co/rf7L2jLK2k",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 442,
+                "y": 328,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 552,
+                "y": 342,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 569,
+                "y": 589,
+                "h": 54,
+                "w": 54
+              },
+              {
+                "x": 304,
+                "y": 590,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 593,
+                "y": 669,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 371,
+                "y": 275,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 464,
+                "y": 287,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 478,
+                "y": 495,
+                "h": 45,
+                "w": 45
+              },
+              {
+                "x": 255,
+                "y": 496,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 498,
+                "y": 562,
+                "h": 51,
+                "w": 51
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 210,
+                "y": 156,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 263,
+                "y": 163,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 271,
+                "y": 280,
+                "h": 25,
+                "w": 25
+              },
+              {
+                "x": 144,
+                "y": 281,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 282,
+                "y": 318,
+                "h": 29,
+                "w": 29
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 442,
+                "y": 328,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 552,
+                "y": 342,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 569,
+                "y": 589,
+                "h": 54,
+                "w": 54
+              },
+              {
+                "x": 304,
+                "y": 590,
+                "h": 52,
+                "w": 52
+              },
+              {
+                "x": 593,
+                "y": 669,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1426,
+            "w": 1070,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 900,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 510,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1426,
+          "width": 1070,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 93,
+              "w": 1070,
+              "h": 599
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1070,
+              "h": 1070
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1070,
+              "h": 1220
+            },
+            {
+              "x": 357,
+              "y": 0,
+              "w": 713,
+              "h": 1426
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1070,
+              "h": 1426
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992321797090398208"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1643237785677987842",
+        "name": "VERYDARKMAN",
+        "screen_name": "vdmempire",
+        "indices": [
+          0,
+          10
+        ]
+      }
+    ]
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6YmHC8WwAAYZIe.jpg",
+    "https://pbs.twimg.com/media/G6YmHSkWIAAuLm0.jpg",
+    "https://pbs.twimg.com/media/G6YmHmGXsAAVmuG.jpg",
+    "https://pbs.twimg.com/media/G6YmHmHXUAA_mdO.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992311999284359631",
+  "url": "https://x.com/engrICO2015/status/1992311999284359631",
+  "twitterUrl": "https://twitter.com/engrICO2015/status/1992311999284359631",
+  "text": "Breaking News: An American lawyer has disclosed that Nnamdi Kanu has not received a life imprisonment sentence. According to him, the court's proceedings did not constitute a lawful judgment but rather a recitation of a non-existent sentence under Nigerian law. The lawyer emphasized that the judge failed to uphold the fundamental principle of justice, which requires showing the accused the written law they allegedly violated. \"Globally, prior to imprisoning an individual, it is imperative to present them with the exact law they have broken and the relevant section that warrants punishment. However, in this instance, empty letters were read, rather than legal provisions,\" the lawyer stated. He maintained that Nnamdi Kanu is under political house arrest, rather than lawfully sentenced. \"Even in hellfire,\" he argued, \"God does not condemn a soul without presenting the record of their transgressions. You cannot discipline a child without explaining their wrongdoing. Consequently, how can an individual be imprisoned without a written law? Do not be deceived.",
+  "fullText": "Breaking News: An American lawyer has disclosed that Nnamdi Kanu has not received a life imprisonment sentence. According to him, the court's proceedings did not constitute a lawful judgment but rather a recitation of a non-existent sentence under Nigerian law. The lawyer https://t.co/kX5l3ordyI",
+  "source": "Twitter for Android",
+  "retweetCount": 374,
+  "replyCount": 128,
+  "likeCount": 791,
+  "quoteCount": 26,
+  "viewCount": 28230,
+  "createdAt": "Sat Nov 22 19:19:30 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 61,
+  "isReply": false,
+  "conversationId": "1992311999284359631",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "engrICO2015",
+    "url": "https://x.com/engrICO2015",
+    "twitterUrl": "https://twitter.com/engrICO2015",
+    "id": "1249820219427696641",
+    "name": "AFRICAMUSTBEFREE!!!!!!!",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1888696540383846400/cCcpOVm__normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1249820219427696641/1739136135",
+    "description": "MECH. ENGR ! PRODUCTION OPTION . .. EXCELLENT WRITER... LOVER OF FREEDOM N FREEDOM ACTIVIST !!\n\nQUALIFICATIONS ! ND, HND, B/eng ,Msc ( Engr) plus B/Ed MATHS",
+    "location": "",
+    "followers": 28946,
+    "following": 2722,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Mon Apr 13 22:02:49 +0000 2020",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10602,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 11480,
+    "statusesCount": 59147,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1981164162027049019"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/kX5l3ordyI",
+        "expanded_url": "https://x.com/engrICO2015/status/1992311999284359631/photo/1",
+        "id_str": "1992311994532196352",
+        "indices": [
+          273,
+          296
+        ],
+        "media_key": "3_1992311994532196352",
+        "media_url_https": "https://pbs.twimg.com/media/G6YdNAvXcAA14wj.jpg",
+        "type": "photo",
+        "url": "https://t.co/kX5l3ordyI",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 108,
+                "y": 228,
+                "h": 38,
+                "w": 38
+              },
+              {
+                "x": 207,
+                "y": 303,
+                "h": 81,
+                "w": 81
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 108,
+                "y": 228,
+                "h": 38,
+                "w": 38
+              },
+              {
+                "x": 207,
+                "y": 303,
+                "h": 81,
+                "w": 81
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 99,
+                "y": 209,
+                "h": 34,
+                "w": 34
+              },
+              {
+                "x": 190,
+                "y": 278,
+                "h": 74,
+                "w": 74
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 108,
+                "y": 228,
+                "h": 38,
+                "w": 38
+              },
+              {
+                "x": 207,
+                "y": 303,
+                "h": 81,
+                "w": 81
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 739,
+            "w": 415,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 739,
+            "w": 415,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 382,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 739,
+          "width": 415,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 197,
+              "w": 415,
+              "h": 232
+            },
+            {
+              "x": 0,
+              "y": 106,
+              "w": 415,
+              "h": 415
+            },
+            {
+              "x": 0,
+              "y": 77,
+              "w": 415,
+              "h": 473
+            },
+            {
+              "x": 45,
+              "y": 0,
+              "w": 370,
+              "h": 739
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 415,
+              "h": 739
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992311994532196352"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6YdNAvXcAA14wj.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992296352169197731",
+  "url": "https://x.com/mariolexxx/status/1992296352169197731",
+  "twitterUrl": "https://twitter.com/mariolexxx/status/1992296352169197731",
+  "text": "Right now wey Igbo say em no go gree for Nnamdi Kanu judgement, obviously Fulani self no go gree  if em later sentence gumi to life imprisonment.\n\nOya tell me how the country wan take better?",
+  "fullText": "Right now wey Igbo say em no go gree for Nnamdi Kanu judgement, obviously Fulani self no go gree  if em later sentence gumi to life imprisonment.\n\nOya tell me how the country wan take better?",
+  "source": "Twitter for iPhone",
+  "retweetCount": 7,
+  "replyCount": 8,
+  "likeCount": 37,
+  "quoteCount": 0,
+  "viewCount": 1369,
+  "createdAt": "Sat Nov 22 18:17:20 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1992296352169197731",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "mariolexxx",
+    "url": "https://x.com/mariolexxx",
+    "twitterUrl": "https://twitter.com/mariolexxx",
+    "id": "1132409736471764992",
+    "name": "Ayo",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1989343886091698176/m9Hoi0Rz_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1132409736471764992/1762769011",
+    "description": "Allow the strippers to strip and let the bit*** keep tripping ….Que sera sera regardless … Yoruba Blood is flowing in my vein!!",
+    "location": "Nigeria",
+    "followers": 14668,
+    "following": 8515,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Sat May 25 22:14:55 +0000 2019",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "mariolexxx.com",
+            "expanded_url": "http://mariolexxx.com",
+            "url": "https://t.co/UE0rfMUykP",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 21233,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1988,
+    "statusesCount": 20089,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1983288625904361898"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992275336780771834",
+  "url": "https://x.com/ogundamisi/status/1992275336780771834",
+  "twitterUrl": "https://twitter.com/ogundamisi/status/1992275336780771834",
+  "text": "If the Nigerian government moves to grant amnesty to Nnamdi Kanu, it should also extend the same to Charles Okah, serving a similar life sentence in Maiduguri, and make representations to South Africa for Henry Okah’s release. Amnesty should be fair and comprehensive. Right?",
+  "fullText": "If the Nigerian government moves to grant amnesty to Nnamdi Kanu, it should also extend the same to Charles Okah, serving a similar life sentence in Maiduguri, and make representations to South Africa for Henry Okah’s release. Amnesty should be fair and comprehensive. Right?",
+  "source": "Twitter for Android",
+  "retweetCount": 34,
+  "replyCount": 8,
+  "likeCount": 105,
+  "quoteCount": 4,
+  "viewCount": 6780,
+  "createdAt": "Sat Nov 22 16:53:49 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 9,
+  "isReply": false,
+  "conversationId": "1992275336780771834",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "ogundamisi",
+    "url": "https://x.com/ogundamisi",
+    "twitterUrl": "https://twitter.com/ogundamisi",
+    "id": "23377569",
+    "name": "Káyọ̀dé Ògúndámisí 🇳🇬",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1864616044918087680/XXnOvqf7_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/23377569/1709486421",
+    "description": "The Canary! \n\nInterests: Travels, Politics, 🇳🇬 Nigeria, 🌎 Global affairs, Culture, and Social issues.",
+    "location": "South West 🇳🇬/🇬🇧Midlands ",
+    "followers": 619694,
+    "following": 4251,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Mon Mar 09 00:33:53 +0000 2009",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "kayodeogundamisi.blogspot.co.uk",
+            "expanded_url": "http://kayodeogundamisi.blogspot.co.uk/",
+            "url": "https://t.co/2u0h7t2LCE",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 7993,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 17089,
+    "statusesCount": 173730,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1990886114316460036"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992271249360519179",
+  "url": "https://x.com/Nedumcity_/status/1992271249360519179",
+  "twitterUrl": "https://twitter.com/Nedumcity_/status/1992271249360519179",
+  "text": "This Kano man called for Civil War and got rewarded with a Presidential position and National Award while Mazi Nnamdi Kanu got life sentence in Sokoto Prison because he’s from Abia State. https://t.co/mdLsPBeLtK",
+  "fullText": "This Kano man called for Civil War and got rewarded with a Presidential position and National Award while Mazi Nnamdi Kanu got life sentence in Sokoto Prison because he’s from Abia State. https://t.co/mdLsPBeLtK",
+  "source": "Twitter for iPhone",
+  "retweetCount": 421,
+  "replyCount": 43,
+  "likeCount": 698,
+  "quoteCount": 17,
+  "viewCount": 32397,
+  "createdAt": "Sat Nov 22 16:37:35 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 30,
+  "isReply": false,
+  "conversationId": "1992271249360519179",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Nedumcity_",
+    "url": "https://x.com/Nedumcity_",
+    "twitterUrl": "https://twitter.com/Nedumcity_",
+    "id": "1234467407856574464",
+    "name": "Nedu Ani",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1736669014930096128/edxnV4Rc_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1234467407856574464/1691742474",
+    "description": "Statesman, Peace Advocate, Mental Health, Save the Boy Child, Tourism Ambassador, Arsenal 🔴",
+    "location": "",
+    "followers": 20800,
+    "following": 1845,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Mon Mar 02 13:15:55 +0000 2020",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "breezytalk.com",
+            "expanded_url": "http://www.breezytalk.com",
+            "url": "https://t.co/B4dO7gT4Gc",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 123335,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 2639,
+    "statusesCount": 38599,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1991481542783471852"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/mdLsPBeLtK",
+        "expanded_url": "https://x.com/Nedumcity_/status/1992271249360519179/photo/1",
+        "id_str": "1992271243148402688",
+        "indices": [
+          188,
+          211
+        ],
+        "media_key": "3_1992271243148402688",
+        "media_url_https": "https://pbs.twimg.com/media/G6X4I-AWIAAIHgg.jpg",
+        "type": "photo",
+        "url": "https://t.co/mdLsPBeLtK",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 90,
+                "y": 42,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 90,
+                "y": 42,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 57,
+                "y": 26,
+                "h": 38,
+                "w": 38
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 90,
+                "y": 42,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 428,
+            "w": 1072,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 428,
+            "w": 1072,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 271,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 428,
+          "width": 1072,
+          "focus_rects": [
+            {
+              "x": 126,
+              "y": 0,
+              "w": 764,
+              "h": 428
+            },
+            {
+              "x": 294,
+              "y": 0,
+              "w": 428,
+              "h": 428
+            },
+            {
+              "x": 321,
+              "y": 0,
+              "w": 375,
+              "h": 428
+            },
+            {
+              "x": 401,
+              "y": 0,
+              "w": 214,
+              "h": 428
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1072,
+              "h": 428
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992271243148402688"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/mdLsPBeLtK",
+        "expanded_url": "https://x.com/Nedumcity_/status/1992271249360519179/photo/1",
+        "id_str": "1992271243148402688",
+        "indices": [
+          188,
+          211
+        ],
+        "media_key": "3_1992271243148402688",
+        "media_url_https": "https://pbs.twimg.com/media/G6X4I-AWIAAIHgg.jpg",
+        "type": "photo",
+        "url": "https://t.co/mdLsPBeLtK",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 90,
+                "y": 42,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 90,
+                "y": 42,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 57,
+                "y": 26,
+                "h": 38,
+                "w": 38
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 90,
+                "y": 42,
+                "h": 61,
+                "w": 61
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 428,
+            "w": 1072,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 428,
+            "w": 1072,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 271,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 428,
+          "width": 1072,
+          "focus_rects": [
+            {
+              "x": 126,
+              "y": 0,
+              "w": 764,
+              "h": 428
+            },
+            {
+              "x": 294,
+              "y": 0,
+              "w": 428,
+              "h": 428
+            },
+            {
+              "x": 321,
+              "y": 0,
+              "w": 375,
+              "h": 428
+            },
+            {
+              "x": 401,
+              "y": 0,
+              "w": 214,
+              "h": 428
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1072,
+              "h": 428
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992271243148402688"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6X4I-AWIAAIHgg.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992221749904134574",
+  "url": "https://x.com/instablog9ja/status/1992221749904134574",
+  "twitterUrl": "https://twitter.com/instablog9ja/status/1992221749904134574",
+  "text": "I’ve Activated Strategy to Secure Nnamdi Kanu’s Release – Gov Otti \n\nGovernor Alex Otti has responded to the life imprisonment sentence handed down to Nnamdi Kanu, leader of the Indigenous People of Biafra (IPoB), by the Federal High Court Abuja on November 20, 2025. The governor revealed that he has activated a strategy, initiated during Kanu’s trial, aimed at securing his eventual freedom. \n\n“While Mazi Nnamdi Kanu can appeal his conviction, I want to assure the public that I have activated and will continue to pursue the agreed strategy until his freedom is achieved,” Otti stated on Saturday.\n\nHe added that some agreements reached with federal authorities were communicated during his visit to Kanu in DSS custody earlier this year. Otti criticised the initial mishandling of IPOB grievances, noting that poor management at the early stage contributed to the current situation, but urged for peace and restraint.\n\nHe warned politicians against exploiting Kanu’s case for petty political gains and appealed to the people of Abia and the South East to remain calm and avoid inflammatory statements. The governor reiterated his readiness to work with well-meaning Nigerians and other stakeholders to pursue a resolution through dialogue and diplomacy.\n\nHe highlighted his past efforts, including public condemnations of the 2017 military invasion of Kanu’s family home, advocating dialogue over force. Otti stressed that alternative resolution agreements made during the trial will now proceed following the court’s judgment.\n\nHe called for calm, assuring that with federal government assurances, Kanu’s release is possible. The governor concluded by reaffirming his commitment to resolving the matter peacefully and restoring stability to the South East.",
+  "fullText": "I’ve Activated Strategy to Secure Nnamdi Kanu’s Release – Gov Otti \n\nGovernor Alex Otti has responded to the life imprisonment sentence handed down to Nnamdi Kanu, leader of the Indigenous People of Biafra (IPoB), by the Federal High Court Abuja on November 20, 2025. The governor https://t.co/WUUv8a472J",
+  "source": "Twitter for iPad",
+  "retweetCount": 70,
+  "replyCount": 118,
+  "likeCount": 607,
+  "quoteCount": 12,
+  "viewCount": 55210,
+  "createdAt": "Sat Nov 22 13:20:53 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 23,
+  "isReply": false,
+  "conversationId": "1992221749904134574",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "instablog9ja",
+    "url": "https://x.com/instablog9ja",
+    "twitterUrl": "https://twitter.com/instablog9ja",
+    "id": "754393222563102720",
+    "name": "Instablog9ja",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1514080173859258377/WRnGPcs2_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/754393222563102720/1633032326",
+    "description": "24/7 News. Fashion. Lifestyle. Entertainment || || Visit: https://t.co/fmwZQBKklx || || Contact Us: instablog9jacs@gmail.com",
+    "location": "Earth",
+    "followers": 6184233,
+    "following": 46,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Sat Jul 16 19:12:15 +0000 2016",
+    "entities": {
+      "description": {
+        "urls": [
+          {
+            "display_url": "youtube.com/@instablog9jatv",
+            "expanded_url": "http://youtube.com/@instablog9jatv",
+            "url": "https://t.co/fmwZQBKklx",
+            "indices": [
+              58,
+              81
+            ]
+          }
+        ]
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "youtube.com/@instablog9jatv",
+            "expanded_url": "http://youtube.com/@instablog9jatv",
+            "url": "https://t.co/fmwZQBKklx",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 4887,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 143206,
+    "statusesCount": 191731,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1992126237263695997"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/WUUv8a472J",
+        "expanded_url": "https://x.com/instablog9ja/status/1992221749904134574/photo/1",
+        "id_str": "1992221741788110848",
+        "indices": [
+          281,
+          304
+        ],
+        "media_key": "3_1992221741788110848",
+        "media_url_https": "https://pbs.twimg.com/media/G6XLHnEXIAAbCsX.jpg",
+        "type": "photo",
+        "url": "https://t.co/WUUv8a472J",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 596,
+                "y": 569,
+                "h": 37,
+                "w": 37
+              },
+              {
+                "x": 301,
+                "y": 58,
+                "h": 337,
+                "w": 337
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 596,
+                "y": 569,
+                "h": 37,
+                "w": 37
+              },
+              {
+                "x": 301,
+                "y": 58,
+                "h": 337,
+                "w": 337
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 375,
+                "y": 358,
+                "h": 23,
+                "w": 23
+              },
+              {
+                "x": 189,
+                "y": 36,
+                "h": 212,
+                "w": 212
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 596,
+                "y": 569,
+                "h": 37,
+                "w": 37
+              },
+              {
+                "x": 301,
+                "y": 58,
+                "h": 337,
+                "w": 337
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1080,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1080,
+            "w": 1080,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1080,
+          "width": 1080,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 475,
+              "w": 1080,
+              "h": 605
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1080,
+              "h": 1080
+            },
+            {
+              "x": 133,
+              "y": 0,
+              "w": 947,
+              "h": 1080
+            },
+            {
+              "x": 513,
+              "y": 0,
+              "w": 540,
+              "h": 1080
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1080,
+              "h": 1080
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992221741788110848"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6XLHnEXIAAbCsX.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992209666689122472",
+  "url": "https://x.com/NewsCentralTV/status/1992209666689122472",
+  "twitterUrl": "https://twitter.com/NewsCentralTV/status/1992209666689122472",
+  "text": "As Isaac Fayose condemns the life sentence handed to Nnamdi Kanu as another marker of Igbo marginalisation, legal analyst Fred Nzeako points to years of controversy surrounding Kanu’s arrest, rendition, and trial, fault lines that continue to divide opinion nationwide. https://t.co/ScVhSyVZbC",
+  "fullText": "As Isaac Fayose condemns the life sentence handed to Nnamdi Kanu as another marker of Igbo marginalisation, legal analyst Fred Nzeako points to years of controversy surrounding Kanu’s arrest, rendition, and trial, fault lines that continue to divide opinion nationwide. https://t.co/ScVhSyVZbC",
+  "source": "Twitter Web App",
+  "retweetCount": 557,
+  "replyCount": 33,
+  "likeCount": 860,
+  "quoteCount": 9,
+  "viewCount": 27695,
+  "createdAt": "Sat Nov 22 12:32:52 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 97,
+  "isReply": false,
+  "conversationId": "1992209666689122472",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "NewsCentralTV",
+    "url": "https://x.com/NewsCentralTV",
+    "twitterUrl": "https://twitter.com/NewsCentralTV",
+    "id": "1043484974417162240",
+    "name": "News Central TV",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1686334897441374208/-tVEmQJR_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1043484974417162240/1744809869",
+    "description": "Africa. First. We boldly amplify African voices and challenge dominant narratives through fearless reporting. We're on DSTV 422, GOtv 23, StarTimes 274, AVO 23.",
+    "location": "Africa",
+    "followers": 61669,
+    "following": 2,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Sat Sep 22 12:59:39 +0000 2018",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "newscentral.africa",
+            "expanded_url": "https://newscentral.africa",
+            "url": "https://t.co/kYBDaJlw8D",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 7044,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 42315,
+    "statusesCount": 72900,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1989639712248909968"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/ScVhSyVZbC",
+        "expanded_url": "https://x.com/NewsCentralTV/status/1992209666689122472/video/1",
+        "id_str": "1992209147840827392",
+        "indices": [
+          270,
+          293
+        ],
+        "media_key": "13_1992209147840827392",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992209147840827392/img/4VAuxNBYBnhNr0Do.jpg",
+        "type": "video",
+        "url": "https://t.co/ScVhSyVZbC",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1080,
+            "w": 1920,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 675,
+            "w": 1200,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 383,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1080,
+          "width": 1920,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            16,
+            9
+          ],
+          "duration_millis": 149048,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/pl/t2KJLYVrjmpseUrk.m3u8?tag=21"
+            },
+            {
+              "bitrate": 256000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/480x270/-4NMXu4bBn8TBgYq.mp4?tag=21"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/640x360/6Foy_L3lTJTIj45A.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/1280x720/meLeXv2nALyrWwi5.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/1920x1080/0De1agrkrW5dDFrW.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992209147840827392"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/ScVhSyVZbC",
+        "expanded_url": "https://x.com/NewsCentralTV/status/1992209666689122472/video/1",
+        "id_str": "1992209147840827392",
+        "indices": [
+          270,
+          293
+        ],
+        "media_key": "13_1992209147840827392",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1992209147840827392/img/4VAuxNBYBnhNr0Do.jpg",
+        "type": "video",
+        "url": "https://t.co/ScVhSyVZbC",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1080,
+            "w": 1920,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 675,
+            "w": 1200,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 383,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1080,
+          "width": 1920,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            16,
+            9
+          ],
+          "duration_millis": 149048,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/pl/t2KJLYVrjmpseUrk.m3u8?tag=21"
+            },
+            {
+              "bitrate": 256000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/480x270/-4NMXu4bBn8TBgYq.mp4?tag=21"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/640x360/6Foy_L3lTJTIj45A.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/1280x720/meLeXv2nALyrWwi5.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1992209147840827392/vid/avc1/1920x1080/0De1agrkrW5dDFrW.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1992209147840827392"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1992209147840827392/img/4VAuxNBYBnhNr0Do.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992205700857016499",
+  "url": "https://x.com/PeterObiUSA/status/1992205700857016499",
+  "twitterUrl": "https://twitter.com/PeterObiUSA/status/1992205700857016499",
+  "text": "My Reply to Peter Obi’s comments on the insensitive, ill timed, problematic, divisive life sentence judgement given to Mazi Nnamdi Kanu:\n\nRules of the Hole: when you’re in a hole, stop digging.\nYet here we are.\n\nGumi walks free. Fulani militants roam with RPGs and AK-57s in a country where civilians can’t legally hold so much as a pistol.\n\nBut Justice Omotosho and co. have convicted Mazi Nnamdi Kanu on all counts, handed him a life sentence, and even blamed him for #EndSARS—something everyone knows he had nothing to do with.\n\nThe optics don’t matter to these drunken sailors in power. They believe the people have been subdued by fear and poverty. It’s the same brazenness we saw in the Mahmood-managed 2023 presidential election that Peter Obi clearly won, yet was stolen without consequences.\nOur people say: when a mad man is dancing in the forest, something is beating the drum for him.\n\nI am not from the South-East, but the gang-up against our most industrious and enterprising brothers and sisters is now visible to the blind and audible to the deaf.\nGowon said “no victor, no vanquished.” Perhaps his Whitehall handlers drafted that line, because Nigeria is still fighting a war that ended over 50 years ago.\n\nOpen bigotry and hatred are being mainstreamed. Whole regions remain excluded where it matters. Without justice, the peace Nigeria has is nothing but the peace of the graveyard.\nI have never seen a time when more people openly believe Nigeria cannot work. The new national chorus is: “Let everybody go their separate ways.”\n\nDo we have no elders? Are they not seeing the unfolding disaster?\nThe supporters of MNK deserve commendation for their restraint despite relentless provocation. And now rumors say he is being transferred to Sokoto to serve a life sentence. Why Sokoto? Is he now the prisoner of the Caliphate?\n\nNigeria stands at a crossroads—no, a fork in the road—while our fate is being decided by slipper-wearing religious extremists wielding AK-47s, and the one who “grabbed it, snatched it, and can’t run with it” is nowhere to be found.\n\nOga Presido, if you don’t wake up and confront insecurity, you may well be Nigeria’s last elected president.",
+  "fullText": "My Reply to Peter Obi’s comments on the insensitive, ill timed, problematic, divisive life sentence judgement given to Mazi Nnamdi Kanu:\n\nRules of the Hole: when you’re in a hole, stop digging.\nYet here we are.\n\nGumi walks free. Fulani militants roam with RPGs and AK-57s in a",
+  "source": "Twitter for iPhone",
+  "retweetCount": 74,
+  "replyCount": 9,
+  "likeCount": 151,
+  "quoteCount": 1,
+  "viewCount": 8918,
+  "createdAt": "Sat Nov 22 12:17:07 +0000 2025",
+  "lang": "en",
+  "quoteId": "1992178458626056310",
+  "bookmarkCount": 10,
+  "isReply": false,
+  "conversationId": "1992205700857016499",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "PeterObiUSA",
+    "url": "https://x.com/PeterObiUSA",
+    "twitterUrl": "https://twitter.com/PeterObiUSA",
+    "id": "1535801273538465792",
+    "name": "Stephen OSEMWEGIE",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1838238070849560576/M4bPrkuO_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1535801273538465792/1727105157",
+    "description": "Husband, Father, Philanthropist, Human Rights Activist, Former Gubernatorial Aspirant Edo State 2024, Investor, Politician, Influencer. PhD Research Student CIU",
+    "location": "Earth",
+    "followers": 95418,
+    "following": 3738,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 12 01:49:02 +0000 2022",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "stephenosemwegie.org",
+            "expanded_url": "http://www.stephenosemwegie.org",
+            "url": "https://t.co/Y07ZsZFeqa",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 21642,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 4574,
+    "statusesCount": 20491,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          470,
+          478
+        ],
+        "text": "EndSARS"
+      }
+    ],
+    "symbols": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1992178458626056310",
+    "text": "Kanu’s Conviction: At a Time Like This. \nThe news of Mazi Nnamdi Kanu’s conviction should compel every well-meaning Nigerian to pause and reflect. This is coming at a time when our beloved nation is facing severe economic hardship, insecurity, and the consequences of poor governance. \n\nRather than reducing tension, this unfortunate development may well only aggravate it. \nI have always maintained that Mazi Kanu should never have been arrested. His arrest, detention, and now conviction represent a failure of leadership and a misunderstanding of the issues at stake. \n\nFor years, I have consistently argued that dialogue, constructive engagement, and inclusive governance offer the path to lasting peace. Coercion becomes necessary only when reason has been exhausted. In this case, I submit that the reason was not only not exhausted, but was probably not explored at all, or not fully explored.\n\nThe concerns Kanu raised were not unheard of. The issues for which he demanded solutions were not insoluble. It only required wisdom, empathy, and a willingness to listen. In any functional society, such grievances are met with dialogue and reforms aimed at strengthening unity. \n\nThe government’s approach has only deepened mistrust and created an avoidable distraction at a time when citizens are overwhelmed by harsh economic realities and insecurity. While some may insist that “the law has taken its course,” leadership often demands more than a strict, mechanical application of the law. Nations around the world resort to political solutions, negotiated settlements, and even amnesty when legal processes alone cannot serve the broader interest of peace and stability. Nigeria is not an exception.\n\nThe handling of Kanu’s case mirrors the government as a man trapped in a hole but who, instead of looking for a way out, keeps digging deeper. It worsens not only the government’s predicament but also the nation's collective condition.\n\nIf we truly desire a new Nigeria - a united, peaceful, and progressive one, our leaders must choose healing over hostility, reconciliation over retaliation, and dialogue over division. Only by addressing grievances with justice, fairness, and compassion can we move towards a future where every Nigerian feels heard, valued, and safe.\n\nMy ultimate call at this time, without prejudice to how anyone feels about the decision of the court, is for us to be optimistic for peace and reconciliation which will come in the end. I am also saying, thereby, that the Presidency, the Council of State and credible statesmen who love this country and who are interested in cohesion and inclusivity, should rise to the occasion, for a lasting solution. -PO",
+    "source": "Twitter for Android",
+    "retweetCount": 8689,
+    "replyCount": 3757,
+    "likeCount": 22372,
+    "quoteCount": 2050,
+    "viewCount": 3360863,
+    "createdAt": "Sat Nov 22 10:28:52 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 1799,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "PeterObi",
+      "url": "https://x.com/PeterObi",
+      "twitterUrl": "https://twitter.com/PeterObi",
+      "id": "1050779471731707904",
+      "name": "Peter Obi",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1050783097934020608/2_bhBolN_normal.jpg",
+      "description": "Former Governor, Anambra State. LP Presidential Candidate, 2023. Tweets by him are signed -PO.",
+      "location": "Nigeria",
+      "followers": 5476369,
+      "following": 80,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": false,
+      "createdAt": "Fri Oct 12 16:05:23 +0000 2018",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 303,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1347,
+      "statusesCount": 7503,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": []
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992201937408680093",
+  "url": "https://x.com/daily_trust/status/1992201937408680093",
+  "twitterUrl": "https://twitter.com/daily_trust/status/1992201937408680093",
+  "text": "Obi Tackles FG, Rejects Life Sentence For Nnamdi Kanu\nhttps://t.co/vQ3RvZLDh0",
+  "fullText": "Obi Tackles FG, Rejects Life Sentence For Nnamdi Kanu\nhttps://t.co/vQ3RvZLDh0",
+  "source": "Twitter for Android",
+  "retweetCount": 28,
+  "replyCount": 7,
+  "likeCount": 123,
+  "quoteCount": 5,
+  "viewCount": 8984,
+  "createdAt": "Sat Nov 22 12:02:09 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1992201937408680093",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "daily_trust",
+    "url": "https://x.com/daily_trust",
+    "twitterUrl": "https://twitter.com/daily_trust",
+    "id": "69271273",
+    "name": "Daily Trust",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1690252067657469954/vWC5VZcv_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/69271273/1691822348",
+    "description": "The official Twitter handle of the Daily Trust Newspaper. The newspaper you can trust for your breaking news, features, analyses, business, sports, in Nigeria.",
+    "location": "Nigeria",
+    "followers": 2984936,
+    "following": 786,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Thu Aug 27 11:58:58 +0000 2009",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 525,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 159422,
+    "statusesCount": 576206,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [
+      {
+        "display_url": "dailytrust.com/obi-tackles-fg…",
+        "expanded_url": "https://dailytrust.com/obi-tackles-fg-rejects-life-sentence-for-nnamdi-kanu",
+        "url": "https://t.co/vQ3RvZLDh0",
+        "indices": [
+          54,
+          77
+        ]
+      }
+    ],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "kanu sentence lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+}]

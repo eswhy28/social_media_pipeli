@@ -1,0 +1,1542 @@
+[{
+  "type": "tweet",
+  "id": "1992332730756108370",
+  "url": "https://x.com/FSYusuff/status/1992332730756108370",
+  "twitterUrl": "https://twitter.com/FSYusuff/status/1992332730756108370",
+  "text": "Dear IPOB, congratulations on acquiring NETFLIX. Keep expanding your asset portfolio. https://t.co/fT5EweqtkT",
+  "fullText": "Dear IPOB, congratulations on acquiring NETFLIX. Keep expanding your asset portfolio. https://t.co/fT5EweqtkT",
+  "source": "Twitter for iPhone",
+  "retweetCount": 30,
+  "replyCount": 15,
+  "likeCount": 107,
+  "quoteCount": 1,
+  "viewCount": 3267,
+  "createdAt": "Sat Nov 22 20:41:53 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1992332730756108370",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "FSYusuff",
+    "url": "https://x.com/FSYusuff",
+    "twitterUrl": "https://twitter.com/FSYusuff",
+    "id": "1580871369750974466",
+    "name": "FS YUSUF",
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1964140093830021120/r7rn0X1w_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1580871369750974466/1676505107",
+    "description": "Account Suspended; at the moment, I will be firing on all cylinders here ❤️",
+    "location": "Scotland, United Kingdom",
+    "followers": 14284,
+    "following": 816,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Fri Oct 14 10:41:45 +0000 2022",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 4143,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 358,
+    "statusesCount": 3327,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1940500178101731723"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/fT5EweqtkT",
+        "expanded_url": "https://x.com/FSYusuff/status/1992332730756108370/photo/1",
+        "id_str": "1992332725156458496",
+        "indices": [
+          86,
+          109
+        ],
+        "media_key": "3_1992332725156458496",
+        "media_url_https": "https://pbs.twimg.com/media/G6YwDsVWMAAq1vI.jpg",
+        "type": "photo",
+        "url": "https://t.co/fT5EweqtkT",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1410,
+            "w": 1284,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 1093,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 619,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1410,
+          "width": 1284,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1284,
+              "h": 719
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1284,
+              "h": 1284
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1237,
+              "h": 1410
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 705,
+              "h": 1410
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1284,
+              "h": 1410
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992332725156458496"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/fT5EweqtkT",
+        "expanded_url": "https://x.com/FSYusuff/status/1992332730756108370/photo/1",
+        "id_str": "1992332725156458496",
+        "indices": [
+          86,
+          109
+        ],
+        "media_key": "3_1992332725156458496",
+        "media_url_https": "https://pbs.twimg.com/media/G6YwDsVWMAAq1vI.jpg",
+        "type": "photo",
+        "url": "https://t.co/fT5EweqtkT",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1410,
+            "w": 1284,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 1093,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 619,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1410,
+          "width": 1284,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1284,
+              "h": 719
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1284,
+              "h": 1284
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1237,
+              "h": 1410
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 705,
+              "h": 1410
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1284,
+              "h": 1410
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992332725156458496"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6YwDsVWMAAq1vI.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992332585129931020",
+  "url": "https://x.com/egi_nupe___/status/1992332585129931020",
+  "twitterUrl": "https://twitter.com/egi_nupe___/status/1992332585129931020",
+  "text": "No! IPOB is not fighting a religious cause but ethnic cause. Therefore: it is Igbo Terrorists. \n\nFixed.",
+  "fullText": "No! IPOB is not fighting a religious cause but ethnic cause. Therefore: it is Igbo Terrorists. \n\nFixed.",
+  "source": "Twitter for iPhone",
+  "retweetCount": 64,
+  "replyCount": 22,
+  "likeCount": 345,
+  "quoteCount": 4,
+  "viewCount": 19908,
+  "createdAt": "Sat Nov 22 20:41:18 +0000 2025",
+  "lang": "en",
+  "quoteId": "1991856346531278882",
+  "bookmarkCount": 4,
+  "isReply": false,
+  "conversationId": "1992332585129931020",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "egi_nupe___",
+    "url": "https://x.com/egi_nupe___",
+    "twitterUrl": "https://twitter.com/egi_nupe___",
+    "id": "1741375320236670976",
+    "name": "Foundational Nupe Lawyer",
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1983607324943044608/J8kmE_Fu_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1741375320236670976/1714427193",
+    "description": "The only account that offends (and is hated) the people from the South and North. I am doing something right. I belong to nobody cos I am for everybody.",
+    "location": "Lagos, Nigeria",
+    "followers": 48245,
+    "following": 10985,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Sun Dec 31 08:26:53 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "muhammedadam.com",
+            "expanded_url": "http://muhammedadam.com",
+            "url": "https://t.co/sAmqgdwup1",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 154503,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 2391,
+    "statusesCount": 105492,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1988934735989522627"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1991856346531278882",
+    "text": "You call BH and other groups Islamic terrorists, so it is safe to call IPOB Christian terrorists right?",
+    "source": "Twitter for iPhone",
+    "retweetCount": 85,
+    "replyCount": 57,
+    "likeCount": 249,
+    "quoteCount": 69,
+    "viewCount": 73241,
+    "createdAt": "Fri Nov 21 13:08:54 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 6,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "Dr_Meenerh",
+      "url": "https://x.com/Dr_Meenerh",
+      "twitterUrl": "https://twitter.com/Dr_Meenerh",
+      "id": "4698402331",
+      "name": "Amimi❤️",
+      "isBlueVerified": false,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1954130856756367360/xNADk1sA_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/4698402331/1752484336",
+      "description": "Alhamdulillah.",
+      "location": "Paradise",
+      "followers": 1900,
+      "following": 527,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": false,
+      "createdAt": "Sat Jan 02 20:24:09 +0000 2016",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 114471,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 91,
+      "statusesCount": 53357,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1945487405974212623"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992329168663494870",
+  "url": "https://x.com/Onsogbu/status/1992329168663494870",
+  "twitterUrl": "https://twitter.com/Onsogbu/status/1992329168663494870",
+  "text": "A History Lesson for Nnamdi Kanu and His IPOB Members:\n\nIn January 1970, General Philip Efiong, the man who took over after Ojukwu, surrendered the Republic of Biafra and declared: \"The State of Biafra ceases to exist.\"\n\nLater, General Chukwuemeka Ojukwu himself returned to Nigeria after being pardoned and famously stated: \"If I ever have to fight again, it will be to keep Nigeria one.\"\n\nSo, fifty years later, we have a new generation of rabble-rousers on social media trying to \"actualize\" Biafra.\n\nMy question is simple: Is it the same Biafra that was officially surrendered and ceased to exist in 1970 that they are trying to actualize in the 2020s?\n\nLet's be honest, that isn't a cause. It's a #Biafraud.\n\nEzeribe Ikechukwu",
+  "fullText": "A History Lesson for Nnamdi Kanu and His IPOB Members:\n\nIn January 1970, General Philip Efiong, the man who took over after Ojukwu, surrendered the Republic of Biafra and declared: \"The State of Biafra ceases to exist.\"\n\nLater, General Chukwuemeka Ojukwu himself returned to https://t.co/5KnyePVyd1",
+  "source": "Twitter for Android",
+  "retweetCount": 7,
+  "replyCount": 7,
+  "likeCount": 24,
+  "quoteCount": 0,
+  "viewCount": 2362,
+  "createdAt": "Sat Nov 22 20:27:44 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 5,
+  "isReply": false,
+  "conversationId": "1992329168663494870",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Onsogbu",
+    "url": "https://x.com/Onsogbu",
+    "twitterUrl": "https://twitter.com/Onsogbu",
+    "id": "1554954559575015424",
+    "name": "Pastor Okezie J. Atañi",
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1990405141271371776/vOxh5KAe_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1554954559575015424/1754083171",
+    "description": "● COURAGEOUS PERSON\n\n● Weapon FASHIONED against OB!DIOTS + IPOB & their PROPAGANDA....\nGallantly standing on the MANDATE of President Bola Ahmed Tinubu GCFR.",
+    "location": "Ahead to Aso Rock Villa,Abuja ",
+    "followers": 58074,
+    "following": 8259,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": false,
+    "createdAt": "Wed Aug 03 22:17:24 +0000 2022",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 76851,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 56510,
+    "statusesCount": 123142,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1990879643868532895"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/5KnyePVyd1",
+        "expanded_url": "https://x.com/Onsogbu/status/1992329168663494870/photo/1",
+        "id_str": "1992329154168033281",
+        "indices": [
+          275,
+          298
+        ],
+        "media_key": "3_1992329154168033281",
+        "media_url_https": "https://pbs.twimg.com/media/G6Ysz1XXEAEYGdD.jpg",
+        "type": "photo",
+        "url": "https://t.co/5KnyePVyd1",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 200,
+                "y": 596,
+                "h": 204,
+                "w": 204
+              },
+              {
+                "x": 624,
+                "y": 1618,
+                "h": 174,
+                "w": 174
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 117,
+                "y": 349,
+                "h": 119,
+                "w": 119
+              },
+              {
+                "x": 365,
+                "y": 948,
+                "h": 101,
+                "w": 101
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 66,
+                "y": 198,
+                "h": 67,
+                "w": 67
+              },
+              {
+                "x": 207,
+                "y": 537,
+                "h": 57,
+                "w": 57
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 200,
+                "y": 596,
+                "h": 204,
+                "w": 204
+              },
+              {
+                "x": 624,
+                "y": 1618,
+                "h": 174,
+                "w": 174
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 2048,
+            "w": 1152,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 2048,
+          "width": 1152,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1152,
+              "h": 645
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1152,
+              "h": 1152
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1152,
+              "h": 1313
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1024,
+              "h": 2048
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1152,
+              "h": 2048
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992329154168033281"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          702,
+          711
+        ],
+        "text": "Biafraud"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6Ysz1XXEAEYGdD.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992314264800079947",
+  "url": "https://x.com/iykimo/status/1992314264800079947",
+  "twitterUrl": "https://twitter.com/iykimo/status/1992314264800079947",
+  "text": "Most of our people don't care about the Ratio Decidendi of the Nnamdi Kanu terrorism conviction.\n\nThey are just throwing tantrums up and down, insulting rational voices &amp; playing the victim card.\n\nThe same victims of ESN, Sit at home and IPOB terrorism \n\nIfele adiro eme unu?",
+  "fullText": "Most of our people don't care about the Ratio Decidendi of the Nnamdi Kanu terrorism conviction.\n\nThey are just throwing tantrums up and down, insulting rational voices &amp; playing the victim card.\n\nThe same victims of ESN, Sit at home and IPOB terrorism \n\nIfele adiro eme unu?",
+  "source": "Twitter for Android",
+  "retweetCount": 6,
+  "replyCount": 5,
+  "likeCount": 18,
+  "quoteCount": 0,
+  "viewCount": 696,
+  "createdAt": "Sat Nov 22 19:28:30 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 1,
+  "isReply": false,
+  "conversationId": "1992314264800079947",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "iykimo",
+    "url": "https://x.com/iykimo",
+    "twitterUrl": "https://twitter.com/iykimo",
+    "id": "538049255",
+    "name": "IKECHUKWU",
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/721733738883891201/e10cI9P-_normal.jpg",
+    "description": "Humanist. Cityzen. Politics. Sports. Powered by Integrity.\n#FactsOnly",
+    "location": "In your heart ",
+    "followers": 33232,
+    "following": 8586,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": false,
+    "createdAt": "Tue Mar 27 10:33:22 +0000 2012",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 97151,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 3701,
+    "statusesCount": 417127,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1318247553842974721"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992306854073094406",
+  "url": "https://x.com/BloodedDutchMan/status/1992306854073094406",
+  "twitterUrl": "https://twitter.com/BloodedDutchMan/status/1992306854073094406",
+  "text": "Public notice: I have withdrawn my support for Peter Obi. You’ll start seeing posts criticizing his stance on IPOB, so if you’re a supporter of PO, this is a good time to unfollow me. https://t.co/JSMv9z7EQ3",
+  "fullText": "Public notice: I have withdrawn my support for Peter Obi. You’ll start seeing posts criticizing his stance on IPOB, so if you’re a supporter of PO, this is a good time to unfollow me. https://t.co/JSMv9z7EQ3",
+  "source": "Twitter for iPhone",
+  "retweetCount": 24,
+  "replyCount": 117,
+  "likeCount": 130,
+  "quoteCount": 9,
+  "viewCount": 11844,
+  "createdAt": "Sat Nov 22 18:59:03 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 10,
+  "isReply": false,
+  "conversationId": "1992306854073094406",
+  "possiblySensitive": false,
+  "isPinned": true,
+  "author": {
+    "type": "user",
+    "userName": "BloodedDutchMan",
+    "url": "https://x.com/BloodedDutchMan",
+    "twitterUrl": "https://twitter.com/BloodedDutchMan",
+    "id": "1967586955295936513",
+    "name": "Hussling Emeka Benjamin",
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1991618997930901504/ys0b9E6r_normal.jpg",
+    "description": "Hardcore ANTI-IPOB The voiceless voice of EMEKA OLIKAENYI from Lilu, Anambra State",
+    "followers": 782,
+    "following": 148,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Mon Sep 15 13:51:11 +0000 2025",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 3139,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 194,
+    "statusesCount": 803,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1992306854073094406"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/JSMv9z7EQ3",
+        "expanded_url": "https://x.com/BloodedDutchMan/status/1992306854073094406/photo/1",
+        "id_str": "1992306848037314560",
+        "indices": [
+          184,
+          207
+        ],
+        "media_key": "3_1992306848037314560",
+        "media_url_https": "https://pbs.twimg.com/media/G6YYhcjXoAArwEJ.jpg",
+        "type": "photo",
+        "url": "https://t.co/JSMv9z7EQ3",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 503,
+            "w": 961,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 503,
+            "w": 961,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 356,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 503,
+          "width": 961,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 898,
+              "h": 503
+            },
+            {
+              "x": 13,
+              "y": 0,
+              "w": 503,
+              "h": 503
+            },
+            {
+              "x": 44,
+              "y": 0,
+              "w": 441,
+              "h": 503
+            },
+            {
+              "x": 138,
+              "y": 0,
+              "w": 252,
+              "h": 503
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 961,
+              "h": 503
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992306848037314560"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/JSMv9z7EQ3",
+        "expanded_url": "https://x.com/BloodedDutchMan/status/1992306854073094406/photo/1",
+        "id_str": "1992306848037314560",
+        "indices": [
+          184,
+          207
+        ],
+        "media_key": "3_1992306848037314560",
+        "media_url_https": "https://pbs.twimg.com/media/G6YYhcjXoAArwEJ.jpg",
+        "type": "photo",
+        "url": "https://t.co/JSMv9z7EQ3",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 503,
+            "w": 961,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 503,
+            "w": 961,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 356,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 503,
+          "width": 961,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 898,
+              "h": 503
+            },
+            {
+              "x": 13,
+              "y": 0,
+              "w": 503,
+              "h": 503
+            },
+            {
+              "x": 44,
+              "y": 0,
+              "w": 441,
+              "h": 503
+            },
+            {
+              "x": 138,
+              "y": 0,
+              "w": 252,
+              "h": 503
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 961,
+              "h": 503
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992306848037314560"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6YYhcjXoAArwEJ.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992303055082070148",
+  "url": "https://x.com/salawueedris1/status/1992303055082070148",
+  "twitterUrl": "https://twitter.com/salawueedris1/status/1992303055082070148",
+  "text": "Terror!st proscribed group IPOB has k!lled 77 million innocent Southeasterners, yet Peter Obi supported Nnamdi Kanu.😭\n\nPeter Obi is fînished!",
+  "fullText": "Terror!st proscribed group IPOB has k!lled 77 million innocent Southeasterners, yet Peter Obi supported Nnamdi Kanu.😭\n\nPeter Obi is fînished!",
+  "source": "Twitter for iPhone",
+  "retweetCount": 6,
+  "replyCount": 7,
+  "likeCount": 14,
+  "quoteCount": 1,
+  "viewCount": 1198,
+  "createdAt": "Sat Nov 22 18:43:58 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1992303055082070148",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "salawueedris1",
+    "url": "https://x.com/salawueedris1",
+    "twitterUrl": "https://twitter.com/salawueedris1",
+    "id": "713010145563906049",
+    "name": "SALAWU||OMOIYAONIPAKO",
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1957729866939318275/KCeyadfL_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/713010145563906049/1673340148",
+    "description": "Zoologist || Man United|| PR ||Politics.",
+    "location": "Nigeria",
+    "followers": 7783,
+    "following": 2797,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Thu Mar 24 14:30:40 +0000 2016",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 266110,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 5793,
+    "statusesCount": 174071,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1987914163956703269"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992297960252522950",
+  "url": "https://x.com/auntycaro1/status/1992297960252522950",
+  "twitterUrl": "https://twitter.com/auntycaro1/status/1992297960252522950",
+  "text": "There will come a time when simply being identified as Igbo will attract Public execution if we continue to ignore the warning signs around us. The yorubas and hausa/fulanis are gradually clipping your wings without firing a single shot. Support and fund  IPOB/ESN.",
+  "fullText": "There will come a time when simply being identified as Igbo will attract Public execution if we continue to ignore the warning signs around us. The yorubas and hausa/fulanis are gradually clipping your wings without firing a single shot. Support and fund  IPOB/ESN.",
+  "source": "Twitter for iPhone",
+  "retweetCount": 56,
+  "replyCount": 19,
+  "likeCount": 175,
+  "quoteCount": 4,
+  "viewCount": 3208,
+  "createdAt": "Sat Nov 22 18:23:43 +0000 2025",
+  "lang": "en",
+  "quoteId": "1992122266956792203",
+  "bookmarkCount": 2,
+  "isReply": false,
+  "conversationId": "1992297960252522950",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "auntycaro1",
+    "url": "https://x.com/auntycaro1",
+    "twitterUrl": "https://twitter.com/auntycaro1",
+    "id": "1954625506864689154",
+    "name": "Nwanyi Asaba",
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1984204884313264128/MCfQlO4K_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1954625506864689154/1756825110",
+    "description": "Anti Feminism|| IGBO|| 1997!! Before you hate or like me, just be ready to get your feelings hurt by my opinion. I don't tweet to please or displease anyone|",
+    "followers": 347,
+    "following": 122,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Aug 10 19:27:12 +0000 2025",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 13,
+    "statusesCount": 125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1991833040470122958"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1992122266956792203",
+    "text": "Man to man\n\nHit me with one harsh truth you've accepted so far as a man.",
+    "source": "Twitter for Android",
+    "retweetCount": 458,
+    "replyCount": 1092,
+    "likeCount": 3628,
+    "quoteCount": 197,
+    "viewCount": 345775,
+    "createdAt": "Sat Nov 22 06:45:34 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 673,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "_falsi1ke",
+      "url": "https://x.com/_falsi1ke",
+      "twitterUrl": "https://twitter.com/_falsi1ke",
+      "id": "1923013458",
+      "name": "Ja Leto",
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1542628322135490563/XImeYojh_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1923013458/1761916793",
+      "description": "Time flies when you’re broke",
+      "location": "Nairobi, Kenya",
+      "followers": 460137,
+      "following": 17180,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": false,
+      "createdAt": "Tue Oct 01 10:42:49 +0000 2013",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 168261,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 842,
+      "statusesCount": 33862,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": []
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992293971716878731",
+  "url": "https://x.com/the_cruisetv/status/1992293971716878731",
+  "twitterUrl": "https://twitter.com/the_cruisetv/status/1992293971716878731",
+  "text": "Terrorism will never be the norm in Nigeria!\n\nWe can't sit back and watch our nation get over run by Islamic Terrorists, Fulani Herdsmen, IPOB, Armed Bandits or Millitants. Their actions need to be met with great unyielding force. \n\nThat is the language they understand.\n\nA year ago, Netanyahu's actions in Gaza looked terrible, and infact I joined the pro-palestinian mob to criticise Israel, but today in light of the rising security challenges in Nigeria, I admit my error: You don't negotiate or try to be peaceful with people out to end you. \n\nYou send them to the great beyond. \n\nNo matter the cost. \n\nPeace means having a bigger stick than the other guy. Peace comes through strength not negotiations, \n\nbut the issue with Nigeria is that insecurity serves a purpose: a religious, geographical, tribal or political purpose and so the government is not interested in ending it completely \n\nThe Nigerian Government in its full might is 1000x stronger than these terrorists \n\nWe've seen the way Nnamdi kanu and IPOB were silenced and dismantled, why can't the same energy be directed at Islamic Terrorists and Fulani Herdsmen ?\n\nWhy are people like Sheikh Gumi allowed to walk freely ???\n\nWhy do we negotiate with Islamic Terrorists instead of bl0wing them to smithereens \n\nI miss the pre-2010 Nigeria. It's been 15 years and we've not seen any development only more chaos\n\nI want a safe and peaceful Nigeria\n\nLet's put away hypocrisy and call things exactly as they are, particularly now that global attention is on us \n\nMAKE NIGERIA SAFE AGAIN \n\n💔🇳🇬",
+  "fullText": "Terrorism will never be the norm in Nigeria!\n\nWe can't sit back and watch our nation get over run by Islamic Terrorists, Fulani Herdsmen, IPOB, Armed Bandits or Millitants. Their actions need to be met with great unyielding force. \n\nThat is the language they understand.\n\nA year https://t.co/fH7T8CdupM",
+  "source": "Twitter for Android",
+  "retweetCount": 13,
+  "replyCount": 10,
+  "likeCount": 38,
+  "quoteCount": 3,
+  "viewCount": 3504,
+  "createdAt": "Sat Nov 22 18:07:52 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1992293971716878731",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "the_cruisetv",
+    "url": "https://x.com/the_cruisetv",
+    "twitterUrl": "https://twitter.com/the_cruisetv",
+    "id": "1397198590368436232",
+    "name": "THE CRUISE TV",
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1884176288287543296/fa89UVSW_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1397198590368436232/1708600094",
+    "description": "Agenda Must Agend! 👨‍🍳 • Turn On Notifs 🔔 • 100K 🔜 • WA TV Link 👉https://t.co/t4t9G1zwgC • TG Channel Link 👉https://t.co/HMeSWqYX90 •",
+    "location": "Twitter, WhatsApp & Telegram",
+    "followers": 25376,
+    "following": 268,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Tue May 25 14:31:52 +0000 2021",
+    "entities": {
+      "description": {
+        "urls": [
+          {
+            "display_url": "wa.me/message/4DTSFE…",
+            "expanded_url": "https://wa.me/message/4DTSFE5TNIMIK1",
+            "url": "https://t.co/t4t9G1zwgC",
+            "indices": [
+              65,
+              88
+            ]
+          },
+          {
+            "display_url": "t.me/THECRUISETVPLUS",
+            "expanded_url": "https://t.me/THECRUISETVPLUS",
+            "url": "https://t.co/HMeSWqYX90",
+            "indices": [
+              108,
+              131
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 12381,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 6146,
+    "statusesCount": 24957,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1952520457363612109"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/fH7T8CdupM",
+        "expanded_url": "https://x.com/the_cruisetv/status/1992293971716878731/photo/1",
+        "id_str": "1992293959591186432",
+        "indices": [
+          279,
+          302
+        ],
+        "media_key": "3_1992293959591186432",
+        "media_url_https": "https://pbs.twimg.com/media/G6YMzPWW0AArSvc.jpg",
+        "type": "photo",
+        "url": "https://t.co/fH7T8CdupM",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1024,
+            "w": 1024,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1024,
+            "w": 1024,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1024,
+          "width": 1024,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 98,
+              "w": 1024,
+              "h": 573
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1024,
+              "h": 1024
+            },
+            {
+              "x": 63,
+              "y": 0,
+              "w": 898,
+              "h": 1024
+            },
+            {
+              "x": 256,
+              "y": 0,
+              "w": 512,
+              "h": 1024
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1024,
+              "h": 1024
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1992293959591186432"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6YMzPWW0AArSvc.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992293600164491502",
+  "url": "https://x.com/funshographix/status/1992293600164491502",
+  "twitterUrl": "https://twitter.com/funshographix/status/1992293600164491502",
+  "text": "They hate it that Yoruba are defending themselves against their bully\n\nThey want to be the centre of everything &amp; dominating\n\nWhen you match energy with them, they flip the coin &amp; turn it into bigotry claim\n\nOne said it's bcos of their glory dey make Yoruba hate them\n\nIpob glory",
+  "fullText": "They hate it that Yoruba are defending themselves against their bully\n\nThey want to be the centre of everything &amp; dominating\n\nWhen you match energy with them, they flip the coin &amp; turn it into bigotry claim\n\nOne said it's bcos of their glory dey make Yoruba hate them\n\nIpob glory",
+  "source": "Twitter for Android",
+  "retweetCount": 57,
+  "replyCount": 22,
+  "likeCount": 230,
+  "quoteCount": 4,
+  "viewCount": 4556,
+  "createdAt": "Sat Nov 22 18:06:23 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 1,
+  "isReply": false,
+  "conversationId": "1992293600164491502",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "funshographix",
+    "url": "https://x.com/funshographix",
+    "twitterUrl": "https://twitter.com/funshographix",
+    "id": "258722207",
+    "name": "IFÁ FUNSHO 𓋹",
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1679591948225576960/MRzDnu6v_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/258722207/1690385843",
+    "description": "GRAPHIC DESIGNER / Funshographix@gmail.com / YORUBA in NIGERIA!",
+    "location": "Afrika ",
+    "followers": 71725,
+    "following": 9340,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": false,
+    "createdAt": "Mon Feb 28 10:20:33 +0000 2011",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 95325,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1626,
+    "statusesCount": 30899,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+},
+{
+  "type": "tweet",
+  "id": "1992293215136076087",
+  "url": "https://x.com/snnbiafra/status/1992293215136076087",
+  "twitterUrl": "https://twitter.com/snnbiafra/status/1992293215136076087",
+  "text": "@GeorgeOha34227 This is no news. The Nigerian govt killed IPOB members who resisted RUGA (which is the fulani terror bases you are talking about today), jailed many IPOB members who came out to protest and also Mazi Nnamdi Kanu who expose the fulani terrorist agenda in Nigeria &amp; alaigbo.",
+  "fullText": "@GeorgeOha34227 This is no news. The Nigerian govt killed IPOB members who resisted RUGA (which is the fulani terror bases you are talking about today), jailed many IPOB members who came out to protest and also Mazi Nnamdi Kanu who expose the fulani terrorist agenda in Nigeria &amp; alaigbo.",
+  "source": "Twitter Web App",
+  "retweetCount": 6,
+  "replyCount": 7,
+  "likeCount": 32,
+  "quoteCount": 0,
+  "viewCount": 2163,
+  "createdAt": "Sat Nov 22 18:04:52 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": true,
+  "inReplyToId": "1992269549010370579",
+  "conversationId": "1992269549010370579",
+  "inReplyToUserId": "1685683594780659712",
+  "inReplyToUsername": "GeorgeOha34227",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "snnbiafra",
+    "url": "https://x.com/snnbiafra",
+    "twitterUrl": "https://twitter.com/snnbiafra",
+    "id": "1051551273529614337",
+    "name": "Sparrow News Network 🕊️",
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1419621221528899585/y9JiZpLR_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1051551273529614337/1621353274",
+    "description": "Republic of Biafra must be Independent, Sovereign and Defended.",
+    "location": "Ebube (Capital), Biafra",
+    "followers": 2004,
+    "following": 828,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Sun Oct 14 19:12:15 +0000 2018",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "snnglobe.blogspot.com",
+            "expanded_url": "http://www.snnglobe.blogspot.com",
+            "url": "https://t.co/p3aULzzCCQ",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 23363,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 2768,
+    "statusesCount": 38950,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1722873067955695750"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1685683594780659712",
+        "name": "Chibuenyi (Don Machiti) )",
+        "screen_name": "GeorgeOha34227",
+        "indices": [
+          0,
+          15
+        ]
+      }
+    ]
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "IPOB lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-18 until:2025-11-23"
+}]

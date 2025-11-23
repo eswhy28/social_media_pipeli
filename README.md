@@ -1,373 +1,442 @@
+# Social Media Analytics Pipeline
 
-# Social Media AI Pipeline
+A comprehensive social media monitoring and analytics platform for tracking Nigerian social media conversations with AI-powered sentiment analysis, location extraction, and real-time insights.
 
-Enterprise-grade social media analysis platform with advanced AI capabilities for sentiment analysis and location extraction.
+## 🎯 Overview
 
-## Features
+This platform provides:
+- **Multi-Source Data Collection**: Twitter/X, TikTok, Facebook, Google Trends
+- **AI-Powered Analysis**: Sentiment analysis, location extraction, entity recognition
+- **Real-Time Insights**: Engagement metrics, trending topics, geographic analysis
+- **Smart Processing**: Automatic de-duplication, incremental updates, batch processing
+- **RESTful API**: Clean, well-documented endpoints for frontend integration
 
-- **Advanced Sentiment Analysis**: RoBERTa model with 98%+ accuracy
-- **Location Extraction**: BERT NER + spaCy for geographical entity recognition
-- **Comprehensive Text Analysis**: Keywords, entities, and content insights
-- **Database Storage**: SQLAlchemy models for analysis results
-- **RESTful API**: FastAPI with automatic documentation
-- **Authentication**: JWT-based security system
-- **Docker Support**: Containerized deployment ready
+## 🏗️ Architecture
 
-## AI Models
-
-- **Sentiment**: `cardiffnlp/twitter-roberta-base-sentiment-latest`
-- **NER**: `dbmdz/bert-large-cased-finetuned-conll03-english`
-- **spaCy**: `en_core_web_sm` for additional entity recognition
-
-## Social Media Platform Support
-
-### Current
-- **Twitter/X**: Native API integration with tweepy
-
-### Phase 1 - Newly Added
-- **TikTok**: Content fetching via TikTok-Api
-- **Facebook/Instagram**: Content scraping with facebook-scraper
-- **Google Trends**: Trend analysis with pytrends (no API key required)
-- **Web Scraping**: Apify platform integration for advanced scraping
-
-### Phase 2 - Data Source Integration (✅ Implemented)
-All new services are fully integrated with Nigerian content focus:
-- **Google Trends Service**: Real-time trending searches, interest over time, regional analysis for Nigeria
-- **TikTok Service**: Nigerian hashtag monitoring, video metrics, engagement analytics
-- **Facebook Service**: Nigerian pages monitoring, post scraping, engagement collection
-- **Apify Service**: Multi-platform scraping with actor-based architecture
-
-## 🚀 Quick Start for Frontend Developers
-
-### One-Command Setup (Recommended)
-```bash
-# Clone the repository
-git clone <repository-url>
-cd social_media_pipeli
-
-# Run the complete setup script
-python setup_complete.py
+```
+Data Sources → Scrapers → Database → AI Processing → API → Frontend
+    ↓             ↓          ↓            ↓          ↓
+Twitter      Apify      PostgreSQL   TextBlob    FastAPI
+TikTok       Playwright               spaCy       React
+Facebook     Google API                          (your choice)
 ```
 
-This script will automatically:
-- Install all dependencies
-- Download AI models
-- Create database and generate sample data
-- Start the API server
-- Open API documentation in your browser
+### Technology Stack
 
-### Manual Setup
+- **Backend**: Python 3.13, FastAPI
+- **Database**: PostgreSQL with AsyncPG
+- **AI/ML**: TextBlob (sentiment), spaCy (NER), HuggingFace (future)
+- **Scraping**: Apify, Playwright, BeautifulSoup
+- **Caching**: Redis
+- **Geo-coding**: Custom Nigerian location database
 
-#### 1. Install Dependencies
+## 📦 Installation
+
+### Prerequisites
+- Python 3.13+
+- PostgreSQL 14+
+- Redis (optional, for caching)
+
+### Setup
+
+1. **Clone the repository**
 ```bash
-# Create virtual environment (recommended)
+git clone <your-repo>
+cd social_media_pipeli
+```
+
+2. **Create virtual environment**
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-# Install requirements
+3. **Install dependencies**
+```bash
 pip install -r requirements.txt
-
-# Download AI models and data
-python scripts/setup_models.py
 ```
 
-#### 2. Environment Setup
-Create a `.env` file in the project root:
-```env
-# Core Settings
-HUGGINGFACE_TOKEN=your_token_here
-DATABASE_URL=sqlite:///./data/social_media.db
-SECRET_KEY=your_secret_key_here
-
-# Social Media API Keys (Optional - Phase 1)
-APIFY_API_TOKEN=your_apify_token
-TIKTOK_API_KEY=your_tiktok_key
-TIKTOK_API_SECRET=your_tiktok_secret
-TIKTOK_ACCESS_TOKEN=your_tiktok_token
-FACEBOOK_APP_ID=your_facebook_app_id
-FACEBOOK_APP_SECRET=your_facebook_app_secret
-FACEBOOK_ACCESS_TOKEN=your_facebook_access_token
-```
-
-See `.env.example` for a complete list of configuration options.
-
-#### 3. Initialize Database & Generate Sample Data
+4. **Configure environment**
 ```bash
-# Initialize database
-python -c "import asyncio; from app.database import init_db; asyncio.run(init_db())"
-
-# Generate sample data for testing
-python generate_1000_tweets.py
+cp .env.example .env
+# Edit .env with your credentials:
+# - DATABASE_URL
+# - APIFY_API_TOKEN (optional)
+# - Other API keys as needed
 ```
 
-#### 4. Start the Application
+5. **Initialize database**
 ```bash
-python run.py
+python scripts/create_ai_tables.py
 ```
 
-The API will be available at:
-- **API Server**: http://localhost:8000
-- **Interactive Docs**: http://localhost:8000/docs
-- **OpenAPI Schema**: http://localhost:8000/openapi.json
-
-## 📖 API Endpoints
-
-### AI Analysis Endpoints
-- `POST /api/v1/ai/analyze/sentiment` - Sentiment analysis
-- `POST /api/v1/ai/analyze/locations` - Location extraction
-- `POST /api/v1/ai/analyze/comprehensive` - Complete text analysis
-- `GET /api/v1/ai/models/info` - Model information and status
-
-### Data Endpoints
-- `GET /api/v1/data/posts` - Get social media posts
-- `POST /api/v1/data/posts` - Create new post
-- `GET /api/v1/data/analytics` - Get analytics data
-
-### Authentication
-- `POST /api/v1/auth/login` - User login
-- `POST /api/v1/auth/register` - User registration
-
-## 🔧 Frontend Integration Examples
-
-### JavaScript/TypeScript
-```javascript
-// Analyze text sentiment
-const analyzeText = async (text) => {
-  const response = await fetch('http://localhost:8000/api/v1/ai/analyze/comprehensive', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ text })
-  });
-  return await response.json();
-};
-
-// Get social media posts
-const getPosts = async () => {
-  const response = await fetch('http://localhost:8000/api/v1/data/posts');
-  return await response.json();
-};
-```
-
-### Phase 2 - Using New Data Sources
-
-```python
-# Google Trends - Get trending searches in Nigeria
-from app.services import get_google_trends_service
-
-trends_service = get_google_trends_service()
-trending = await trends_service.get_trending_searches(region="NG")
-print(f"Top trending: {trending[0]['term']}")
-
-# Get interest over time for keywords
-interest = await trends_service.get_interest_over_time(
-    keywords=["naira", "fuel price", "election"],
-    timeframe="today 3-m",
-    geo="NG"
-)
-
-# TikTok - Monitor Nigerian hashtags
-from app.services import get_tiktok_service
-
-tiktok_service = get_tiktok_service()
-videos = await tiktok_service.search_hashtag("nigeria", count=30)
-print(f"Found {len(videos)} videos")
-
-# Monitor multiple Nigerian hashtags
-monitoring = await tiktok_service.monitor_nigerian_content(
-    max_videos_per_hashtag=20
-)
-
-# Facebook - Scrape Nigerian pages
-from app.services import get_facebook_service
-
-fb_service = get_facebook_service()
-posts = await fb_service.scrape_page_posts("legit.ng", pages=2)
-
-# Monitor multiple Nigerian pages
-monitoring = await fb_service.monitor_nigerian_pages(pages_per_source=2)
-
-# Apify - Advanced scraping
-from app.services import get_apify_service
-
-apify_service = get_apify_service()
-
-# Scrape Instagram profile
-data = await apify_service.scrape_instagram_profile(
-    username="lagosnigeria",
-    results_limit=50
-)
-
-# Comprehensive multi-platform scraping
-results = await apify_service.scrape_nigerian_social_media(
-    platforms=["instagram", "tiktok", "facebook"],
-    items_per_platform=50
-)
-```
-
-### Python
-```python
-import requests
-
-# Analyze sentiment
-response = requests.post(
-    'http://localhost:8000/api/v1/ai/analyze/sentiment',
-    json={'text': 'I love this product!'}
-)
-result = response.json()
-```
-
-### cURL
+6. **Import data** (if you have JSON files)
 ```bash
-# Test comprehensive analysis
-curl -X POST "http://localhost:8000/api/v1/ai/analyze/comprehensive" \
-     -H "Content-Type: application/json" \
-     -d '{"text": "Amazing product! Works great in New York and Los Angeles."}'
+python scripts/import_data.py
 ```
 
-## 🛠️ Development Scripts
+7. **Run the server**
+```bash
+# Option 1: Using uvicorn directly (recommended)
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
-- `python scripts/setup_models.py` - Download and verify AI models
-- `python generate_1000_tweets.py` - Generate 1000 sample tweets for testing
-- `python test_all_endpoints.py` - Test all API endpoints
-- `python verify.sh` - Verify installation and setup
+# Option 2: Using the start script
+./start.sh
 
-## 📊 Sample API Response
+# Option 3: Using Python module
+python -m uvicorn app.main:app --reload
+```
 
+API will be available at: `http://localhost:8000`  
+Documentation at: `http://localhost:8000/docs`
+
+## 📊 Database Schema
+
+### Core Tables
+
+#### `apify_scraped_data`
+Stores raw scraped social media data with full metadata
+- Media URLs, engagement metrics, hashtags, mentions
+- Author information and locations
+- Platform-specific identifiers for de-duplication
+
+#### `apify_sentiment_analysis`
+AI-generated sentiment analysis results
+- Positive/negative/neutral classification
+- Confidence scores and polarity values
+- Model tracking (TextBlob, RoBERTa, etc.)
+
+#### `apify_location_extractions`
+Extracted and geocoded locations from posts
+- Location text and type (City, State, Region)
+- Coordinates (latitude, longitude)
+- Regional classification (Nigerian geopolitical zones)
+
+#### `apify_data_processing_status`
+Tracks which records have been processed to prevent duplication
+- Per-service processing flags (sentiment, location, entity, keyword)
+- Processing timestamps and error tracking
+- Ensures incremental, efficient processing
+
+## 🚀 API Endpoints
+
+### Data Retrieval
+
+#### Get Scraped Posts
+```http
+GET /api/v1/social-media/data/scraped
+```
+**Query Parameters:**
+- `platform` - Filter by platform (twitter, facebook, tiktok)
+- `limit` - Number of records (default: 50, max: 500)
+- `offset` - Pagination offset
+- `hours_back` - Filter by time (1-720 hours)
+- `has_media` - Filter posts with/without images
+- `hashtag` - Filter by specific hashtag
+- `location` - Filter by location
+
+**Response:**
 ```json
 {
   "success": true,
   "data": {
-    "text": "I love this product! Works great in New York.",
-    "sentiment": {
-      "label": "positive",
-      "score": 0.89,
-      "confidence": 0.92,
-      "model": "roberta"
-    },
-    "locations": [
+    "posts": [
       {
-        "text": "New York",
-        "label": "GPE",
-        "confidence": 0.98,
-        "source": "huggingface"
+        "id": "uuid",
+        "author": {"username": "...", "account_name": "..."},
+        "content": "Tweet text",
+        "engagement": {"likes": 107, "retweets": 30, "replies": 15, "views": 3267},
+        "media": {"urls": ["https://...jpg"], "count": 1, "has_media": true},
+        "location": {
+          "location": "Lagos, Nigeria",
+          "coordinates": {"lat": 6.5244, "lon": 3.3792},
+          "region": "South West",
+          "country": "Nigeria"
+        },
+        "hashtags": ["IPOB", "Nigeria"],
+        "posted_at": "2025-11-22T20:41:53+00:00"
       }
     ],
-    "keywords": ["product", "great"],
-    "entities": [...],
-    "analysis_timestamp": "2024-10-25T23:00:00Z"
+    "count": 50
   }
 }
 ```
 
-## 🚨 Troubleshooting
+#### Geographic Analysis
+```http
+GET /api/v1/social-media/data/geo-analysis?hours_back=24
+```
+Returns posts grouped by location with engagement metrics and top hashtags.
 
-### Common Issues
+#### Engagement Analysis
+```http
+GET /api/v1/social-media/data/engagement-analysis?group_by=hour
+```
+Returns aggregated engagement metrics grouped by hour, day, author, or hashtag.
 
-1. **Models not loading**: Run `python scripts/setup_models.py`
-2. **Database errors**: Delete `social_media.db` and run setup again
-3. **Port conflicts**: Change port in `run.py` or use `python run.py --port 8001`
-4. **Missing dependencies**: Run `pip install -r requirements.txt`
+#### Overall Statistics
+```http
+GET /api/v1/social-media/data/stats
+```
+Returns total posts, media percentage, platform distribution, top authors, and hashtags.
 
-### Health Check
+### AI Processing
+
+#### Process Sentiment Analysis
+```http
+POST /api/v1/social-media/ai/process-sentiment?limit=100
+```
+Processes sentiment for unprocessed posts. Automatically skips already-processed records.
+
+#### Process Location Extraction
+```http
+POST /api/v1/social-media/ai/process-locations?limit=100
+```
+Extracts and geocodes locations from post content and author metadata.
+
+#### Get Processing Statistics
+```http
+GET /api/v1/social-media/ai/processing-stats
+```
+Returns processing progress: total records, processed counts, unprocessed counts.
+
+#### Get Sentiment Results
+```http
+GET /api/v1/social-media/ai/sentiment-results?sentiment_label=positive&min_confidence=0.7
+```
+Returns sentiment analysis results with original posts.
+
+#### Get Location Results
+```http
+GET /api/v1/social-media/ai/location-results?location_type=GPE
+```
+Returns extracted locations with coordinates and regional data.
+
+### Social Media Scraping
+
+#### Google Trends
+- `GET /api/v1/social-media/trends/trending` - Get trending searches
+- `POST /api/v1/social-media/trends/analyze` - Analyze keywords
+
+#### TikTok
+- `POST /api/v1/social-media/tiktok/hashtag` - Scrape by hashtag
+- `GET /api/v1/social-media/tiktok/monitor` - Monitor Nigerian content
+
+#### Facebook
+- `POST /api/v1/social-media/facebook/page` - Scrape page posts
+- `GET /api/v1/social-media/facebook/monitor` - Monitor Nigerian pages
+
+#### Apify Integration
+- `POST /api/v1/social-media/apify/scrape` - Generic Apify scraper
+- `GET /api/v1/social-media/apify/comprehensive` - Comprehensive scraping
+
+#### Hashtag Discovery
+- `GET /api/v1/social-media/hashtags/trending` - Discover trending hashtags
+- `GET /api/v1/social-media/hashtags/category/{category}` - Category-specific hashtags
+- `GET /api/v1/social-media/hashtags/engagement/{hashtag}` - Hashtag metrics
+
+## 🔄 Data Processing Workflow
+
+### 1. Data Collection
 ```bash
-curl http://localhost:8000/health
-# Should return: {"status": "healthy"}
+# Option A: Import from JSON files
+python scripts/import_data.py
+
+# Option B: Scrape via API
+curl -X POST http://localhost:8000/api/v1/social-media/apify/scrape \
+  -H "Content-Type: application/json" \
+  -d '{"platform": "twitter", "target": "#Nigeria", "limit": 100}'
 ```
 
-### Model Status Check
+### 2. AI Processing (First Time)
 ```bash
-curl http://localhost:8000/api/v1/ai/models/info
-# Should show loaded models and their status
+# Process sentiment for all data
+curl -X POST http://localhost:8000/api/v1/social-media/ai/process-sentiment
+
+# Extract and geocode locations
+curl -X POST http://localhost:8000/api/v1/social-media/ai/process-locations
 ```
 
-## 🌐 Deployment
-
-### Vercel (Recommended for Production)
-
-Deploy to Vercel for serverless, scalable API with public access:
-
-#### Quick Deploy to Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/social_media_pipeli)
-
-#### Manual Deployment
-
-1. **Install Vercel CLI**:
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Deploy**:
-   ```bash
-   vercel --prod
-   ```
-
-3. **Configure Environment Variables** in Vercel Dashboard:
-   - `ENVIRONMENT=production`
-   - `SECRET_KEY=your-secret-key`
-   - `HUGGINGFACE_TOKEN=hf_your_token`
-   - `DATABASE_URL=sqlite+aiosqlite:///./data/social_media.db`
-
-**Features:**
-- ✅ Publicly accessible APIs
-- ✅ Auto-scaling serverless functions
-- ✅ CORS enabled for all origins
-- ✅ Automatic HTTPS
-- ✅ Free tier available
-- ✅ Continuous deployment from GitHub
-
-**📖 Full Guide**: See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
-
-**API URL**: `https://your-project.vercel.app`
-
-### Local Docker
+### 3. Incremental Updates (Automatic)
 ```bash
-docker build -t social-media-ai .
-docker run -p 8000:8000 social-media-ai
+# Add new data
+python scripts/import_data.py  # New tweets imported
+
+# Process only new data (automatically skips processed)
+curl -X POST http://localhost:8000/api/v1/social-media/ai/process-sentiment
+# Response: "Processed 50 new records, skipped 139 already processed"
 ```
 
-### Hugging Face Spaces
-- Ready for deployment with `Dockerfile` and `app.py`
-- Optimized for AI model inference
-- Alternative to Vercel deployment
+### 4. Frontend Integration
+```javascript
+// Fetch posts with filters
+const posts = await fetch(
+  '/api/v1/social-media/data/scraped?has_media=true&limit=20'
+);
 
-## 📝 Environment Variables
+// Display with images
+posts.data.posts.forEach(post => {
+  if (post.media.has_media) {
+    displayPostWithImage(post.content, post.media.urls[0]);
+  }
+});
 
-```env
-# Required
-HUGGINGFACE_TOKEN=hf_your_token_here
-SECRET_KEY=your-secret-key-here
+// Plot on map
+const geoData = await fetch('/api/v1/social-media/data/geo-analysis');
+geoData.data.geo_analysis.forEach(loc => {
+  if (loc.location.coordinates) {
+    addMapMarker(loc.location.coordinates.lat, loc.location.coordinates.lon);
+  }
+});
+```
 
-# Optional
-DATABASE_URL=sqlite:///./data/social_media.db
-API_V1_STR=/api/v1
-PROJECT_NAME=Social Media AI Pipeline
-ENVIRONMENT=development
+## 🛡️ De-duplication Strategy
 
-# Phase 1 - Social Media APIs (Optional)
+The system prevents data duplication at three levels:
+
+### 1. Import Level
+- Checks `source_id` + `platform` before inserting
+- Skips duplicates automatically
+- **Result**: No duplicate tweets in database
+
+### 2. Processing Level
+- Tracks processing status per record
+- Only processes unprocessed records
+- Marks as processed after completion
+- **Result**: Never reprocesses same data
+
+### 3. Retrieval Level
+- Frontend reads pre-processed data from database
+- No on-the-fly processing
+- **Result**: Fast, consistent responses
+
+## 📁 Project Structure
+
+```
+social_media_pipeli/
+├── app/
+│   ├── api/
+│   │   ├── auth.py              # Authentication endpoints
+│   │   ├── social_media.py      # Main data & AI endpoints
+│   │   ├── admin.py             # Admin endpoints
+│   │   ├── reports.py           # Report generation
+│   │   └── ingestion.py         # Data ingestion
+│   ├── models/
+│   │   ├── __init__.py          # Legacy models
+│   │   ├── social_media_sources.py  # ApifyScrapedData model
+│   │   └── ai_analysis.py       # AI processing models
+│   ├── services/
+│   │   ├── apify_service.py     # Apify integration
+│   │   ├── ai_processing_service.py  # AI processing logic
+│   │   ├── geocoding_service.py # Location geocoding
+│   │   ├── google_trends_service.py
+│   │   ├── tiktok_service.py
+│   │   └── facebook_service.py
+│   ├── database.py              # Database connection
+│   └── main.py                  # FastAPI app
+├── scripts/
+│   ├── import_data.py           # Import JSON data
+│   ├── create_ai_tables.py      # Create database tables
+│   ├── check_db.py              # Verify database
+│   └── verify_*.py              # Verification scripts
+├── data/                        # JSON data files
+├── .env                         # Environment variables
+├── requirements.txt             # Python dependencies
+└── README.md                    # This file
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+```bash
+# Database
+DATABASE_URL=postgresql+asyncpg://user:pass@localhost:5432/dbname
+
+# API Keys (optional)
 APIFY_API_TOKEN=your_apify_token
-TIKTOK_API_KEY=your_tiktok_key
-TIKTOK_API_SECRET=your_tiktok_secret
-FACEBOOK_APP_ID=your_facebook_app_id
-FACEBOOK_APP_SECRET=your_facebook_app_secret
+
+# Redis (optional)
+REDIS_URL=redis://localhost:6379
+
+# Application
+APP_NAME=Social Media Pipeline
+ENVIRONMENT=development
+DEBUG=True
 ```
 
-## 🔑 Getting API Keys
+## 📈 Features
 
-### Required for Core Functionality
-- **HuggingFace**: Free account at https://huggingface.co/settings/tokens
+### ✅ Implemented
+- Multi-source data collection (Twitter, TikTok, Facebook, Google Trends)
+- Comprehensive data import with de-duplication
+- AI-powered sentiment analysis
+- Location extraction and geocoding
+- Geographic analysis with Nigerian state/region support
+- Engagement metrics and trending analysis
+- RESTful API with automatic documentation
+- Smart incremental processing (no reprocessing)
+- Batch job tracking and monitoring
 
-### Optional - Phase 1 Social Media Platforms
-- **Apify**: Sign up at https://console.apify.com/account/integrations (Free tier: 5 actors, $5 free credit)
-- **TikTok**: Apply at https://developers.tiktok.com/ (requires business verification)
-- **Facebook/Instagram**: Create app at https://developers.facebook.com/ (Free tier available)
-- **Google Trends**: No API key required - uses pytrends library
+### 🚧 Planned
+- Advanced NER with HuggingFace models
+- Topic modeling and clustering
+- Influencer identification
+- Automated alerts and anomaly detection
+- Real-time streaming data
+- Custom dashboard templates
 
-## 🤝 Support
+## 🧪 Testing
 
-- Check `/docs` for interactive API documentation
-- Run health checks at `/health`
-- View model status at `/api/v1/ai/models/info`
-- Generate fresh test data with `python generate_1000_tweets.py`
+```bash
+# Verify data import
+python scripts/verify_frontend_ready.py
+
+# Verify AI system
+python scripts/verify_ai_system.py
+
+# Check database contents
+python scripts/check_db.py
+
+# Run all tests
+pytest
+```
+
+## 📊 Performance
+
+- **Data Import**: ~1000 tweets/second
+- **Sentiment Analysis**: ~100 posts/second (TextBlob)
+- **Location Geocoding**: ~500 lookups/second (cached)
+- **API Response Time**: <100ms (database queries)
+- **De-duplication Check**: O(1) (indexed queries)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Apify for social media scraping infrastructure
+- TextBlob for sentiment analysis
+- spaCy for NLP processing
+- FastAPI for the excellent web framework
+- PostgreSQL for reliable data storage
+
+## 📞 Support
+
+For issues, questions, or contributions:
+- Open an issue in the GitHub repository
+- Check the API documentation at `/docs` endpoint
+- Review the verification scripts in `scripts/`
+
+---
+
+**Built with ❤️ for Nigerian Social Media Analytics**

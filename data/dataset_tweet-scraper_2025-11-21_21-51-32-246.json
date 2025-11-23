@@ -1,0 +1,3055 @@
+[{
+  "type": "tweet",
+  "id": "1991964834351710261",
+  "url": "https://x.com/ChidiOdinkalu/status/1991964834351710261",
+  "twitterUrl": "https://twitter.com/ChidiOdinkalu/status/1991964834351710261",
+  "text": "This list of #UnitySchools closed by this thing in #Nigeria shd concentrate minds. It includes FGC Ilorin; FGGC Bakori; FGC Rubochi; FGGC Abaji; &amp; Ushi-Ekiti. \n\nThis covers 4 out of 6 geo-political zones in #Nigeria &amp; the FCT. This is beyond serious....!\n\nhttps://t.co/RK7gx8AWFA",
+  "fullText": "This list of #UnitySchools closed by this thing in #Nigeria shd concentrate minds. It includes FGC Ilorin; FGGC Bakori; FGC Rubochi; FGGC Abaji; &amp; Ushi-Ekiti. \n\nThis covers 4 out of 6 geo-political zones in #Nigeria &amp; the FCT. This is beyond serious....!\n\nhttps://t.co/RK7gx8AWFA",
+  "source": "Twitter for Android",
+  "retweetCount": 42,
+  "replyCount": 6,
+  "likeCount": 52,
+  "quoteCount": 2,
+  "viewCount": 3320,
+  "createdAt": "Fri Nov 21 20:20:00 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 2,
+  "isReply": false,
+  "conversationId": "1991964834351710261",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "ChidiOdinkalu",
+    "url": "https://x.com/ChidiOdinkalu",
+    "twitterUrl": "https://twitter.com/ChidiOdinkalu",
+    "id": "3886771835",
+    "name": "Chidi Odinkalu, CGoF",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1903251455659872256/gMug2ydD_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/3886771835/1514022010",
+    "description": "@LSELaw |\n#LittleFinger is V.I.L.E.|\nI RT bc I'm curious & Sometimes for a laugh",
+    "location": "LevIsolating",
+    "followers": 148619,
+    "following": 1236,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Wed Oct 07 04:22:32 +0000 2015",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "facultyprofiles.tufts.edu/chidi-odinkalu…",
+            "expanded_url": "https://facultyprofiles.tufts.edu/chidi-odinkalu/about",
+            "url": "https://t.co/QZdTyIqH5B",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 12907,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 10232,
+    "statusesCount": 55901,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1300709687676088322"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {
+    "rest_id": "https://t.co/RK7gx8AWFA",
+    "legacy": {
+      "binding_values": [
+        {
+          "key": "photo_image_full_size_large",
+          "value": {
+            "image_value": {
+              "height": 288,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=600x314"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "thumbnail_image",
+          "value": {
+            "image_value": {
+              "height": 150,
+              "width": 275,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=280x150"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "description",
+          "value": {
+            "string_value": "The Federal Government has directed the immediate closure of 47 Federal Unity Colleges across the country following rising security threats in several states. The directive was issued by the Federal...",
+            "type": "STRING"
+          }
+        },
+        {
+          "key": "domain",
+          "value": {
+            "string_value": "thenigerialawyer.com",
+            "type": "STRING"
+          }
+        },
+        {
+          "key": "thumbnail_image_large",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=800x320_1"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "summary_photo_image_small",
+          "value": {
+            "image_value": {
+              "height": 202,
+              "width": 386,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=386x202"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "thumbnail_image_original",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=orig"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "site",
+          "value": {
+            "scribe_key": "publisher_id",
+            "type": "USER",
+            "user_value": {
+              "id_str": "3355150385",
+              "path": []
+            }
+          }
+        },
+        {
+          "key": "photo_image_full_size_small",
+          "value": {
+            "image_value": {
+              "height": 202,
+              "width": 386,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=386x202"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "summary_photo_image_large",
+          "value": {
+            "image_value": {
+              "height": 288,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=600x314"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "thumbnail_image_small",
+          "value": {
+            "image_value": {
+              "height": 79,
+              "width": 144,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=144x144"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "creator",
+          "value": {
+            "type": "USER",
+            "user_value": {
+              "id_str": "3355150385",
+              "path": []
+            }
+          }
+        },
+        {
+          "key": "thumbnail_image_x_large",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=png&name=2048x2048_2_exp"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "photo_image_full_size_original",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=orig"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "vanity_url",
+          "value": {
+            "scribe_key": "vanity_url",
+            "string_value": "thenigerialawyer.com",
+            "type": "STRING"
+          }
+        },
+        {
+          "key": "photo_image_full_size",
+          "value": {
+            "image_value": {
+              "height": 288,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=600x314"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "thumbnail_image_color",
+          "value": {
+            "image_color_value": {
+              "palette": [
+                {
+                  "rgb": {
+                    "blue": 152,
+                    "green": 133,
+                    "red": 132
+                  },
+                  "percentage": 24.14
+                },
+                {
+                  "rgb": {
+                    "blue": 87,
+                    "green": 91,
+                    "red": 104
+                  },
+                  "percentage": 22.33
+                },
+                {
+                  "rgb": {
+                    "blue": 97,
+                    "green": 70,
+                    "red": 63
+                  },
+                  "percentage": 17.76
+                },
+                {
+                  "rgb": {
+                    "blue": 124,
+                    "green": 151,
+                    "red": 165
+                  },
+                  "percentage": 11.92
+                },
+                {
+                  "rgb": {
+                    "blue": 42,
+                    "green": 121,
+                    "red": 109
+                  },
+                  "percentage": 9.33
+                }
+              ]
+            },
+            "type": "IMAGE_COLOR"
+          }
+        },
+        {
+          "key": "title",
+          "value": {
+            "string_value": "Federal Govt Orders Immediate Closure Of 47 Federal Unity Colleges Over Security Concerns -...",
+            "type": "STRING"
+          }
+        },
+        {
+          "key": "summary_photo_image_color",
+          "value": {
+            "image_color_value": {
+              "palette": [
+                {
+                  "rgb": {
+                    "blue": 152,
+                    "green": 133,
+                    "red": 132
+                  },
+                  "percentage": 24.14
+                },
+                {
+                  "rgb": {
+                    "blue": 87,
+                    "green": 91,
+                    "red": 104
+                  },
+                  "percentage": 22.33
+                },
+                {
+                  "rgb": {
+                    "blue": 97,
+                    "green": 70,
+                    "red": 63
+                  },
+                  "percentage": 17.76
+                },
+                {
+                  "rgb": {
+                    "blue": 124,
+                    "green": 151,
+                    "red": 165
+                  },
+                  "percentage": 11.92
+                },
+                {
+                  "rgb": {
+                    "blue": 42,
+                    "green": 121,
+                    "red": 109
+                  },
+                  "percentage": 9.33
+                }
+              ]
+            },
+            "type": "IMAGE_COLOR"
+          }
+        },
+        {
+          "key": "summary_photo_image_x_large",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=png&name=2048x2048_2_exp"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "summary_photo_image",
+          "value": {
+            "image_value": {
+              "height": 288,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=600x314"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "photo_image_full_size_color",
+          "value": {
+            "image_color_value": {
+              "palette": [
+                {
+                  "rgb": {
+                    "blue": 152,
+                    "green": 133,
+                    "red": 132
+                  },
+                  "percentage": 24.14
+                },
+                {
+                  "rgb": {
+                    "blue": 87,
+                    "green": 91,
+                    "red": 104
+                  },
+                  "percentage": 22.33
+                },
+                {
+                  "rgb": {
+                    "blue": 97,
+                    "green": 70,
+                    "red": 63
+                  },
+                  "percentage": 17.76
+                },
+                {
+                  "rgb": {
+                    "blue": 124,
+                    "green": 151,
+                    "red": 165
+                  },
+                  "percentage": 11.92
+                },
+                {
+                  "rgb": {
+                    "blue": 42,
+                    "green": 121,
+                    "red": 109
+                  },
+                  "percentage": 9.33
+                }
+              ]
+            },
+            "type": "IMAGE_COLOR"
+          }
+        },
+        {
+          "key": "photo_image_full_size_x_large",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=png&name=2048x2048_2_exp"
+            },
+            "type": "IMAGE"
+          }
+        },
+        {
+          "key": "card_url",
+          "value": {
+            "scribe_key": "card_url",
+            "string_value": "https://t.co/RK7gx8AWFA",
+            "type": "STRING"
+          }
+        },
+        {
+          "key": "summary_photo_image_original",
+          "value": {
+            "image_value": {
+              "height": 300,
+              "width": 550,
+              "url": "https://pbs.twimg.com/card_img/1991956809360326656/oLdMsIdv?format=jpg&name=orig"
+            },
+            "type": "IMAGE"
+          }
+        }
+      ],
+      "card_platform": {
+        "platform": {
+          "audience": {
+            "name": "production"
+          },
+          "device": {
+            "name": "Swift",
+            "version": "12"
+          }
+        }
+      },
+      "name": "summary_large_image",
+      "url": "https://t.co/RK7gx8AWFA",
+      "user_refs_results": [
+        {
+          "result": {
+            "__typename": "User",
+            "id": "VXNlcjozMzU1MTUwMzg1",
+            "rest_id": "3355150385",
+            "affiliates_highlighted_label": {},
+            "has_graduated_access": true,
+            "is_blue_verified": true,
+            "legacy": {
+              "following": false,
+              "can_dm": true,
+              "can_media_tag": true,
+              "created_at": "Thu Jul 02 14:41:20 +0000 2015",
+              "default_profile": false,
+              "default_profile_image": false,
+              "description": "TheNigeriaLawyer is an online media news, we provide you with the latest breaking lawsuits,legal news, stay up to date with trends in law firms & across Nigeria",
+              "entities": {
+                "description": {
+                  "urls": []
+                },
+                "url": {
+                  "urls": [
+                    {
+                      "display_url": "thenigerialawyer.com",
+                      "expanded_url": "http://thenigerialawyer.com/",
+                      "url": "https://t.co/Ocu0rz4vSR",
+                      "indices": [
+                        0,
+                        23
+                      ]
+                    }
+                  ]
+                }
+              },
+              "fast_followers_count": 0,
+              "favourites_count": 67,
+              "followers_count": 22593,
+              "friends_count": 1005,
+              "has_custom_timelines": true,
+              "is_translator": false,
+              "listed_count": 51,
+              "location": "Lagos, Nigeria",
+              "media_count": 34438,
+              "name": "The Nigeria Lawyer",
+              "normal_followers_count": 22593,
+              "pinned_tweet_ids_str": [],
+              "possibly_sensitive": false,
+              "profile_banner_url": "https://pbs.twimg.com/profile_banners/3355150385/1684635633",
+              "profile_image_url_https": "https://pbs.twimg.com/profile_images/1659987790128373763/8agV0dqR_normal.jpg",
+              "profile_interstitial_type": "",
+              "screen_name": "Nigerialawyers",
+              "statuses_count": 179371,
+              "translator_type": "none",
+              "url": "https://t.co/Ocu0rz4vSR",
+              "verified": false,
+              "want_retweets": false,
+              "withheld_in_countries": []
+            },
+            "parody_commentary_fan_label": "None",
+            "profile_image_shape": "Circle",
+            "professional": {
+              "rest_id": "1661253976694706176",
+              "professional_type": "Business",
+              "category": [
+                {
+                  "id": 483,
+                  "name": "Lawyer & Law Firm",
+                  "icon_name": "IconBriefcaseStroke"
+                }
+              ]
+            },
+            "tipjar_settings": {}
+          }
+        },
+        {
+          "result": {
+            "__typename": "User",
+            "id": "VXNlcjozMzU1MTUwMzg1",
+            "rest_id": "3355150385",
+            "affiliates_highlighted_label": {},
+            "has_graduated_access": true,
+            "is_blue_verified": true,
+            "legacy": {
+              "following": false,
+              "can_dm": true,
+              "can_media_tag": true,
+              "created_at": "Thu Jul 02 14:41:20 +0000 2015",
+              "default_profile": false,
+              "default_profile_image": false,
+              "description": "TheNigeriaLawyer is an online media news, we provide you with the latest breaking lawsuits,legal news, stay up to date with trends in law firms & across Nigeria",
+              "entities": {
+                "description": {
+                  "urls": []
+                },
+                "url": {
+                  "urls": [
+                    {
+                      "display_url": "thenigerialawyer.com",
+                      "expanded_url": "http://thenigerialawyer.com/",
+                      "url": "https://t.co/Ocu0rz4vSR",
+                      "indices": [
+                        0,
+                        23
+                      ]
+                    }
+                  ]
+                }
+              },
+              "fast_followers_count": 0,
+              "favourites_count": 67,
+              "followers_count": 22593,
+              "friends_count": 1005,
+              "has_custom_timelines": true,
+              "is_translator": false,
+              "listed_count": 51,
+              "location": "Lagos, Nigeria",
+              "media_count": 34438,
+              "name": "The Nigeria Lawyer",
+              "normal_followers_count": 22593,
+              "pinned_tweet_ids_str": [],
+              "possibly_sensitive": false,
+              "profile_banner_url": "https://pbs.twimg.com/profile_banners/3355150385/1684635633",
+              "profile_image_url_https": "https://pbs.twimg.com/profile_images/1659987790128373763/8agV0dqR_normal.jpg",
+              "profile_interstitial_type": "",
+              "screen_name": "Nigerialawyers",
+              "statuses_count": 179371,
+              "translator_type": "none",
+              "url": "https://t.co/Ocu0rz4vSR",
+              "verified": false,
+              "want_retweets": false,
+              "withheld_in_countries": []
+            },
+            "parody_commentary_fan_label": "None",
+            "profile_image_shape": "Circle",
+            "professional": {
+              "rest_id": "1661253976694706176",
+              "professional_type": "Business",
+              "category": [
+                {
+                  "id": 483,
+                  "name": "Lawyer & Law Firm",
+                  "icon_name": "IconBriefcaseStroke"
+                }
+              ]
+            },
+            "tipjar_settings": {}
+          }
+        }
+      ]
+    }
+  },
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          13,
+          26
+        ],
+        "text": "UnitySchools"
+      },
+      {
+        "indices": [
+          51,
+          59
+        ],
+        "text": "Nigeria"
+      },
+      {
+        "indices": [
+          211,
+          219
+        ],
+        "text": "Nigeria"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [
+      {
+        "display_url": "thenigerialawyer.com/federal-govt-o…",
+        "expanded_url": "https://thenigerialawyer.com/federal-govt-orders-immediate-closure-of-47-federal-unity-colleges-over-security-concerns/",
+        "url": "https://t.co/RK7gx8AWFA",
+        "indices": [
+          264,
+          287
+        ]
+      }
+    ],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991934848106434577",
+  "url": "https://x.com/adefilatobiloba/status/1991934848106434577",
+  "twitterUrl": "https://twitter.com/adefilatobiloba/status/1991934848106434577",
+  "text": "Fire on the mountain!!🇳🇬 #prayfornigeria #Nigeria 🙏",
+  "fullText": "Fire on the mountain!!🇳🇬 #prayfornigeria #Nigeria 🙏",
+  "source": "Twitter for Android",
+  "retweetCount": 13,
+  "replyCount": 13,
+  "likeCount": 16,
+  "quoteCount": 1,
+  "viewCount": 132,
+  "createdAt": "Fri Nov 21 18:20:50 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1991934848106434577",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "adefilatobiloba",
+    "url": "https://x.com/adefilatobiloba",
+    "twitterUrl": "https://twitter.com/adefilatobiloba",
+    "id": "1702333716906094592",
+    "name": "Ayobamiji",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1941925271067557888/LNc1e3sX_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1702333716906094592/1751826467",
+    "description": "Web3 |website migration |creator & top-tier yapper |Fruit lover & farmer at heart 🌱  | ASA music addict - Wizkid FC forever 🦅🔥..",
+    "location": "",
+    "followers": 498,
+    "following": 956,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": false,
+    "createdAt": "Thu Sep 14 14:49:50 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 6337,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 11,
+    "statusesCount": 701,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1958659373200547943"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          25,
+          40
+        ],
+        "text": "prayfornigeria"
+      },
+      {
+        "indices": [
+          41,
+          49
+        ],
+        "text": "Nigeria"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991929123254788296",
+  "url": "https://x.com/temilade800/status/1991929123254788296",
+  "twitterUrl": "https://twitter.com/temilade800/status/1991929123254788296",
+  "text": "I feel restless, scared, broken about what is going on in this country!!!\n\n I can't think straight anymore!!!!\n\n Nigeria government should do better!!! \n\nThe innocent are in pains!!!💔\n\n#EnoughIsEnough #stopthegenocide #Nigeria #StopAbductionsUg https://t.co/FGcg9Yq3Nd",
+  "fullText": "I feel restless, scared, broken about what is going on in this country!!!\n\n I can't think straight anymore!!!!\n\n Nigeria government should do better!!! \n\nThe innocent are in pains!!!💔\n\n#EnoughIsEnough #stopthegenocide #Nigeria #StopAbductionsUg https://t.co/FGcg9Yq3Nd",
+  "source": "Twitter for Android",
+  "retweetCount": 8,
+  "replyCount": 8,
+  "likeCount": 16,
+  "quoteCount": 0,
+  "viewCount": 114,
+  "createdAt": "Fri Nov 21 17:58:05 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1991929123254788296",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "temilade800",
+    "url": "https://x.com/temilade800",
+    "twitterUrl": "https://twitter.com/temilade800",
+    "id": "1932085064885481472",
+    "name": "Temz_🌌📊",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1936465254453485568/Ewf5WlEh_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1932085064885481472/1758469315",
+    "description": "God first❤️|\nEconomist|📊\nContent writer|\nCommunity manager|\nReal estate consultant🏠|\nLearning web3 daily| Let's connect..💰     \n\nfounder: Scents_by_temz(IG)",
+    "location": "",
+    "followers": 108,
+    "following": 181,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Mon Jun 09 14:39:42 +0000 2025",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 733,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 51,
+    "statusesCount": 551,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1971542946202976355"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/FGcg9Yq3Nd",
+        "expanded_url": "https://x.com/temilade800/status/1991929123254788296/photo/1",
+        "id_str": "1991929118082871296",
+        "indices": [
+          245,
+          268
+        ],
+        "media_key": "3_1991929118082871296",
+        "media_url_https": "https://pbs.twimg.com/media/G6TA-q0WMAAkghi.jpg",
+        "type": "photo",
+        "url": "https://t.co/FGcg9Yq3Nd",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 406,
+            "w": 544,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 406,
+            "w": 544,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 406,
+            "w": 544,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 406,
+          "width": 544,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 51,
+              "w": 544,
+              "h": 305
+            },
+            {
+              "x": 55,
+              "y": 0,
+              "w": 406,
+              "h": 406
+            },
+            {
+              "x": 80,
+              "y": 0,
+              "w": 356,
+              "h": 406
+            },
+            {
+              "x": 157,
+              "y": 0,
+              "w": 203,
+              "h": 406
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 544,
+              "h": 406
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1991929118082871296"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          185,
+          200
+        ],
+        "text": "EnoughIsEnough"
+      },
+      {
+        "indices": [
+          201,
+          217
+        ],
+        "text": "stopthegenocide"
+      },
+      {
+        "indices": [
+          218,
+          226
+        ],
+        "text": "Nigeria"
+      },
+      {
+        "indices": [
+          227,
+          244
+        ],
+        "text": "StopAbductionsUg"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/FGcg9Yq3Nd",
+        "expanded_url": "https://x.com/temilade800/status/1991929123254788296/photo/1",
+        "id_str": "1991929118082871296",
+        "indices": [
+          245,
+          268
+        ],
+        "media_key": "3_1991929118082871296",
+        "media_url_https": "https://pbs.twimg.com/media/G6TA-q0WMAAkghi.jpg",
+        "type": "photo",
+        "url": "https://t.co/FGcg9Yq3Nd",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 217,
+                "y": 156,
+                "h": 98,
+                "w": 98
+              },
+              {
+                "x": 116,
+                "y": 34,
+                "h": 293,
+                "w": 293
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 406,
+            "w": 544,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 406,
+            "w": 544,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 406,
+            "w": 544,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 406,
+          "width": 544,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 51,
+              "w": 544,
+              "h": 305
+            },
+            {
+              "x": 55,
+              "y": 0,
+              "w": 406,
+              "h": 406
+            },
+            {
+              "x": 80,
+              "y": 0,
+              "w": 356,
+              "h": 406
+            },
+            {
+              "x": 157,
+              "y": 0,
+              "w": 203,
+              "h": 406
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 544,
+              "h": 406
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1991929118082871296"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/G6TA-q0WMAAkghi.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991921700720742831",
+  "url": "https://x.com/Youngkheengz/status/1991921700720742831",
+  "twitterUrl": "https://twitter.com/Youngkheengz/status/1991921700720742831",
+  "text": "He couldn't believe his eyes 😂\n\n#Nigeria #fancashdroppromotion https://t.co/dDgvwOzGVl",
+  "fullText": "He couldn't believe his eyes 😂\n\n#Nigeria #fancashdroppromotion https://t.co/dDgvwOzGVl",
+  "source": "Twitter for Android",
+  "retweetCount": 14,
+  "replyCount": 11,
+  "likeCount": 15,
+  "quoteCount": 0,
+  "viewCount": 213,
+  "createdAt": "Fri Nov 21 17:28:36 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 0,
+  "isReply": false,
+  "conversationId": "1991921700720742831",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Youngkheengz",
+    "url": "https://x.com/Youngkheengz",
+    "twitterUrl": "https://twitter.com/Youngkheengz",
+    "id": "1334608081",
+    "name": "BrightSkin🔥",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1982055225411121152/wQuSPbSF_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1334608081/1579937508",
+    "description": "PhD in Theatre Arts 🎭 | Curating wonders 🌍\nWholesome, real emotions, global joy 💛\n#YoungVibe ✨   I follow back!",
+    "location": "🌎",
+    "followers": 782,
+    "following": 1417,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Sun Apr 07 17:03:29 +0000 2013",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 7831,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 507,
+    "statusesCount": 13965,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/dDgvwOzGVl",
+        "expanded_url": "https://x.com/Youngkheengz/status/1991921700720742831/video/1",
+        "id_str": "1991921487637270531",
+        "indices": [
+          63,
+          86
+        ],
+        "media_key": "7_1991921487637270531",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1991921487637270531/pu/img/JDOgpvvJQRvw3z7q.jpg",
+        "type": "video",
+        "url": "https://t.co/dDgvwOzGVl",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1280,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1280,
+          "width": 720,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 27865,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/pl/hdUaPCVsncVd0zKn.m3u8?tag=12"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/vid/avc1/320x568/wp4IJKQXHANb-sm-.mp4?tag=12"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/vid/avc1/480x852/1qIqpZww7LcTr14J.mp4?tag=12"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/vid/avc1/720x1280/Wz6kBmmz9AVkGepe.mp4?tag=12"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "7_1991921487637270531"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          32,
+          40
+        ],
+        "text": "Nigeria"
+      },
+      {
+        "indices": [
+          41,
+          62
+        ],
+        "text": "fancashdroppromotion"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/dDgvwOzGVl",
+        "expanded_url": "https://x.com/Youngkheengz/status/1991921700720742831/video/1",
+        "id_str": "1991921487637270531",
+        "indices": [
+          63,
+          86
+        ],
+        "media_key": "7_1991921487637270531",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1991921487637270531/pu/img/JDOgpvvJQRvw3z7q.jpg",
+        "type": "video",
+        "url": "https://t.co/dDgvwOzGVl",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1280,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1280,
+          "width": 720,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 27865,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/pl/hdUaPCVsncVd0zKn.m3u8?tag=12"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/vid/avc1/320x568/wp4IJKQXHANb-sm-.mp4?tag=12"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/vid/avc1/480x852/1qIqpZww7LcTr14J.mp4?tag=12"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1991921487637270531/pu/vid/avc1/720x1280/Wz6kBmmz9AVkGepe.mp4?tag=12"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "7_1991921487637270531"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/ext_tw_video_thumb/1991921487637270531/pu/img/JDOgpvvJQRvw3z7q.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991914614989504561",
+  "url": "https://x.com/isaelbuba/status/1991914614989504561",
+  "twitterUrl": "https://twitter.com/isaelbuba/status/1991914614989504561",
+  "text": "A terrorist should be treated as a terrorist and not a member of society. \n\n#isaelbuba #prophetisaelbuba #nigeria #genocide https://t.co/Y2zvGbzjvF",
+  "fullText": "A terrorist should be treated as a terrorist and not a member of society. \n\n#isaelbuba #prophetisaelbuba #nigeria #genocide https://t.co/Y2zvGbzjvF",
+  "source": "Twitter for iPhone",
+  "retweetCount": 262,
+  "replyCount": 16,
+  "likeCount": 469,
+  "quoteCount": 2,
+  "viewCount": 7028,
+  "createdAt": "Fri Nov 21 17:00:26 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 14,
+  "isReply": false,
+  "conversationId": "1991914614989504561",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "isaelbuba",
+    "url": "https://x.com/isaelbuba",
+    "twitterUrl": "https://twitter.com/isaelbuba",
+    "id": "717402638644617218",
+    "name": "Prophet Isa El-Buba",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1892256717112528897/dlwEulaD_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/717402638644617218/1736252012",
+    "description": "Husband, Father, Radical Believer, Prophet called to raise militant that will take the kingdom of the devil by surprise. FOR MORE INFO CALL 0808 253 8837",
+    "location": "Jos, Nigeria",
+    "followers": 74583,
+    "following": 15,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Tue Apr 05 17:24:52 +0000 2016",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "ebomi.org",
+            "expanded_url": "https://www.ebomi.org",
+            "url": "https://t.co/9toQzFqB1O",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 141,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 769,
+    "statusesCount": 1719,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1976969672575602984"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/Y2zvGbzjvF",
+        "expanded_url": "https://x.com/isaelbuba/status/1991914614989504561/video/1",
+        "id_str": "1991914513608642560",
+        "indices": [
+          124,
+          147
+        ],
+        "media_key": "13_1991914513608642560",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991914513608642560/img/QB2mX17hceoCs8qC.jpg",
+        "type": "video",
+        "url": "https://t.co/Y2zvGbzjvF",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 654,
+            "w": 966,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 654,
+            "w": 966,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 460,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 654,
+          "width": 966,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            161,
+            109
+          ],
+          "duration_millis": 104366,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/pl/Cg3s08tPJmTXJflD.m3u8?tag=21&v=2e8"
+            },
+            {
+              "bitrate": 256000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/vid/avc1/398x270/iDuzEAljiqTyMRw_.mp4?tag=21"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/vid/avc1/530x360/kN2DUdjBONelSjmg.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/vid/avc1/966x654/TXT7B6lZm4QRQwjJ.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991914513608642560"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          76,
+          86
+        ],
+        "text": "isaelbuba"
+      },
+      {
+        "indices": [
+          87,
+          104
+        ],
+        "text": "prophetisaelbuba"
+      },
+      {
+        "indices": [
+          105,
+          113
+        ],
+        "text": "nigeria"
+      },
+      {
+        "indices": [
+          114,
+          123
+        ],
+        "text": "genocide"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/Y2zvGbzjvF",
+        "expanded_url": "https://x.com/isaelbuba/status/1991914614989504561/video/1",
+        "id_str": "1991914513608642560",
+        "indices": [
+          124,
+          147
+        ],
+        "media_key": "13_1991914513608642560",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991914513608642560/img/QB2mX17hceoCs8qC.jpg",
+        "type": "video",
+        "url": "https://t.co/Y2zvGbzjvF",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 654,
+            "w": 966,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 654,
+            "w": 966,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 460,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 654,
+          "width": 966,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            161,
+            109
+          ],
+          "duration_millis": 104366,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/pl/Cg3s08tPJmTXJflD.m3u8?tag=21&v=2e8"
+            },
+            {
+              "bitrate": 256000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/vid/avc1/398x270/iDuzEAljiqTyMRw_.mp4?tag=21"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/vid/avc1/530x360/kN2DUdjBONelSjmg.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991914513608642560/vid/avc1/966x654/TXT7B6lZm4QRQwjJ.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991914513608642560"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1991914513608642560/img/QB2mX17hceoCs8qC.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991862157047419182",
+  "url": "https://x.com/isaelbuba/status/1991862157047419182",
+  "twitterUrl": "https://twitter.com/isaelbuba/status/1991862157047419182",
+  "text": "Dear Benue State Government,\nYou may deny it publicly, but the mass graves, displaced families, and burning villages tell the truth.\nGenocide isn’t erased by a press statement.\nBenue is bleeding, and the world can see it.\n#BenueUnderAttack #StopTheKillings #nigeria",
+  "fullText": "Dear Benue State Government,\nYou may deny it publicly, but the mass graves, displaced families, and burning villages tell the truth.\nGenocide isn’t erased by a press statement.\nBenue is bleeding, and the world can see it.\n#BenueUnderAttack #StopTheKillings #nigeria",
+  "source": "Twitter for iPhone",
+  "retweetCount": 834,
+  "replyCount": 25,
+  "likeCount": 1634,
+  "quoteCount": 12,
+  "viewCount": 30299,
+  "createdAt": "Fri Nov 21 13:31:59 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 17,
+  "isReply": false,
+  "conversationId": "1991862157047419182",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "isaelbuba",
+    "url": "https://x.com/isaelbuba",
+    "twitterUrl": "https://twitter.com/isaelbuba",
+    "id": "717402638644617218",
+    "name": "Prophet Isa El-Buba",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1892256717112528897/dlwEulaD_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/717402638644617218/1736252012",
+    "description": "Husband, Father, Radical Believer, Prophet called to raise militant that will take the kingdom of the devil by surprise. FOR MORE INFO CALL 0808 253 8837",
+    "location": "Jos, Nigeria",
+    "followers": 74583,
+    "following": 15,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Tue Apr 05 17:24:52 +0000 2016",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "ebomi.org",
+            "expanded_url": "https://www.ebomi.org",
+            "url": "https://t.co/9toQzFqB1O",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 141,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 769,
+    "statusesCount": 1719,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1976969672575602984"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          222,
+          239
+        ],
+        "text": "BenueUnderAttack"
+      },
+      {
+        "indices": [
+          240,
+          256
+        ],
+        "text": "StopTheKillings"
+      },
+      {
+        "indices": [
+          257,
+          265
+        ],
+        "text": "nigeria"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991849978453688685",
+  "url": "https://x.com/ChidiOdinkalu/status/1991849978453688685",
+  "twitterUrl": "https://twitter.com/ChidiOdinkalu/status/1991849978453688685",
+  "text": "The system of admissions into professional courses like Medicine &amp; Nursing in #Nigeria's universities has bn bastardized.\n\nVCs &amp; their cronies &amp; families are admitting unfit students who pay extortionate amounts. Provosts don't know what happens. We're licensing killers as Drs.",
+  "fullText": "The system of admissions into professional courses like Medicine &amp; Nursing in #Nigeria's universities has bn bastardized.\n\nVCs &amp; their cronies &amp; families are admitting unfit students who pay extortionate amounts. Provosts don't know what happens. We're licensing killers as Drs.",
+  "source": "Twitter for Android",
+  "retweetCount": 206,
+  "replyCount": 8,
+  "likeCount": 256,
+  "quoteCount": 4,
+  "viewCount": 10822,
+  "createdAt": "Fri Nov 21 12:43:36 +0000 2025",
+  "lang": "en",
+  "quoteId": "1991752980958441836",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1991849978453688685",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "ChidiOdinkalu",
+    "url": "https://x.com/ChidiOdinkalu",
+    "twitterUrl": "https://twitter.com/ChidiOdinkalu",
+    "id": "3886771835",
+    "name": "Chidi Odinkalu, CGoF",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1903251455659872256/gMug2ydD_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/3886771835/1514022010",
+    "description": "@LSELaw |\n#LittleFinger is V.I.L.E.|\nI RT bc I'm curious & Sometimes for a laugh",
+    "location": "LevIsolating",
+    "followers": 148619,
+    "following": 1236,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Wed Oct 07 04:22:32 +0000 2015",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "facultyprofiles.tufts.edu/chidi-odinkalu…",
+            "expanded_url": "https://facultyprofiles.tufts.edu/chidi-odinkalu/about",
+            "url": "https://t.co/QZdTyIqH5B",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 12907,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 10232,
+    "statusesCount": 55901,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1300709687676088322"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          82,
+          90
+        ],
+        "text": "Nigeria"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1991752980958441836",
+    "text": "Chinemerem Celina Nlebechi scored 322 in JAMB and 323.8 in Post UTME but was denied admission to study medicine in UNN.\n\nI have evidence of 3 students that scored 235, 265 and 285 respectively that got admitted into medicine UNN.\n\nMy intel alleged that they paid N2 million. https://t.co/zdIbDoRSZ4",
+    "source": "Twitter for iPhone",
+    "retweetCount": 1412,
+    "replyCount": 353,
+    "likeCount": 2829,
+    "quoteCount": 94,
+    "viewCount": 153621,
+    "createdAt": "Fri Nov 21 06:18:10 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 136,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "winexviv",
+      "url": "https://x.com/winexviv",
+      "twitterUrl": "https://twitter.com/winexviv",
+      "id": "82588638",
+      "name": "Alex Onyia",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1370993360970911745/JswISTln_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/82588638/1699511686",
+      "description": "CEO at Educare \n(Sultan of Software 👑)",
+      "location": "Africa and Europe",
+      "followers": 70198,
+      "following": 43,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Thu Oct 15 10:43:21 +0000 2009",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "educare.school",
+              "expanded_url": "https://www.educare.school/",
+              "url": "https://t.co/EJ82T0mnma",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 17912,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 1362,
+      "statusesCount": 6433,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1708633617402904708"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/zdIbDoRSZ4",
+          "expanded_url": "https://x.com/winexviv/status/1991752980958441836/photo/1",
+          "id_str": "1991752974608007168",
+          "indices": [
+            275,
+            298
+          ],
+          "media_key": "3_1991752974608007168",
+          "media_url_https": "https://pbs.twimg.com/media/G6QgxxPWgAAljse.jpg",
+          "type": "photo",
+          "url": "https://t.co/zdIbDoRSZ4",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 494,
+                  "y": 300,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 458,
+                  "y": 278,
+                  "h": 135,
+                  "w": 135
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 259,
+                  "y": 157,
+                  "h": 76,
+                  "w": 76
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 494,
+                  "y": 300,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1292,
+              "w": 1078,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 1001,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 567,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1292,
+            "width": 1078,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 604
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 1078
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 1229
+              },
+              {
+                "x": 96,
+                "y": 0,
+                "w": 646,
+                "h": 1292
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 1292
+              }
+            ]
+          },
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1991752974608007168"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "media": [
+        {
+          "display_url": "pic.x.com/zdIbDoRSZ4",
+          "expanded_url": "https://x.com/winexviv/status/1991752980958441836/photo/1",
+          "id_str": "1991752974608007168",
+          "indices": [
+            275,
+            298
+          ],
+          "media_key": "3_1991752974608007168",
+          "media_url_https": "https://pbs.twimg.com/media/G6QgxxPWgAAljse.jpg",
+          "type": "photo",
+          "url": "https://t.co/zdIbDoRSZ4",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 494,
+                  "y": 300,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 458,
+                  "y": 278,
+                  "h": 135,
+                  "w": 135
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 259,
+                  "y": 157,
+                  "h": 76,
+                  "w": 76
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 494,
+                  "y": 300,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1292,
+              "w": 1078,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 1001,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 567,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1292,
+            "width": 1078,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 604
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 1078
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 1229
+              },
+              {
+                "x": 96,
+                "y": 0,
+                "w": 646,
+                "h": 1292
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1078,
+                "h": 1292
+              }
+            ]
+          },
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1991752974608007168"
+            }
+          }
+        }
+      ],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991792763567055151",
+  "url": "https://x.com/IgumaScott/status/1991792763567055151",
+  "twitterUrl": "https://twitter.com/IgumaScott/status/1991792763567055151",
+  "text": "You shouldn’t be negotiating with terrorist \n\n#Nigeria #ARMY #insecurity #scottiguma https://t.co/NYY3vkCHPG",
+  "fullText": "You shouldn’t be negotiating with terrorist \n\n#Nigeria #ARMY #insecurity #scottiguma https://t.co/NYY3vkCHPG",
+  "source": "Twitter for iPhone",
+  "retweetCount": 196,
+  "replyCount": 29,
+  "likeCount": 579,
+  "quoteCount": 7,
+  "viewCount": 13509,
+  "createdAt": "Fri Nov 21 08:56:15 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 63,
+  "isReply": false,
+  "conversationId": "1991792763567055151",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "IgumaScott",
+    "url": "https://x.com/IgumaScott",
+    "twitterUrl": "https://twitter.com/IgumaScott",
+    "id": "1182635286913863681",
+    "name": "scott iguma",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1863728099713482752/Kcr0hgAY_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1182635286913863681/1705843314",
+    "description": "Your daily dose of inspiration curated with love and a positive change for Nigeria and Africa",
+    "location": "United Kingdom",
+    "followers": 19354,
+    "following": 372,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Fri Oct 11 12:33:37 +0000 2019",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 90,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 231,
+    "statusesCount": 315,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": []
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/NYY3vkCHPG",
+        "expanded_url": "https://x.com/IgumaScott/status/1991792763567055151/video/1",
+        "id_str": "1991792404152639488",
+        "indices": [
+          85,
+          108
+        ],
+        "media_key": "13_1991792404152639488",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991792404152639488/img/rkXOBuhNPX8orHPF.jpg",
+        "type": "video",
+        "url": "https://t.co/NYY3vkCHPG",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1280,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1280,
+          "width": 720,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 321666,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/pl/u3xxrCdRZtYxFqXu.m3u8?tag=21&v=36c"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/vid/avc1/320x568/spBvnQOIQzehs8R0.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/vid/avc1/480x852/vC3R1UZWyMsWUZ04.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/vid/avc1/720x1280/e1x7_nf4evkGPXWW.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991792404152639488"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          46,
+          54
+        ],
+        "text": "Nigeria"
+      },
+      {
+        "indices": [
+          55,
+          60
+        ],
+        "text": "ARMY"
+      },
+      {
+        "indices": [
+          61,
+          72
+        ],
+        "text": "insecurity"
+      },
+      {
+        "indices": [
+          73,
+          84
+        ],
+        "text": "scottiguma"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/NYY3vkCHPG",
+        "expanded_url": "https://x.com/IgumaScott/status/1991792763567055151/video/1",
+        "id_str": "1991792404152639488",
+        "indices": [
+          85,
+          108
+        ],
+        "media_key": "13_1991792404152639488",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991792404152639488/img/rkXOBuhNPX8orHPF.jpg",
+        "type": "video",
+        "url": "https://t.co/NYY3vkCHPG",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1280,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1280,
+          "width": 720,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 321666,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/pl/u3xxrCdRZtYxFqXu.m3u8?tag=21&v=36c"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/vid/avc1/320x568/spBvnQOIQzehs8R0.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/vid/avc1/480x852/vC3R1UZWyMsWUZ04.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991792404152639488/vid/avc1/720x1280/e1x7_nf4evkGPXWW.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991792404152639488"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1991792404152639488/img/rkXOBuhNPX8orHPF.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991787950838038584",
+  "url": "https://x.com/Hyndu_Gh/status/1991787950838038584",
+  "twitterUrl": "https://twitter.com/Hyndu_Gh/status/1991787950838038584",
+  "text": "As i see say Kweku Bany #CocoaKrakye be john i use my mind give am 😂😂\nWait till end 🤣🤣\n#Nigeria #carpenter #Kalyjay https://t.co/NmI0Ajfyae",
+  "fullText": "As i see say Kweku Bany #CocoaKrakye be john i use my mind give am 😂😂\nWait till end 🤣🤣\n#Nigeria #carpenter #Kalyjay https://t.co/NmI0Ajfyae",
+  "source": "Twitter for iPhone",
+  "retweetCount": 47,
+  "replyCount": 11,
+  "likeCount": 217,
+  "quoteCount": 0,
+  "viewCount": 3342,
+  "createdAt": "Fri Nov 21 08:37:07 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1991787950838038584",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Hyndu_Gh",
+    "url": "https://x.com/Hyndu_Gh",
+    "twitterUrl": "https://twitter.com/Hyndu_Gh",
+    "id": "3151316968",
+    "name": "Hyndu",
+    "isVerified": false,
+    "isBlueVerified": false,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1691015720568561666/_zbuKNfR_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/3151316968/1587031641",
+    "description": "Music is My Life. Recording Artist | Instagram: HynduGh | Bookings & Enquiries : officialhyndu@gmail.com | Contact : 0260734617",
+    "location": "Ghana/Africa",
+    "followers": 3782,
+    "following": 177,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Thu Apr 09 11:26:14 +0000 2015",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "youtube.com/channel/UCwlE7…",
+            "expanded_url": "https://www.youtube.com/channel/UCwlE7Fg2Og_ZG459tkqTB6g/channels?disable_polymer=1",
+            "url": "https://t.co/heGxXRJBoC",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 1881,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 371,
+    "statusesCount": 1974,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1989311024915177642"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/NmI0Ajfyae",
+        "expanded_url": "https://x.com/Hyndu_Gh/status/1991787950838038584/video/1",
+        "id_str": "1991787521345294336",
+        "indices": [
+          116,
+          139
+        ],
+        "media_key": "13_1991787521345294336",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991787521345294336/img/ICfBpYRBgy857f7e.jpg",
+        "type": "video",
+        "url": "https://t.co/NmI0Ajfyae",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1280,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1280,
+          "width": 720,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 204600,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/pl/GCZ-gjGlLhZoCNCl.m3u8?tag=21"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/vid/avc1/320x568/WmDvnbYf8sJkQwbr.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/vid/avc1/480x852/pwhYCC4yzYp8PlY5.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/vid/avc1/720x1280/1RT3sHMOBjA9iBZU.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991787521345294336"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          24,
+          36
+        ],
+        "text": "CocoaKrakye"
+      },
+      {
+        "indices": [
+          87,
+          95
+        ],
+        "text": "Nigeria"
+      },
+      {
+        "indices": [
+          96,
+          106
+        ],
+        "text": "carpenter"
+      },
+      {
+        "indices": [
+          107,
+          115
+        ],
+        "text": "Kalyjay"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/NmI0Ajfyae",
+        "expanded_url": "https://x.com/Hyndu_Gh/status/1991787950838038584/video/1",
+        "id_str": "1991787521345294336",
+        "indices": [
+          116,
+          139
+        ],
+        "media_key": "13_1991787521345294336",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991787521345294336/img/ICfBpYRBgy857f7e.jpg",
+        "type": "video",
+        "url": "https://t.co/NmI0Ajfyae",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 1280,
+            "w": 720,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1280,
+          "width": 720,
+          "focus_rects": []
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 204600,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/pl/GCZ-gjGlLhZoCNCl.m3u8?tag=21"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/vid/avc1/320x568/WmDvnbYf8sJkQwbr.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/vid/avc1/480x852/pwhYCC4yzYp8PlY5.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991787521345294336/vid/avc1/720x1280/1RT3sHMOBjA9iBZU.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991787521345294336"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1991787521345294336/img/ICfBpYRBgy857f7e.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+},
+{
+  "type": "tweet",
+  "id": "1991784204309561693",
+  "url": "https://x.com/Obedo_PF/status/1991784204309561693",
+  "twitterUrl": "https://twitter.com/Obedo_PF/status/1991784204309561693",
+  "text": "Hope for Better Nigeria 🇳🇬 \n#Nigeria https://t.co/o5mWHk47jP",
+  "fullText": "Hope for Better Nigeria 🇳🇬 \n#Nigeria https://t.co/o5mWHk47jP",
+  "source": "Twitter for iPhone",
+  "retweetCount": 29,
+  "replyCount": 7,
+  "likeCount": 68,
+  "quoteCount": 8,
+  "viewCount": 1618,
+  "createdAt": "Fri Nov 21 08:22:14 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1991784204309561693",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "Obedo_PF",
+    "url": "https://x.com/Obedo_PF",
+    "twitterUrl": "https://twitter.com/Obedo_PF",
+    "id": "1687040433690423297",
+    "name": "Obedo PF 🦎",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1986001487009308672/6fKi0l48_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1687040433690423297/1754053070",
+    "description": "VOICE OF THE GHETTO YOUTHS",
+    "location": "",
+    "followers": 3211,
+    "following": 132,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Thu Aug 03 09:59:30 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "obedopf.lnk.to/HFGY",
+            "expanded_url": "http://obedopf.lnk.to/HFGY",
+            "url": "https://t.co/XqhPHL27NW",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 9181,
+    "hasCustomTimelines": false,
+    "isTranslator": false,
+    "mediaCount": 529,
+    "statusesCount": 4908,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1987190418224656524"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/o5mWHk47jP",
+        "expanded_url": "https://x.com/Obedo_PF/status/1991784204309561693/video/1",
+        "id_str": "1991783823755923456",
+        "indices": [
+          37,
+          60
+        ],
+        "media_key": "13_1991783823755923456",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991783823755923456/img/2G7yvtsQ6Zvpqw9k.jpg",
+        "type": "video",
+        "url": "https://t.co/o5mWHk47jP",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 2048,
+            "w": 1152,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 3840,
+          "width": 2160,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 43643,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/pl/cviDbeanqIdnsboC.m3u8?tag=21"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/320x568/xtvKAlriYFJ2x9bf.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/480x852/IU9FkRcvMGvAToX2.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/720x1280/OfHF_gUAI4PdhAOE.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/1080x1920/NXFjEjfrbBD64pOR.mp4?tag=21"
+            },
+            {
+              "bitrate": 25128000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/2160x3840/6zRyTCHcQJ7M_h7X.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991783823755923456"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          28,
+          36
+        ],
+        "text": "Nigeria"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/o5mWHk47jP",
+        "expanded_url": "https://x.com/Obedo_PF/status/1991784204309561693/video/1",
+        "id_str": "1991783823755923456",
+        "indices": [
+          37,
+          60
+        ],
+        "media_key": "13_1991783823755923456",
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1991783823755923456/img/2G7yvtsQ6Zvpqw9k.jpg",
+        "type": "video",
+        "url": "https://t.co/o5mWHk47jP",
+        "additional_media_info": {
+          "monetizable": false
+        },
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "sizes": {
+          "large": {
+            "h": 2048,
+            "w": 1152,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 675,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 383,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 3840,
+          "width": 2160,
+          "focus_rects": []
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "video_info": {
+          "aspect_ratio": [
+            9,
+            16
+          ],
+          "duration_millis": 43643,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/pl/cviDbeanqIdnsboC.m3u8?tag=21"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/320x568/xtvKAlriYFJ2x9bf.mp4?tag=21"
+            },
+            {
+              "bitrate": 950000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/480x852/IU9FkRcvMGvAToX2.mp4?tag=21"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/720x1280/OfHF_gUAI4PdhAOE.mp4?tag=21"
+            },
+            {
+              "bitrate": 10368000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/1080x1920/NXFjEjfrbBD64pOR.mp4?tag=21"
+            },
+            {
+              "bitrate": 25128000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/amplify_video/1991783823755923456/vid/avc1/2160x3840/6zRyTCHcQJ7M_h7X.mp4?tag=21"
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "13_1991783823755923456"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/amplify_video_thumb/1991783823755923456/img/2G7yvtsQ6Zvpqw9k.jpg"
+  ],
+  "isConversationControlled": false,
+  "searchTerm": "#Nigeria lang:en min_retweets:5 min_faves:5 min_replies:5 since:2025-11-13 until:2025-11-22"
+}]
