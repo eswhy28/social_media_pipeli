@@ -110,14 +110,16 @@ source venv/bin/activate
 # Step 4: Install Python dependencies
 echo ""
 echo -e "${YELLOW}[4/11] Installing Python dependencies...${NC}"
-pip install --upgrade pip > /dev/null 2>&1
-pip install -r requirements.txt > /dev/null 2>&1
+echo -e "${YELLOW}This may take a few minutes on first run...${NC}"
+pip install --upgrade pip -q
+pip install -r requirements.txt
 echo -e "${GREEN}✓ Dependencies installed${NC}"
 
 # Step 5: Install SpaCy model
 echo ""
 echo -e "${YELLOW}[5/11] Installing SpaCy language model...${NC}"
-python -m spacy download en_core_web_sm > /dev/null 2>&1
+echo -e "${YELLOW}Downloading language model (this may take a moment)...${NC}"
+python -m spacy download en_core_web_sm
 echo -e "${GREEN}✓ SpaCy model installed${NC}"
 
 # Step 6: Configure environment
