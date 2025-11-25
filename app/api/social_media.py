@@ -560,7 +560,7 @@ async def get_hashtags_by_category(
 @router.get("/hashtags/engagement/{hashtag}")
 async def get_hashtag_engagement(
     hashtag: str,
-    hours_back: int = Query(default=24, ge=1, le=168, description="Hours of data to analyze"),
+    hours_back: int = Query(default=24, ge=1, le=8760, description="Hours of data to analyze (up to 1 year for downloaded data)"),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
 ):
@@ -599,7 +599,7 @@ async def get_hashtag_engagement(
 
 @router.get("/hashtags/collected-trends")
 async def get_collected_content_trends(
-    hours_back: int = Query(default=24, ge=1, le=168, description="Hours of data to analyze"),
+    hours_back: int = Query(default=24, ge=1, le=8760, description="Hours of data to analyze (up to 1 year for downloaded data)"),
     min_occurrences: int = Query(default=5, ge=1, le=50, description="Minimum occurrences"),
     limit: int = Query(default=50, ge=10, le=100, description="Maximum hashtags to return"),
     db: AsyncSession = Depends(get_db),
@@ -676,7 +676,7 @@ async def get_scraped_data(
     platform: Optional[str] = Query(None, description="Filter by platform (twitter, facebook, etc.)"),
     limit: int = Query(default=50, ge=1, le=500, description="Number of records to return"),
     offset: int = Query(default=0, ge=0, description="Offset for pagination"),
-    hours_back: Optional[int] = Query(None, ge=1, le=720, description="Filter by hours back"),
+    hours_back: Optional[int] = Query(None, ge=1, le=8760, description="Filter by hours back (up to 1 year for downloaded data)"),
     has_media: Optional[bool] = Query(None, description="Filter posts with images/media"),
     hashtag: Optional[str] = Query(None, description="Filter by hashtag"),
     location: Optional[str] = Query(None, description="Filter by location"),
@@ -800,7 +800,7 @@ async def get_scraped_data(
 
 @router.get("/data/geo-analysis")
 async def get_geo_analysis(
-    hours_back: int = Query(default=24, ge=1, le=720, description="Hours of data to analyze"),
+    hours_back: int = Query(default=24, ge=1, le=8760, description="Hours of data to analyze (up to 1 year for downloaded data)"),
     platform: Optional[str] = Query(None, description="Filter by platform"),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
@@ -913,7 +913,7 @@ async def get_geo_analysis(
 
 @router.get("/data/engagement-analysis")
 async def get_engagement_analysis(
-    hours_back: int = Query(default=24, ge=1, le=720, description="Hours of data to analyze"),
+    hours_back: int = Query(default=24, ge=1, le=8760, description="Hours of data to analyze (up to 1 year for downloaded data)"),
     platform: Optional[str] = Query(None, description="Filter by platform"),
     group_by: str = Query(default="hour", description="Group by: hour, day, author, hashtag"),
     db: AsyncSession = Depends(get_db),
@@ -1027,6 +1027,139 @@ async def get_engagement_analysis(
     
     except Exception as e:
         logger.error(f"Error performing engagement analysis: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/data/with-media")
+async def get_posts_with_media(
+    media_type: Optional[str] = Query(None, description="Filter by media type: image, video, or all"),
+    platform: Optional[str] = Query(None, description="Filter by platform (twitter, facebook, etc.)"),
+    limit: int = Query(default=50, ge=1, le=500, description="Number of posts to return"),
+    offset: int = Query(default=0, ge=0, description="Offset for pagination"),
+    hours_back: Optional[int] = Query(None, ge=1, le=8760, description="Filter by time range (up to 1 year)"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_optional)
+):
+    """
+    Get posts that contain media (images or videos)
+    
+    Optimized endpoint for frontend to easily retrieve posts with visual content.
+    
+    Returns:
+    - Posts with media URLs (images/videos)
+    - Media metadata (type, count)
+    - Full post content and engagement
+    - Author information
+    - Direct URLs to media files
+    """
+    try:
+        # Build query - only posts WITH media
+        query = select(ApifyScrapedData).where(
+            func.json_array_length(ApifyScrapedData.media_urls) > 0
+        )
+        
+        # Apply additional filters
+        filters = []
+        
+        if platform:
+            filters.append(ApifyScrapedData.platform == platform.lower())
+        
+        if hours_back:
+            cutoff_time = datetime.utcnow() - timedelta(hours=hours_back)
+            filters.append(ApifyScrapedData.posted_at >= cutoff_time)
+        
+        if filters:
+            query = query.where(and_(*filters))
+        
+        # Order by posted_at descending
+        query = query.order_by(ApifyScrapedData.posted_at.desc())
+        
+        # Apply pagination
+        query = query.limit(limit).offset(offset)
+        
+        # Execute query
+        result = await db.execute(query)
+        posts = result.scalars().all()
+        
+        # Format response with enhanced media information
+        enriched_posts = []
+        
+        for post in posts:
+            media_urls = post.media_urls or []
+            
+            # Categorize media by type (basic detection)
+            images = []
+            videos = []
+            
+            for url in media_urls:
+                if any(ext in url.lower() for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']):
+                    images.append(url)
+                elif any(ext in url.lower() for ext in ['.mp4', '.mov', '.avi', '.webm', 'video']):
+                    videos.append(url)
+                else:
+                    # If we can't determine, assume it's an image
+                    images.append(url)
+            
+            # Apply media_type filter
+            if media_type:
+                if media_type.lower() == 'image' and not images:
+                    continue
+                if media_type.lower() == 'video' and not videos:
+                    continue
+            
+            post_data = {
+                "id": post.id,
+                "source_id": post.source_id,
+                "platform": post.platform,
+                "author": {
+                    "username": post.author,
+                    "account_name": post.account_name,
+                },
+                "content": post.content,
+                "content_type": post.content_type,
+                "media": {
+                    "all_urls": media_urls,
+                    "images": images,
+                    "videos": videos,
+                    "total_count": len(media_urls),
+                    "image_count": len(images),
+                    "video_count": len(videos),
+                    "has_images": len(images) > 0,
+                    "has_videos": len(videos) > 0,
+                    # Primary media (first item) for thumbnails
+                    "primary_url": media_urls[0] if media_urls else None,
+                    "primary_type": "image" if images else "video" if videos else "unknown"
+                },
+                "engagement": post.metrics_json or {},
+                "hashtags": post.hashtags or [],
+                "mentions": post.mentions or [],
+                "location": post.location,
+                "posted_at": post.posted_at.isoformat() if post.posted_at else None,
+                "url": f"https://twitter.com/{post.author}/status/{post.source_id}" if post.platform == "twitter" else None
+            }
+            
+            enriched_posts.append(post_data)
+        
+        return {"success": True, "data": {
+                "posts": enriched_posts,
+                "count": len(enriched_posts),
+                "limit": limit,
+                "offset": offset,
+                "filters": {
+                    "media_type": media_type,
+                    "platform": platform,
+                    "hours_back": hours_back
+                },
+                "summary": {
+                    "total_media_items": sum(p["media"]["total_count"] for p in enriched_posts),
+                    "total_images": sum(p["media"]["image_count"] for p in enriched_posts),
+                    "total_videos": sum(p["media"]["video_count"] for p in enriched_posts)
+                },
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        }
+    
+    except Exception as e:
+        logger.error(f"Error fetching posts with media: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -1324,47 +1457,85 @@ async def get_sentiment_results(
 async def get_location_extraction_results(
     limit: int = Query(default=50, ge=1, le=500),
     location_type: Optional[str] = Query(None, description="Filter by type"),
+    hours_back: Optional[int] = Query(None, ge=1, le=8760, description="Filter by time range (up to 1 year)"),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user_optional)
 ):
     """
-    Get location extraction results
+    Get location extraction results WITH FULL POST DATA
     
-    Returns extracted and geocoded locations from posts
+    Returns:
+    - Extracted and geocoded locations
+    - Complete original post content
+    - Author information
+    - Media URLs (images/videos)
+   - Engagement metrics
+    - Posted date and time
     """
     try:
         from app.models.ai_analysis import ApifyLocationExtraction
         from sqlalchemy import select
         
-        # Build query
-        query = select(ApifyLocationExtraction)
+        # Build query with join to get post data
+        query = select(ApifyLocationExtraction, ApifyScrapedData).join(
+            ApifyScrapedData,
+            ApifyLocationExtraction.scraped_data_id == ApifyScrapedData.id
+        )
         
         if location_type:
             query = query.where(ApifyLocationExtraction.location_type == location_type.upper())
         
+        if hours_back:
+            cutoff_time = datetime.utcnow() - timedelta(hours=hours_back)
+            query = query.where(ApifyScrapedData.posted_at >= cutoff_time)
+        
         query = query.order_by(ApifyLocationExtraction.created_at.desc()).limit(limit)
         
         result = await db.execute(query)
-        location_records = result.scalars().all()
+        records = result.all()
         
-        # Format results
+        # Format results with full post data
         enriched_results = []
-        for record in location_records:
+        for location_record, post in records:
             enriched_results.append({
                 "location": {
-                    "text": record.location_text,
-                    "type": record.location_type,
-                    "confidence": record.confidence,
-                    "coordinates": record.coordinates,
-                    "region": record.region,
-                    "country": record.country
+                    "text": location_record.location_text,
+                    "type": location_record.location_type,
+                    "confidence": location_record.confidence,
+                    "coordinates": location_record.coordinates,
+                    "region": location_record.region,
+                    "state_province": location_record.state_province,
+                    "city": location_record.city,
+                    "country": location_record.country
                 },
-                "scraped_data_id": record.scraped_data_id
+                "post": {
+                    "id": post.id,
+                    "source_id": post.source_id,
+                    "platform": post.platform,
+                    "content": post.content,
+                    "author": {
+                        "username": post.author,
+                        "account_name": post.account_name
+                    },
+                    "media": {
+                        "urls": post.media_urls or [],
+                        "count": len(post.media_urls) if post.media_urls else 0,
+                        "has_media": bool(post.media_urls and len(post.media_urls) > 0)
+                    },
+                    "engagement": post.metrics_json or {},
+                    "hashtags": post.hashtags or [],
+                    "posted_at": post.posted_at.isoformat() if post.posted_at else None,
+                    "url": f"https://twitter.com/{post.author}/status/{post.source_id}" if post.platform == "twitter" else None
+                }
             })
         
         return {"success": True, "data":{
                 "results": enriched_results,
                 "count": len(enriched_results),
+                "filters": {
+                    "location_type": location_type,
+                    "hours_back": hours_back
+                },
                 "timestamp": datetime.utcnow().isoformat()
             }
         }
@@ -1381,7 +1552,7 @@ async def get_location_extraction_results(
 @router.get("/intelligence/report")
 async def get_intelligence_report(
     limit: int = Query(default=50, ge=1, le=500),
-    hours_back: int = Query(default=24, ge=1, le=720),
+    hours_back: int = Query(default=24, ge=1, le=8760, description="Time range in hours (up to 1 year for downloaded data)"),
     sentiment_filter: Optional[str] = Query(None, description="Filter by sentiment: positive, negative, neutral"),
     has_media: Optional[bool] = Query(None, description="Filter posts with/without media"),
     min_engagement: int = Query(default=0, description="Minimum total engagement"),

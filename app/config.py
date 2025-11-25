@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     PORT: int = Field(default=8000)
     LOG_LEVEL: str = Field(default="INFO")
 
-    # Database settings - PostgreSQL (REQUIRED - must be set in .env)
+    # Database settings - PostgreSQL (recommended for production)
     DATABASE_URL: str = Field(default="postgresql+asyncpg://sa:Mercury1_2@localhost:5432/social_media_pipeline")
     DB_ECHO: bool = Field(default=False)
 
