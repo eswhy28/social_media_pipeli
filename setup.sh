@@ -39,14 +39,27 @@ echo -e "${YELLOW}[2/11] Checking PostgreSQL...${NC}"
 
 # Check if PostgreSQL is running in Docker
 DOCKER_POSTGRES_RUNNING=false
+DOCKER_CMD="docker"
+
 if command -v docker &> /dev/null; then
-    if docker ps --format '{{.Names}}' | grep -q "social_media_postgres"; then
+    # Try without sudo first
+    if docker ps --format '{{.Names}}' 2>/dev/null | grep -q "social_media_postgres"; then
         echo -e "${GREEN}✓ PostgreSQL running in Docker (container: social_media_postgres)${NC}"
         DOCKER_POSTGRES_RUNNING=true
-        # Use docker exec for all PostgreSQL commands
-        PSQL_CMD="docker exec social_media_postgres psql"
-        PG_DUMP_CMD="docker exec social_media_postgres pg_dump"
+        DOCKER_CMD="docker"
+    # Try with sudo if permission denied
+    elif sudo docker ps --format '{{.Names}}' 2>/dev/null | grep -q "social_media_postgres"; then
+        echo -e "${GREEN}✓ PostgreSQL running in Docker (container: social_media_postgres)${NC}"
+        echo -e "${YELLOW}⚠ Using sudo for Docker commands${NC}"
+        DOCKER_POSTGRES_RUNNING=true
+        DOCKER_CMD="sudo docker"
     fi
+fi
+
+if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
+    # Use appropriate docker command for all PostgreSQL operations
+    PSQL_CMD="${DOCKER_CMD} exec social_media_postgres psql"
+    PG_DUMP_CMD="${DOCKER_CMD} exec social_media_postgres pg_dump"
 fi
 
 # If not in Docker, check for local PostgreSQL
@@ -64,13 +77,18 @@ if [ "$DOCKER_POSTGRES_RUNNING" = false ]; then
         echo "  macOS: brew install postgresql@14"
         echo ""
         echo "OR run PostgreSQL in Docker:"
-        echo "  ./deploy_postgres_docker.sh"
+        echo "  ${GREEN}./deploy_postgres_docker.sh${NC}"
         echo ""
         echo "OR use the one-liner:"
-        echo "  docker run -d --name social_media_postgres --restart unless-stopped \\"
-        echo "    -e POSTGRES_DB=social_media_pipeline -e POSTGRES_USER=sa \\"
-        echo "    -e POSTGRES_PASSWORD=Mercury1_2 -p 5432:5432 \\"
-        echo "    -v postgres_data:/var/lib/postgresql/data postgres:14"
+        echo "  ${GREEN}sudo docker run -d --name social_media_postgres --restart unless-stopped \\${NC}"
+        echo "    ${GREEN}-e POSTGRES_DB=social_media_pipeline -e POSTGRES_USER=sa \\${NC}"
+        echo "    ${GREEN}-e POSTGRES_PASSWORD=Mercury1_2 -p 5432:5432 \\${NC}"
+        echo "    ${GREEN}-v postgres_data:/var/lib/postgresql/data postgres:14${NC}"
+        echo ""
+        echo "If Docker is installed but you got a permission error:"
+        echo "  ${YELLOW}sudo usermod -aG docker $USER${NC}"
+        echo "  Then log out and back in, or run:"
+        echo "  ${YELLOW}newgrp docker${NC}"
         exit 1
     fi
 fi
@@ -149,13 +167,13 @@ DB_PORT="5432"
 # Check if database exists
 if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
     # Using Docker PostgreSQL
-    if docker exec social_media_postgres psql -U postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
+    if ${DOCKER_CMD} exec social_media_postgres psql -U postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
         echo -e "${GREEN}✓ Database '$DB_NAME' already exists${NC}"
     else
         echo -e "${YELLOW}Creating database '$DB_NAME'...${NC}"
         
         # Create database and user in Docker
-        docker exec social_media_postgres psql -U postgres << EOF
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres << EOF
 CREATE DATABASE $DB_NAME;
 CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';
 GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
@@ -172,7 +190,7 @@ EOF
     
     # Test database connection using Docker
     echo -e "${YELLOW}Testing database connection...${NC}"
-    if docker exec social_media_postgres psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
+    if ${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
         echo -e "${GREEN}✓ Database connection successful${NC}"
     else
         echo -e "${RED}✗ Cannot connect to database${NC}"
@@ -292,7 +310,7 @@ echo -e "${YELLOW}[11/11] Verifying setup...${NC}"
 
 # Check database for data using appropriate command
 if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
-    RECORD_COUNT=$(docker exec social_media_postgres psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
+    RECORD_COUNT=$(${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
 else
     RECORD_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
 fi
@@ -302,7 +320,7 @@ if [ -n "$RECORD_COUNT" ] && [ "$RECORD_COUNT" -gt 0 ]; then
     
     # Check for AI analysis
     if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
-        SENTIMENT_COUNT=$(docker exec social_media_postgres psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
+        SENTIMENT_COUNT=$(${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
     else
         SENTIMENT_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
     fi
