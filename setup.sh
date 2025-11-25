@@ -169,25 +169,28 @@ DB_PORT="5432"
 # Check if database exists
 if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
     # Using Docker PostgreSQL
-    if ${DOCKER_CMD} exec social_media_postgres psql -U postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
+    echo -e "${YELLOW}Checking if database exists...${NC}"
+    
+    # Check if database exists (query as postgres user inside container)
+    DB_EXISTS=$(${DOCKER_CMD} exec social_media_postgres psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null)
+    
+    if [ "$DB_EXISTS" = "1" ]; then
         echo -e "${GREEN}✓ Database '$DB_NAME' already exists${NC}"
     else
         echo -e "${YELLOW}Creating database '$DB_NAME'...${NC}"
         
-        # Create database and user in Docker
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres << EOF
-CREATE DATABASE $DB_NAME;
-CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';
-GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
-ALTER DATABASE $DB_NAME OWNER TO $DB_USER;
-EOF
+        # Create database and user in Docker (using postgres superuser)
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "CREATE DATABASE $DB_NAME;" 2>/dev/null || true
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';" 2>/dev/null || true
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;" 2>/dev/null
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;" 2>/dev/null
         
-        if [ $? -eq 0 ]; then
-            echo -e "${GREEN}✓ Database created successfully${NC}"
-        else
-            echo -e "${RED}✗ Failed to create database${NC}"
-            exit 1
-        fi
+        # Grant schema permissions for PostgreSQL 15+
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null || true
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $DB_USER;" 2>/dev/null || true
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO $DB_USER;" 2>/dev/null || true
+        
+        echo -e "${GREEN}✓ Database created successfully${NC}"
     fi
     
     # Test database connection using Docker
@@ -196,7 +199,15 @@ EOF
         echo -e "${GREEN}✓ Database connection successful${NC}"
     else
         echo -e "${RED}✗ Cannot connect to database${NC}"
-        exit 1
+        echo -e "${YELLOW}Trying to fix permissions...${NC}"
+        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null
+        
+        if ${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
+            echo -e "${GREEN}✓ Database connection successful after permission fix${NC}"
+        else
+            echo -e "${RED}✗ Still cannot connect to database${NC}"
+            exit 1
+        fi
     fi
 else
     # Using local PostgreSQL
