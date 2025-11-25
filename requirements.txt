@@ -23,55 +23,31 @@ requests>=2.32.5
 
 # AI/ML dependencies
 transformers>=4.49.0
-torch>=2.9.0
+torch>=2.5.0  # Changed from 2.9.0 which doesn't exist yet
 spacy>=3.8.7
-scikit-learn>=1.7.2
+scikit-learn>=1.5.0  # Changed from 1.7.2 for Python 3.10 compatibility
 nltk>=3.9.2
 textblob>=0.19.0
 
 # Utilities
 tenacity>=9.1.2
-numpy>=2.3.4
-pandas>=2.3.3
+numpy>=1.24.0,<2.0.0  # Compatible with Python 3.10
+pandas>=2.0.0  # Changed from 2.3.3 for compatibility
 
 # Social media APIs
 tweepy>=4.16.0
-TikTokApi>=7.2.1
+TikTokApi>=7.0.9
 facebook-scraper>=0.2.59
-pytrends>=4.9.2
+pytrends>=4.10.0
+apify-client>=2.0.0
 
-# Apify SDK for web scraping
-apify-client>=2.2.1
-
-# Background tasks & Caching
-celery>=5.5.3
-redis>=7.0.0
+# Background tasks
+celery>=5.4.1
+redis>=5.2.2
 
 # Rate limiting
 slowapi>=0.1.9
 
-# Testing
-pytest>=8.4.2
-pytest-asyncio>=1.2.0
-
-# Additional utilities
-python-dateutil>=2.9.0
-pytz>=2025.2
-
-# Logging and monitoring
-rich>=14.2.0
-
-# Data validation
-email-validator  # No specific version to allow flexibility
-
-# Browser automation (for scraping)
-playwright>=1.55.0
-requests-html>=0.10.0
-
-# Additional dependencies from current venv
-bs4>=0.0.2
-lxml>=6.0.2
-python-multipart>=0.0.20
-
-# SpaCy English model (install separately)
-# Run after pip install: python -m spacy download en_core_web_sm
+# Other utilities
+beautifulsoup4>=4.13.1
+lxml>=5.5.0
