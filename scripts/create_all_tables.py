@@ -56,54 +56,61 @@ async def create_all_tables():
     engine = create_async_engine(DATABASE_URL, echo=False)
     
     try:
-        print("Creating all tables...")
+        print("Creating tables individually...")
         print()
         
-        # Try to create tables, handling duplicate table/index errors
-        try:
-            async with engine.begin() as conn:
-                # Create all tables defined in Base.metadata
-                await conn.run_sync(lambda sync_conn: Base.metadata.create_all(sync_conn, checkfirst=True))
+        # Get all table objects
+        tables_to_create = [
+            ('google_trends_data', GoogleTrendsData.__table__),
+            ('tiktok_content', TikTokContent.__table__),
+            ('facebook_content', FacebookContent.__table__),
+            ('apify_scraped_data', ApifyScrapedData.__table__),
+            ('social_media_aggregation', SocialMediaAggregation.__table__),
+            ('data_source_monitoring', DataSourceMonitoring.__table__),
+            ('apify_data_processing_status', ApifyDataProcessingStatus.__table__),
+            ('apify_sentiment_analysis', ApifySentimentAnalysis.__table__),
+            ('apify_location_extractions', ApifyLocationExtraction.__table__),
+            ('apify_entity_extractions', ApifyEntityExtraction.__table__),
+            ('apify_keyword_extractions', ApifyKeywordExtraction.__table__),
+            ('apify_ai_batch_jobs', ApifyAIBatchJob.__table__),
+        ]
 
-            print("✅ All tables created successfully!")
+        created_count = 0
+        skipped_count = 0
 
-        except Exception as create_error:
-            # Check if it's a duplicate table/index error
-            error_str = str(create_error).lower()
-            if 'already exists' in error_str or 'duplicate' in error_str:
-                print("✅ Tables already exist (some may have been created previously)")
-
-                # Verify tables actually exist by querying them
-                async with engine.connect() as conn:
-                    result = await conn.execute(
-                        __import__('sqlalchemy').text(
-                            "SELECT tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tablename"
-                        )
-                    )
-                    existing_tables = [row[0] for row in result]
-
-                    print(f"\n✓ Found {len(existing_tables)} existing tables in database")
-            else:
-                # Re-raise if it's a different error
-                raise
+        for table_name, table_obj in tables_to_create:
+            try:
+                async with engine.begin() as conn:
+                    await conn.run_sync(lambda sync_conn, t=table_obj: t.create(sync_conn, checkfirst=True))
+                print(f"  ✓ {table_name}")
+                created_count += 1
+            except Exception as e:
+                error_str = str(e).lower()
+                if 'already exists' in error_str or 'duplicate' in error_str:
+                    print(f"  - {table_name} (already exists)")
+                    skipped_count += 1
+                else:
+                    print(f"  ✗ {table_name}: {e}")
 
         print()
-        print("Available tables:")
-        print("  Base Social Media Tables:")
-        print("    - google_trends_data (Google Trends data)")
-        print("    - tiktok_content (TikTok video content)")
-        print("    - facebook_content (Facebook posts)")
-        print("    - apify_scraped_data (Apify scraped social media data)")
-        print("    - social_media_aggregation (aggregated social media data)")
-        print("    - data_source_monitoring (data source monitoring)")
-        print()
-        print("  AI Analysis Tables:")
-        print("    - apify_data_processing_status (tracks processing status)")
-        print("    - apify_sentiment_analysis (sentiment analysis results)")
-        print("    - apify_location_extractions (location extraction results)")
-        print("    - apify_entity_extractions (entity recognition results)")
-        print("    - apify_keyword_extractions (keyword extraction results)")
-        print("    - apify_ai_batch_jobs (batch job tracking)")
+        print(f"✅ Created {created_count} table(s), skipped {skipped_count} existing table(s)")
+
+        # Verify final table count
+        async with engine.connect() as conn:
+            result = await conn.execute(
+                __import__('sqlalchemy').text(
+                    "SELECT tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tablename"
+                )
+            )
+            existing_tables = [row[0] for row in result]
+
+            print(f"✓ Total tables in database: {len(existing_tables)}")
+            if len(existing_tables) > 0:
+                print()
+                print("Existing tables:")
+                for tbl in existing_tables:
+                    print(f"  - {tbl}")
+
         print()
         print("=" * 70)
         print("✓ Database setup complete!")
