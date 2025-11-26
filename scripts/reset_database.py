@@ -67,11 +67,17 @@ async def reset_database():
     engine = create_async_engine(DATABASE_URL, echo=False)
 
     try:
-        # Drop all tables
-        print("  1. Dropping all existing tables...")
+        # Drop entire public schema and recreate (cleanest approach)
+        print("  1. Dropping public schema (removes all tables, indexes, etc)...")
         async with engine.begin() as conn:
-            await conn.run_sync(Base.metadata.drop_all)
-        print("     ✓ All tables dropped")
+            # Drop schema cascade (removes everything)
+            await conn.execute(text("DROP SCHEMA IF EXISTS public CASCADE"))
+            # Recreate schema
+            await conn.execute(text("CREATE SCHEMA public"))
+            # Grant permissions
+            await conn.execute(text("GRANT ALL ON SCHEMA public TO sa"))
+            await conn.execute(text("GRANT ALL ON SCHEMA public TO public"))
+        print("     ✓ Schema reset complete")
 
         # Recreate all tables
         print("  2. Creating fresh tables...")
