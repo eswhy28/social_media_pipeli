@@ -2,16 +2,29 @@
 
 ## Quick Start
 
-### Option 1: Automated Setup (Recommended)
-This script cleans the database and runs all migrations:
+### Option 1: Complete Setup (Recommended - Includes Data & AI)
+This script does everything: clean database, migrations, import data, and AI processing:
 
 ```bash
 cd /home/aminu/projects/social_media_pipeli
 source venv/bin/activate
+python scripts/complete_setup.py
+```
+
+**This will:**
+1. Clean the database (drop all tables)
+2. Run Alembic migrations to create tables
+3. Import data from JSON files in `data/` directory
+4. Run AI processing (sentiment, entities, keywords, locations)
+
+### Option 2: Migrations Only (No Data)
+This script cleans the database and runs migrations only:
+
+```bash
 python scripts/setup_with_alembic.py
 ```
 
-### Option 2: Manual Alembic Commands
+### Option 3: Manual Alembic Commands
 
 #### Clean the database first (removes all data):
 ```bash
