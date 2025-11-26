@@ -55,8 +55,28 @@ async def force_reset_database():
     engine = create_async_engine(DATABASE_URL, echo=False)
     
     try:
+        # First, try to drop all indexes explicitly
+        print("  1. Cleaning up existing indexes...")
+        async with engine.begin() as conn:
+            # Get all indexes in public schema
+            result = await conn.execute(text("""
+                SELECT indexname FROM pg_indexes 
+                WHERE schemaname = 'public' AND indexname NOT LIKE 'pg_%'
+            """))
+            indexes = [row[0] for row in result]
+
+            # Drop each index
+            for idx in indexes:
+                try:
+                    await conn.execute(text(f"DROP INDEX IF EXISTS {idx} CASCADE"))
+                except Exception:
+                    pass  # Ignore errors
+
+            if indexes:
+                print(f"     ✓ Dropped {len(indexes)} index(es)")
+
         # Drop entire public schema and recreate (cleanest approach)
-        print("  1. Dropping public schema (removes all tables, indexes, etc)...")
+        print("  2. Dropping public schema (removes all tables, etc)...")
         async with engine.begin() as conn:
             # Drop schema cascade (removes everything)
             await conn.execute(text("DROP SCHEMA IF EXISTS public CASCADE"))
@@ -68,7 +88,7 @@ async def force_reset_database():
         print("     ✓ Schema reset complete")
 
         # Recreate all tables
-        print("  2. Creating fresh tables...")
+        print("  3. Creating fresh tables...")
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
         print("     ✓ All tables created")
