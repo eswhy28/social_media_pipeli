@@ -313,11 +313,29 @@ fi
 echo ""
 echo -e "${YELLOW}[8/11] Initializing database tables...${NC}"
 
-if [ -f "scripts/create_ai_tables.py" ]; then
-    python scripts/create_ai_tables.py > /dev/null 2>&1
-    echo -e "${GREEN}✓ Database tables created${NC}"
+if [ -f "scripts/create_all_tables.py" ]; then
+    echo -e "${YELLOW}Running table creation script...${NC}"
+    if python scripts/create_all_tables.py; then
+        echo -e "${GREEN}✓ Database tables created${NC}"
+        TABLES_CREATED=true
+    else
+        echo -e "${RED}✗ Table creation failed${NC}"
+        echo -e "${YELLOW}You can try manually:${NC}"
+        echo -e "  ${GREEN}python scripts/create_all_tables.py${NC}"
+        TABLES_CREATED=false
+    fi
+elif [ -f "scripts/create_ai_tables.py" ]; then
+    echo -e "${YELLOW}Running AI table creation script...${NC}"
+    if python scripts/create_ai_tables.py; then
+        echo -e "${GREEN}✓ AI tables created${NC}"
+        TABLES_CREATED=true
+    else
+        echo -e "${YELLOW}⚠ Table creation had some issues, but continuing...${NC}"
+        TABLES_CREATED=false
+    fi
 else
     echo -e "${YELLOW}⚠ Table creation script not found, skipping...${NC}"
+    TABLES_CREATED=false
 fi
 
 # Step 9: Import JSON data to PostgreSQL
@@ -379,30 +397,48 @@ fi
 echo ""
 echo -e "${YELLOW}[11/11] Verifying setup...${NC}"
 
-# Check database for data using appropriate command
+# Check if tables exist first
 if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
-    RECORD_COUNT=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
+    TABLE_EXISTS=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -tAc "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'apify_scraped_data');" 2>/dev/null | xargs)
 else
-    RECORD_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
+    TABLE_EXISTS=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -tAc "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'apify_scraped_data');" 2>/dev/null | xargs)
 fi
 
-if [ -n "$RECORD_COUNT" ] && [ "$RECORD_COUNT" -gt 0 ]; then
-    echo -e "${GREEN}✓ Database contains $RECORD_COUNT records${NC}"
-    
-    # Check for AI analysis
+if [ "$TABLE_EXISTS" = "t" ]; then
+    echo -e "${GREEN}✓ Database tables exist${NC}"
+
+    # Check database for data using appropriate command
     if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
-        SENTIMENT_COUNT=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
+        RECORD_COUNT=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
     else
-        SENTIMENT_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
+        RECORD_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
     fi
-    
-    if [ -n "$SENTIMENT_COUNT" ] && [ "$SENTIMENT_COUNT" -gt 0 ]; then
-        echo -e "${GREEN}✓ AI analysis complete: $SENTIMENT_COUNT sentiment records${NC}"
+
+    if [ -n "$RECORD_COUNT" ] && [ "$RECORD_COUNT" -gt 0 ]; then
+        echo -e "${GREEN}✓ Database contains $RECORD_COUNT records${NC}"
+
+        # Check for AI analysis
+        if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
+            SENTIMENT_COUNT=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
+        else
+            SENTIMENT_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
+        fi
+
+        if [ -n "$SENTIMENT_COUNT" ] && [ "$SENTIMENT_COUNT" -gt 0 ]; then
+            echo -e "${GREEN}✓ AI analysis complete: $SENTIMENT_COUNT sentiment records${NC}"
+        else
+            echo -e "${YELLOW}⚠ No AI analysis data found${NC}"
+        fi
     else
-        echo -e "${YELLOW}⚠ No AI analysis data found${NC}"
+        echo -e "${YELLOW}⚠ Database is empty${NC}"
+        RECORD_COUNT=0
     fi
 else
-    echo -e "${YELLOW}⚠ Database is empty${NC}"
+    echo -e "${YELLOW}⚠ Database tables not created yet${NC}"
+    echo -e "${YELLOW}You can create tables by running:${NC}"
+    echo -e "  ${GREEN}python scripts/create_all_tables.py${NC}"
+    RECORD_COUNT=0
+    TABLES_CREATED=false
 fi
 
 # Summary
