@@ -186,7 +186,7 @@ if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
     echo -e "${YELLOW}Checking if database exists...${NC}"
     
     # Check if database exists (query as postgres user inside container)
-    DB_EXISTS=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null)
+    DB_EXISTS=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null || echo "")
 
     if [ "$DB_EXISTS" = "1" ]; then
         echo -e "${GREEN}✓ Database '$DB_NAME' already exists${NC}"
@@ -194,32 +194,57 @@ if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
         echo -e "${YELLOW}Creating database '$DB_NAME'...${NC}"
         
         # Create database and user in Docker (using postgres superuser)
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "CREATE DATABASE $DB_NAME;" 2>/dev/null || true
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';" 2>/dev/null || true
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;" 2>/dev/null
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;" 2>/dev/null
+        echo -e "${YELLOW}  - Creating database...${NC}"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "CREATE DATABASE $DB_NAME;" 2>&1 | grep -v "already exists" || true
+
+        echo -e "${YELLOW}  - Creating user...${NC}"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';" 2>&1 | grep -v "already exists" || true
+
+        echo -e "${YELLOW}  - Granting privileges...${NC}"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;" 2>/dev/null || echo "    (skipped)"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;" 2>/dev/null || echo "    (skipped)"
 
         # Grant schema permissions for PostgreSQL 15+
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null || true
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $DB_USER;" 2>/dev/null || true
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO $DB_USER;" 2>/dev/null || true
+        echo -e "${YELLOW}  - Setting schema permissions...${NC}"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null || echo "    (skipped)"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $DB_USER;" 2>/dev/null || echo "    (skipped)"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO $DB_USER;" 2>/dev/null || echo "    (skipped)"
 
-        echo -e "${GREEN}✓ Database created successfully${NC}"
+        echo -e "${GREEN}✓ Database setup completed${NC}"
     fi
     
     # Test database connection using Docker
+    echo ""
     echo -e "${YELLOW}Testing database connection...${NC}"
+
+    # First verify the database was created
+    VERIFY_DB=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null || echo "")
+    if [ "$VERIFY_DB" != "1" ]; then
+        echo -e "${RED}✗ Database '$DB_NAME' was not created properly${NC}"
+        echo -e "${YELLOW}Please check the Docker container logs:${NC}"
+        echo -e "  ${GREEN}${DOCKER_CMD} logs ${POSTGRES_CONTAINER}${NC}"
+        exit 1
+    fi
+
+    # Test connection as the application user
     if ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
         echo -e "${GREEN}✓ Database connection successful${NC}"
     else
-        echo -e "${RED}✗ Cannot connect to database${NC}"
-        echo -e "${YELLOW}Trying to fix permissions...${NC}"
-        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null
+        echo -e "${YELLOW}⚠ Cannot connect as user '$DB_USER', attempting permission fix...${NC}"
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null || true
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON DATABASE $DB_NAME TO $DB_USER;" 2>/dev/null || true
 
         if ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
             echo -e "${GREEN}✓ Database connection successful after permission fix${NC}"
         else
             echo -e "${RED}✗ Still cannot connect to database${NC}"
+            echo -e "${YELLOW}Debugging info:${NC}"
+            echo -e "  Database: $DB_NAME"
+            echo -e "  User: $DB_USER"
+            echo -e "  Container: ${POSTGRES_CONTAINER}"
+            echo ""
+            echo -e "${YELLOW}Try manually:${NC}"
+            echo -e "  ${GREEN}${DOCKER_CMD} exec -it ${POSTGRES_CONTAINER} psql -U postgres${NC}"
             exit 1
         fi
     fi
