@@ -60,9 +60,9 @@ async def create_all_tables():
         print()
         
         async with engine.begin() as conn:
-            # Create all tables defined in Base.metadata
-            await conn.run_sync(Base.metadata.create_all)
-        
+            # Create all tables defined in Base.metadata (checkfirst=True skips existing)
+            await conn.run_sync(lambda sync_conn: Base.metadata.create_all(sync_conn, checkfirst=True))
+
         print("✅ All tables created successfully!")
         print()
         print("Created tables:")
