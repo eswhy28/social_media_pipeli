@@ -18,7 +18,11 @@ import os
 # Import all models to register them with Base.metadata
 from app.models.social_media_sources import (
     ApifyScrapedData,
-    SocialMediaSource,
+    GoogleTrendsData,
+    TikTokContent,
+    FacebookContent,
+    SocialMediaAggregation,
+    DataSourceMonitoring,
 )
 from app.models.ai_analysis import (
     ApifyDataProcessingStatus,
@@ -62,9 +66,13 @@ async def create_all_tables():
         print("✅ All tables created successfully!")
         print()
         print("Created tables:")
-        print("  Base Tables:")
-        print("    - social_media_sources (data sources configuration)")
-        print("    - apify_scraped_data (scraped social media data)")
+        print("  Base Social Media Tables:")
+        print("    - google_trends_data (Google Trends data)")
+        print("    - tiktok_content (TikTok video content)")
+        print("    - facebook_content (Facebook posts)")
+        print("    - apify_scraped_data (Apify scraped social media data)")
+        print("    - social_media_aggregation (aggregated social media data)")
+        print("    - data_source_monitoring (data source monitoring)")
         print()
         print("  AI Analysis Tables:")
         print("    - apify_data_processing_status (tracks processing status)")
