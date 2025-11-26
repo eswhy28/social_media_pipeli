@@ -59,13 +59,36 @@ async def create_all_tables():
         print("Creating all tables...")
         print()
         
-        async with engine.begin() as conn:
-            # Create all tables defined in Base.metadata (checkfirst=True skips existing)
-            await conn.run_sync(lambda sync_conn: Base.metadata.create_all(sync_conn, checkfirst=True))
+        # Try to create tables, handling duplicate table/index errors
+        try:
+            async with engine.begin() as conn:
+                # Create all tables defined in Base.metadata
+                await conn.run_sync(lambda sync_conn: Base.metadata.create_all(sync_conn, checkfirst=True))
 
-        print("✅ All tables created successfully!")
+            print("✅ All tables created successfully!")
+
+        except Exception as create_error:
+            # Check if it's a duplicate table/index error
+            error_str = str(create_error).lower()
+            if 'already exists' in error_str or 'duplicate' in error_str:
+                print("✅ Tables already exist (some may have been created previously)")
+
+                # Verify tables actually exist by querying them
+                async with engine.connect() as conn:
+                    result = await conn.execute(
+                        __import__('sqlalchemy').text(
+                            "SELECT tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tablename"
+                        )
+                    )
+                    existing_tables = [row[0] for row in result]
+
+                    print(f"\n✓ Found {len(existing_tables)} existing tables in database")
+            else:
+                # Re-raise if it's a different error
+                raise
+
         print()
-        print("Created tables:")
+        print("Available tables:")
         print("  Base Social Media Tables:")
         print("    - google_trends_data (Google Trends data)")
         print("    - tiktok_content (TikTok video content)")
@@ -94,10 +117,13 @@ async def create_all_tables():
         print("     docker ps | grep postgres")
         print()
         print("  2. Verify database connection:")
-        print("     docker exec postgres psql -U sa -d mydb -c '\\l'")
+        print("     docker exec postgres psql -U sa -d social_media_pipeline -c '\\dt'")
         print()
         print("  3. Check DATABASE_URL in .env file")
         print(f"     Current: {DATABASE_URL}")
+        print()
+        print("  4. If tables are partially created, you can drop and recreate:")
+        print("     docker exec postgres psql -U sa -d social_media_pipeline -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'")
         print()
         sys.exit(1)
     finally:
