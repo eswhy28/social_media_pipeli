@@ -798,6 +798,26 @@ async def get_scraped_data(
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get("/data/sentiment/live")
+async def sentiment_live_endpoint_disabled():
+    """
+    Live sentiment streaming endpoint - Currently Disabled
+
+    This endpoint has been disabled. Use the batch sentiment analysis endpoints instead:
+    - GET /api/v1/social-media/data/scraped (includes sentiment data)
+    - POST /api/v1/ai/sentiment/batch (process sentiment for multiple posts)
+    """
+    return {
+        "status": "disabled",
+        "message": "Live sentiment streaming is currently disabled. Please use batch endpoints instead.",
+        "alternatives": [
+            "/api/v1/social-media/data/scraped",
+            "/api/v1/ai/sentiment/batch"
+        ],
+        "timestamp": datetime.utcnow().isoformat()
+    }
+
+
 @router.get("/data/geo-analysis")
 async def get_geo_analysis(
     hours_back: int = Query(default=24, ge=1, le=8760, description="Hours of data to analyze (up to 1 year for downloaded data)"),
@@ -1503,10 +1523,9 @@ async def get_location_extraction_results(
                     "type": location_record.location_type,
                     "confidence": location_record.confidence,
                     "coordinates": location_record.coordinates,
+                    "country": location_record.country,
                     "region": location_record.region,
-                    "state_province": location_record.state_province,
-                    "city": location_record.city,
-                    "country": location_record.country
+                    "city": location_record.city
                 },
                 "post": {
                     "id": post.id,
