@@ -33,11 +33,11 @@ Facebook     Google API                          (your choice)
 ## 📦 Installation
 
 ### Prerequisites
-- Python 3.13+
-- PostgreSQL 14+
+- Python 3.10+
+- PostgreSQL 14+ (or Docker with PostgreSQL)
 - Redis (optional, for caching)
 
-### Setup
+### Quick Setup (Recommended)
 
 1. **Clone the repository**
 ```bash
@@ -45,47 +45,85 @@ git clone <your-repo>
 cd social_media_pipeli
 ```
 
-2. **Create virtual environment**
+2. **Run the complete setup script**
 ```bash
+# This will:
+# - Create virtual environment
+# - Install dependencies
+# - Setup database with Alembic migrations
+# - Import data (if available)
+# - Run AI processing
+./setup.sh
+
+# OR use the Python version for more control
+python scripts/complete_setup.py
+```
+
+3. **Start the server**
+```bash
+source venv/bin/activate
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Manual Setup (Advanced)
+
+1. **Clone and create virtual environment**
+```bash
+git clone <your-repo>
+cd social_media_pipeli
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. **Install dependencies**
+2. **Install dependencies**
 ```bash
 pip install -r requirements.txt
+python -m spacy download en_core_web_sm
 ```
 
-4. **Configure environment**
+3. **Configure environment**
 ```bash
 cp .env.example .env
 # Edit .env with your credentials:
-# - DATABASE_URL
-# - APIFY_API_TOKEN (optional)
-# - Other API keys as needed
+# DATABASE_URL=postgresql+asyncpg://user:pass@localhost:5432/social_media_pipeline
+# APIFY_API_TOKEN=your_token (optional)
 ```
 
-5. **Initialize database**
+4. **Setup database with Alembic**
 ```bash
-python scripts/create_ai_tables.py
+# Run all migrations
+alembic upgrade head
+
+# OR use the automated script
+python scripts/setup_with_alembic.py
 ```
 
-6. **Import data** (if you have JSON files)
+5. **Import data** (if you have JSON files in data/ folder)
 ```bash
 python scripts/import_data.py
 ```
 
-7. **Run the server**
+6. **Run AI processing**
 ```bash
-# Option 1: Using uvicorn directly (recommended)
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-# Option 2: Using the start script
-./start.sh
-
-# Option 3: Using Python module
-python -m uvicorn app.main:app --reload
+python scripts/setup_intelligence_system.py
 ```
+
+7. **Start the server**
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Troubleshooting Setup
+
+If you encounter issues, check these guides:
+- **[STARTUP_FIX.md](STARTUP_FIX.md)** - Application won't start
+- **[ALEMBIC_GUIDE.md](ALEMBIC_GUIDE.md)** - Database migration issues
+- **[SETUP_INDEX.md](SETUP_INDEX.md)** - Complete setup guide index
+
+**Common Issues:**
+- "Duplicate index" errors → Run `python scripts/complete_setup.py`
+- "Table does not exist" → Run `alembic upgrade head`
+- Docker/PostgreSQL issues → See **[DATABASE_SETUP_FIX.md](DATABASE_SETUP_FIX.md)**
 
 API will be available at: `http://localhost:8000`  
 Documentation at: `http://localhost:8000/docs`

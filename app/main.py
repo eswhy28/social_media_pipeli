@@ -76,6 +76,31 @@ app.include_router(ingestion.router, prefix=f"{settings.API_V1_PREFIX}/ingestion
 app.include_router(social_media.router, prefix=f"{settings.API_V1_PREFIX}/social-media", tags=["Social Media"])
 
 
+# Legacy endpoint redirects/disabled endpoints
+@app.get(f"{settings.API_V1_PREFIX}/data/sentiment/live")
+async def legacy_sentiment_live_disabled():
+    """
+    Legacy sentiment live endpoint - Disabled
+
+    This endpoint has been deprecated and disabled.
+    Please use the new endpoint at:
+    - GET /api/v1/social-media/data/scraped (with sentiment data included)
+    - GET /api/v1/social-media/intelligence/report (comprehensive report)
+    """
+    from datetime import datetime
+    return {
+        "status": "disabled",
+        "message": "This endpoint has been deprecated. Please use the new social-media endpoints.",
+        "new_endpoints": {
+            "scraped_data": f"{settings.API_V1_PREFIX}/social-media/data/scraped",
+            "intelligence_report": f"{settings.API_V1_PREFIX}/social-media/intelligence/report",
+            "sentiment_results": f"{settings.API_V1_PREFIX}/social-media/ai/sentiment-results"
+        },
+        "documentation": "/docs",
+        "timestamp": datetime.utcnow().isoformat()
+    }
+
+
 @app.get("/")
 async def root():
     return {
