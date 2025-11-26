@@ -23,12 +23,18 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting up application...")
 
-    # Initialize database tables
+    # Note: Database tables are managed by Alembic migrations
+    # Run: alembic upgrade head
+    # Or: python scripts/complete_setup.py
+    logger.info("Database tables managed by Alembic (migrations)")
+
+    # Optional: Test database connection
     try:
-        await init_db()
-        logger.info("Database initialized successfully")
+        from app.database import engine
+        async with engine.connect() as conn:
+            logger.info("Database connection successful")
     except Exception as e:
-        logger.error(f"Failed to initialize database: {str(e)}")
+        logger.warning(f"Database connection test failed: {str(e)}")
 
     yield
 
