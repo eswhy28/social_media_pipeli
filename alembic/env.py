@@ -19,6 +19,15 @@ from app.models.social_media_sources import (
     SocialMediaAggregation,
     DataSourceMonitoring
 )
+# Import AI analysis models
+from app.models.ai_analysis import (
+    ApifyDataProcessingStatus,
+    ApifySentimentAnalysis,
+    ApifyLocationExtraction,
+    ApifyEntityExtraction,
+    ApifyKeywordExtraction,
+    ApifyAIBatchJob
+)
 from app.config import settings
 
 # this is the Alembic Config object

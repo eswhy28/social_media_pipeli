@@ -1,33 +1,39 @@
 # IMMEDIATE FIX - Database Tables Not Created
 
 ## The Problem
-Your database exists but has no tables (or partially created tables with index conflicts), causing the error:
+Your database exists but has stubborn indexes from partial table creation, causing the error:
 ```
 relation "apify_scraped_data" does not exist
+relation "idx_posted_at" already exists
 ```
 
-## Quick Solution (Choose One)
+## Quick Solution (RECOMMENDED)
 
-### Option 1: Reset Database (RECOMMENDED - Clean Slate)
-This will delete any existing data and create fresh tables:
+### Option 1: Manual SQL Reset (Most Reliable)
+Run this command directly on your cloud server:
 
+```bash
+docker exec postgres psql -U sa -d social_media_pipeline -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public; GRANT ALL ON SCHEMA public TO sa; GRANT ALL ON SCHEMA public TO public;"
+```
+
+Then create the tables:
 ```bash
 cd /home/aminu/projects/social_media_pipeli
 source venv/bin/activate
-python scripts/reset_database.py
-# Type 'YES' when prompted
+python scripts/create_all_tables.py
 ```
 
-### Option 2: Force Reset (Non-Interactive)
-Same as Option 1 but no confirmation prompt:
-
+### Option 2: Force Reset Script  
 ```bash
+cd /home/aminu/projects/social_media_pipeli
+source venv/bin/activate
 python scripts/force_reset_database.py
 ```
 
-### Option 3: Try Creating Tables (May fail if conflicts exist)
+###Option 3: Interactive Reset
 ```bash
-python scripts/create_all_tables.py
+python scripts/reset_database.py
+# Type 'YES' when prompted
 ```
 
 ## After Creating Tables
