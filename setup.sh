@@ -40,26 +40,40 @@ echo -e "${YELLOW}[2/11] Checking PostgreSQL...${NC}"
 # Check if PostgreSQL is running in Docker
 DOCKER_POSTGRES_RUNNING=false
 DOCKER_CMD="docker"
+POSTGRES_CONTAINER=""
 
 if command -v docker &> /dev/null; then
     # Try without sudo first
-    if docker ps --format '{{.Names}}' 2>/dev/null | grep -q "social_media_postgres"; then
-        echo -e "${GREEN}✓ PostgreSQL running in Docker (container: social_media_postgres)${NC}"
-        DOCKER_POSTGRES_RUNNING=true
-        DOCKER_CMD="docker"
-    # Try with sudo if permission denied
-    elif sudo docker ps --format '{{.Names}}' 2>/dev/null | grep -q "social_media_postgres"; then
-        echo -e "${GREEN}✓ PostgreSQL running in Docker (container: social_media_postgres)${NC}"
-        echo -e "${YELLOW}⚠ Using sudo for Docker commands${NC}"
-        DOCKER_POSTGRES_RUNNING=true
-        DOCKER_CMD="sudo docker"
+    # Check for common PostgreSQL container names
+    for container_name in "postgres" "social_media_postgres"; do
+        if docker ps --format '{{.Names}}' 2>/dev/null | grep -q "^${container_name}$"; then
+            echo -e "${GREEN}✓ PostgreSQL running in Docker (container: ${container_name})${NC}"
+            DOCKER_POSTGRES_RUNNING=true
+            DOCKER_CMD="docker"
+            POSTGRES_CONTAINER="${container_name}"
+            break
+        fi
+    done
+
+    # Try with sudo if permission denied or not found yet
+    if [ "$DOCKER_POSTGRES_RUNNING" = false ]; then
+        for container_name in "postgres" "social_media_postgres"; do
+            if sudo docker ps --format '{{.Names}}' 2>/dev/null | grep -q "^${container_name}$"; then
+                echo -e "${GREEN}✓ PostgreSQL running in Docker (container: ${container_name})${NC}"
+                echo -e "${YELLOW}⚠ Using sudo for Docker commands${NC}"
+                DOCKER_POSTGRES_RUNNING=true
+                DOCKER_CMD="sudo docker"
+                POSTGRES_CONTAINER="${container_name}"
+                break
+            fi
+        done
     fi
 fi
 
 if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
     # Use appropriate docker command for all PostgreSQL operations
-    PSQL_CMD="${DOCKER_CMD} exec social_media_postgres psql"
-    PG_DUMP_CMD="${DOCKER_CMD} exec social_media_postgres pg_dump"
+    PSQL_CMD="${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql"
+    PG_DUMP_CMD="${DOCKER_CMD} exec ${POSTGRES_CONTAINER} pg_dump"
 fi
 
 # If not in Docker, check for local PostgreSQL
@@ -172,37 +186,37 @@ if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
     echo -e "${YELLOW}Checking if database exists...${NC}"
     
     # Check if database exists (query as postgres user inside container)
-    DB_EXISTS=$(${DOCKER_CMD} exec social_media_postgres psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null)
-    
+    DB_EXISTS=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null)
+
     if [ "$DB_EXISTS" = "1" ]; then
         echo -e "${GREEN}✓ Database '$DB_NAME' already exists${NC}"
     else
         echo -e "${YELLOW}Creating database '$DB_NAME'...${NC}"
         
         # Create database and user in Docker (using postgres superuser)
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "CREATE DATABASE $DB_NAME;" 2>/dev/null || true
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';" 2>/dev/null || true
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;" 2>/dev/null
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;" 2>/dev/null
-        
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "CREATE DATABASE $DB_NAME;" 2>/dev/null || true
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';" 2>/dev/null || true
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;" 2>/dev/null
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;" 2>/dev/null
+
         # Grant schema permissions for PostgreSQL 15+
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null || true
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $DB_USER;" 2>/dev/null || true
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO $DB_USER;" 2>/dev/null || true
-        
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null || true
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $DB_USER;" 2>/dev/null || true
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO $DB_USER;" 2>/dev/null || true
+
         echo -e "${GREEN}✓ Database created successfully${NC}"
     fi
     
     # Test database connection using Docker
     echo -e "${YELLOW}Testing database connection...${NC}"
-    if ${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
+    if ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
         echo -e "${GREEN}✓ Database connection successful${NC}"
     else
         echo -e "${RED}✗ Cannot connect to database${NC}"
         echo -e "${YELLOW}Trying to fix permissions...${NC}"
-        ${DOCKER_CMD} exec social_media_postgres psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null
-        
-        if ${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
+        ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U postgres -d $DB_NAME -c "GRANT ALL ON SCHEMA public TO $DB_USER;" 2>/dev/null
+
+        if ${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -c "SELECT version();" > /dev/null 2>&1; then
             echo -e "${GREEN}✓ Database connection successful after permission fix${NC}"
         else
             echo -e "${RED}✗ Still cannot connect to database${NC}"
@@ -323,7 +337,7 @@ echo -e "${YELLOW}[11/11] Verifying setup...${NC}"
 
 # Check database for data using appropriate command
 if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
-    RECORD_COUNT=$(${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
+    RECORD_COUNT=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
 else
     RECORD_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_scraped_data;" 2>/dev/null | xargs)
 fi
@@ -333,7 +347,7 @@ if [ -n "$RECORD_COUNT" ] && [ "$RECORD_COUNT" -gt 0 ]; then
     
     # Check for AI analysis
     if [ "$DOCKER_POSTGRES_RUNNING" = true ]; then
-        SENTIMENT_COUNT=$(${DOCKER_CMD} exec social_media_postgres psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
+        SENTIMENT_COUNT=$(${DOCKER_CMD} exec ${POSTGRES_CONTAINER} psql -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
     else
         SENTIMENT_COUNT=$(PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -t -c "SELECT COUNT(*) FROM apify_sentiment_analysis;" 2>/dev/null | xargs)
     fi
